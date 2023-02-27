@@ -12,4 +12,11 @@
 }
 .authorization-icon :hover {
   opacity: 1;
+}
+
+.input-group {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
 }/*# sourceMappingURL=index_style.css.map */
