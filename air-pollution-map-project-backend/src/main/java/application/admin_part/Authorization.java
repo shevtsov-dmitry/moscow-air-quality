@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class Authorization {
     @GetMapping(value = "/admin", produces = MediaType.TEXT_HTML_VALUE)
     public String showServerHtmlPage(){
-        return "static/index.html";
+        return "templates/index.html";
     }
 }
