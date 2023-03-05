@@ -1196,10 +1196,18 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="339" parent="334" name="PRIMARY">
+    <index id="339" parent="334" name="admins_id_uindex">
+      <ColNames>id</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="340" parent="334" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="341" parent="334" name="admins_id_uindex">
+      <UnderlyingIndexName>admins_id_uindex</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>

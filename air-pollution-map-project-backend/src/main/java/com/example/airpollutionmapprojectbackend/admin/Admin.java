@@ -2,8 +2,10 @@ package com.example.airpollutionmapprojectbackend.admin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name="admins")
 public class Admin {
     @Id
     private long id;
