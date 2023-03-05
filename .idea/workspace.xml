@@ -4,19 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Настроил обмен информацией website to server back and forth">
-      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AdminService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6.xml" afterDir="false" />
+    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Разбираюсь с JPA и пытаюсь достать инфу из БД">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/air-pollution-map-project-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/air-pollution-map-project-backend.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AdminRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/Admin.class" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/Admin.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/Authorization.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -159,7 +151,7 @@
       <workItem from="1678010676349" duration="816000" />
       <workItem from="1678014052745" duration="60000" />
       <workItem from="1678014115161" duration="82000" />
-      <workItem from="1678014237791" duration="24409000" />
+      <workItem from="1678014237791" duration="25146000" />
     </task>
     <task id="LOCAL-00001" summary="Синхронизация проекта с maven и merge into main">
       <created>1677517492538</created>
@@ -189,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678042834909</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Разбираюсь с JPA и пытаюсь достать инфу из БД">
+      <created>1678052119477</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1678052119477</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +210,8 @@
     <MESSAGE value="Синхронизация проекта с maven и merge into main" />
     <MESSAGE value="Создал класс Admin и вспомогательные классы для верификации логина и пароля" />
     <MESSAGE value="Настроил обмен информацией website to server back and forth" />
-    <option name="LAST_COMMIT_MESSAGE" value="Настроил обмен информацией website to server back and forth" />
+    <MESSAGE value="Разбираюсь с JPA и пытаюсь достать инфу из БД" />
+    <option name="LAST_COMMIT_MESSAGE" value="Разбираюсь с JPA и пытаюсь достать инфу из БД" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

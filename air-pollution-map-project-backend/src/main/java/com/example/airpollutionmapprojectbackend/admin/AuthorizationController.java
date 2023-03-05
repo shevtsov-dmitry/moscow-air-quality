@@ -13,7 +13,7 @@ public class AuthorizationController{
     }
     @GetMapping("/admin")
     public String showSmth(){
-        VerifyAdmin verifyAdmin = new VerifyAdmin();
+        AdminService as = new AdminService();
         return verifyAdmin.verifyString(adminMute);
     }
 }
