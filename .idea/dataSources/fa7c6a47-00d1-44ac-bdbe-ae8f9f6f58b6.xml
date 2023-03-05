@@ -1171,7 +1171,7 @@ test\\_%|schema||&apos;&apos;||UPDATE|G</Grants>
     <user id="333" parent="1" name="root">
       <Host>localhost</Host>
     </user>
-    <table id="334" parent="324" name="table_name">
+    <table id="334" parent="324" name="admins">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_general_ci</CollationName>
     </table>

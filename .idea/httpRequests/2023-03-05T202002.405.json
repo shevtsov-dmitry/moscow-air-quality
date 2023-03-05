@@ -1,0 +1,6 @@
+{
+  "timestamp": "2023-03-05T17:20:02.158+00:00",
+  "status": 405,
+  "error": "Method Not Allowed",
+  "path": "/admin"
+}

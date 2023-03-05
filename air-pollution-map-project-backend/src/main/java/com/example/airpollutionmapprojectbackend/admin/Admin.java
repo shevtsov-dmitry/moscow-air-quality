@@ -1,6 +1,11 @@
-package application.admin_part.admin;
+package com.example.airpollutionmapprojectbackend.admin;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Admin {
+    @Id
     private long id;
     private String login;
     private String password; // in the future will try to use char[] instead of String
