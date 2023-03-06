@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Разбираюсь с JPA и пытаюсь достать инфу из БД">
+    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,11 +65,15 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/shado/Documents/air-pollution-map-project",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "spring.configuration.checksum": "1778364c3199f6cb7399690958099da5"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "mariadb"
+    ],
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
 }]]></component>
@@ -112,6 +113,13 @@
     <configuration name="generated-requests | show not allowed HTML" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="show not allowed HTML" runType="Run single request">
       <method v="2" />
     </configuration>
+    <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AirPollutionMapProjectBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="air-pollution-map-project-backend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.airpollutionmapprojectbackend.AirPollutionMapProjectBackendApplication" />
@@ -128,6 +136,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.AirPollutionMapProjectBackendApplication" />
+        <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.VerifyAdmin" />
         <item itemvalue="HTTP Request.generated-requests | show not allowed HTML" />
         <item itemvalue="HTTP Request.generated-requests | get smth from :5173" />
@@ -151,7 +160,8 @@
       <workItem from="1678010676349" duration="816000" />
       <workItem from="1678014052745" duration="60000" />
       <workItem from="1678014115161" duration="82000" />
-      <workItem from="1678014237791" duration="25146000" />
+      <workItem from="1678014237791" duration="25242000" />
+      <workItem from="1678088086352" duration="6679000" />
     </task>
     <task id="LOCAL-00001" summary="Синхронизация проекта с maven и merge into main">
       <created>1677517492538</created>
@@ -188,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678052119477</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе">
+      <created>1678052892335</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678052892335</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +228,8 @@
     <MESSAGE value="Создал класс Admin и вспомогательные классы для верификации логина и пароля" />
     <MESSAGE value="Настроил обмен информацией website to server back and forth" />
     <MESSAGE value="Разбираюсь с JPA и пытаюсь достать инфу из БД" />
-    <option name="LAST_COMMIT_MESSAGE" value="Разбираюсь с JPA и пытаюсь достать инфу из БД" />
+    <MESSAGE value="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе" />
+    <option name="LAST_COMMIT_MESSAGE" value="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
