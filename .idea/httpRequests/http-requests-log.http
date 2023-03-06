@@ -1,0 +1,204 @@
+GET http://localhost:8080
+
+<> 2023-03-05T202314.200.txt
+
+###
+
+GET http://localhost:8080
+
+<> 2023-03-05T202236.200.txt
+
+###
+
+GET http://localhost:8080
+
+<> 2023-03-05T202206.200.txt
+
+###
+
+GET http://localhost:8080
+
+<> 2023-03-05T202205.200.txt
+
+###
+
+GET http://localhost:8080
+
+<> 2023-03-05T202020.200.txt
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T202002.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T201954.405.json
+
+###
+
+POST http://localhost:5173/autorization.html
+
+<> 2023-03-05T201937.200.html
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T201935.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T201812.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T201700.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T201653.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T201641.405.json
+
+###
+
+POST http://localhost:5173/autorization.html
+
+<> 2023-03-05T201628.200.html
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T201556.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200831.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200816.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200741.200.txt
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200646.200.txt
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200635.200.txt
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200618.200.txt
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200615.200.txt
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200557.200.txt
+
+###
+
+PUT http://localhost:8080/admin
+
+<> 2023-03-05T200546.405.json
+
+###
+
+POST http://localhost:8080/admin
+
+<> 2023-03-05T200526.405.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T200508.200.txt
+
+###
+
+POST http://localhost:5173/autorization.html
+
+<> 2023-03-05T174718.200.html
+
+###
+
+POST http://localhost:5173/autorization.html
+
+<> 2023-03-05T174619.200.html
+
+###
+
+GET http://localhost:5173/autorization.html
+
+<> 2023-03-05T174434.200.html
+
+###
+
+GET http://localhost:8080
+
+<> 2023-03-05T174405.200.html
+
+###
+
+GET http://localhost:8080
+
+<> 2023-03-05T174359.200.html
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T174332.404.json
+
+###
+
+GET http://localhost:8080/admin
+
+<> 2023-03-05T174330.404.json
+
+###
+
+POST http://localhost:8080/admin
+
+<> 2023-03-05T174311.404.json
+
+###
+
