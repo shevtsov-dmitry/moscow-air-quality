@@ -9,7 +9,7 @@ form.addEventListener("submit", (event)=>{
         login: login,
         password: password
     }
-    const url = "http://localhost:8080/";
+    const url = "http://localhost:8080/admin";
     // отправляю данные на сервер для проверки действительности
 
     fetch(url,{
@@ -25,7 +25,7 @@ form.addEventListener("submit", (event)=>{
         }
         else return response.json();
     })
-    .then(data => console.log("Response data from server" + data))
+    .then(data => console.log("Response data from server: " + data))
     .catch(error =>console.log("Error sending your request" +"\n" + error));
 
     console.log(formData)
