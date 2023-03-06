@@ -67,7 +67,20 @@ body {
         font-size: 20px; /* Increased font size */
       }
   }
-  
+
   button:hover {
     background-color: #005faa;
+  }
+  .attempts-block{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .attempts-counter{
+    display: none;
+    margin:inherit;
+    padding:inherit;
   }

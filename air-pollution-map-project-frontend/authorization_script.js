@@ -1,4 +1,7 @@
 const form = document.querySelector("#form-with-data");
+let loginHeader = document.querySelector(".login-header");
+let attemptsCounter = document.querySelector(".attempts-counter");
+let iterator = 0;
 // Функция: отправить форму на обработку на сервер
 form.addEventListener("submit", (event)=>{
     // блокирую стандартное выполнение формы
@@ -9,7 +12,7 @@ form.addEventListener("submit", (event)=>{
         login: login,
         password: password
     }
-    const url = "http://localhost:8080/";
+    const url = "http://localhost:8080/admin";
     // отправляю данные на сервер для проверки действительности
 
     fetch(url,{
@@ -25,8 +28,29 @@ form.addEventListener("submit", (event)=>{
         }
         else return response.json();
     })
-    .then(data => console.log("Response data from server" + data))
+    .then(bool =>{ // utf's ✓ ❌
+        console.log(`Response success from server: ${bool}`);
+        if(bool){
+            loginHeader.style.color = "green";
+            loginHeader.textContent = `Login ✓`;
+                setTimeout( ()=> {
+                    window.location.href = "https://google.com";
+                }, 300
+            )
+        }
+        else{
+            // attempts ++
+            attemptsCounter.style.display = "block";
+            iterator++;
+            attemptsCounter.textContent = `attempts: ${iterator}`;
+            // header css change
+            loginHeader.style.color = "red";
+            loginHeader.textContent =  "Login ❌";
+        }
+    }) // xxxxxxxxxxxxxxx  
     .catch(error =>console.log("Error sending your request" +"\n" + error));
 
-    console.log(formData)
+    console.log(formData) // xxxxxxxxxxxxxxx 
+    console.log(form.lastChild);
 })
+// console.log(loginHeader)
