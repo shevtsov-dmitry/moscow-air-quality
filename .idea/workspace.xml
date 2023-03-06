@@ -4,9 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе">
+    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Тестовый коммит. Организовал вывод данных из БД на webpage">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AdminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AdminRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AdminService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +70,10 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "C:/Users/shado/Documents/air-pollution-map-project",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "spring.configuration.checksum": "1778364c3199f6cb7399690958099da5"
   },
   "keyToStringList": {
@@ -162,6 +170,8 @@
       <workItem from="1678014115161" duration="82000" />
       <workItem from="1678014237791" duration="25242000" />
       <workItem from="1678088086352" duration="6679000" />
+      <workItem from="1678098533175" duration="104000" />
+      <workItem from="1678098657158" duration="4461000" />
     </task>
     <task id="LOCAL-00001" summary="Синхронизация проекта с maven и merge into main">
       <created>1677517492538</created>
@@ -205,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678052892335</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Тестовый коммит. Организовал вывод данных из БД на webpage">
+      <created>1678098779419</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1678098779419</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +246,8 @@
     <MESSAGE value="Настроил обмен информацией website to server back and forth" />
     <MESSAGE value="Разбираюсь с JPA и пытаюсь достать инфу из БД" />
     <MESSAGE value="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе" />
-    <option name="LAST_COMMIT_MESSAGE" value="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе" />
+    <MESSAGE value="Тестовый коммит. Организовал вывод данных из БД на webpage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Тестовый коммит. Организовал вывод данных из БД на webpage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
