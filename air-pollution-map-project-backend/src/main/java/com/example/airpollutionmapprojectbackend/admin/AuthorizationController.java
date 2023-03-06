@@ -6,22 +6,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.GET, RequestMethod.POST })
 public class AuthorizationController{
-    public static Admin adminMute; // xxxxxxxxxxxx
+    // Создал экзесмляр класса AdminService для реализации функций VerifyAdmin и JPA
     private final AdminService adminService;
     @Autowired
     public AuthorizationController(AdminService adminService) {
         this.adminService = adminService;
     }
-
+    // Отправка ответа на запрос о проверке логина и пароля для дальнейшей авторизации на странице
     @PostMapping("/admin")
-    public Admin sendResponse(@RequestBody Admin admin){
+    public boolean sendResponse(@RequestBody Admin admin){
         Admin adminFromRequest = new Admin(admin.getLogin(), admin.getPassword());
-        return adminMute = adminFromRequest;
-    }
-    @GetMapping("/admin")
-    public String showSmth(){
-        AdminService as = new AdminService(adminService.adminRepository);
-        VerifyAdmin verifyAdmin = new VerifyAdmin(adminService);
-        return verifyAdmin.verifyString(adminMute).toString();
+        var verifyAdmin = new VerifyAdmin(adminService);
+        return verifyAdmin.verifyAuthorization(adminFromRequest);
     }
 }

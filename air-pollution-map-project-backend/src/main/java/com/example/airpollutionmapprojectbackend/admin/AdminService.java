@@ -10,6 +10,7 @@ public class AdminService {
     public AdminService(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
     }
+    // Взять объект Admin из базы по айди
     public Admin getAdminById(Long id){
         return adminRepository.findById(id).orElse(null);
     }
