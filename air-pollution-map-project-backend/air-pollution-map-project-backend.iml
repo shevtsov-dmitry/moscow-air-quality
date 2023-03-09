@@ -15,6 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="air-pollution-map-project-backend" />
           <factory-entry name="entityManagerFactory" value="fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6" />
         </datasource-mapping>
         <naming-strategy-map />
