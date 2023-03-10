@@ -1,4 +1,4 @@
-@import "../../node-modules/node-modules-openlayers-vite/ol/ol.css";
+@import "../../node-modules/node_modules/ol/ol.css";
 
 html, body {
   margin: 0;

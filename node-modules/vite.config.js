@@ -2,15 +2,15 @@ import { defineConfig } from 'vite';
 import path from 'path';
 export default defineConfig({
   // entry: 'node-modules-openlayers-vite',
-  resolve: {
-    alias: {
-      // create an alias for the renamed node_modules folder
-      'openlayers': path.resolve(__dirname, 'node-modules-openlayers-vite')
-    }
-  },
+  // resolve: {
+  //   alias: {
+  //     // create an alias for the renamed node_modules folder
+  //     'openlayers': path.resolve(__dirname, 'node-modules-openlayers-vite')
+  //   }
+  // },
   entry: 'package.json',
   //root: '../air-pollution-map-project-frontend/script',
-  root: path.resolve(__dirname, '../air-pollution-map-project-frontend/script'),
+  root: path.resolve(__dirname, '../air-pollution-map-project-frontend'),
   base: './',
   build: {
     outDir: 'dist',
