@@ -1,7 +1,7 @@
 import '../css/style.css';
-import {Map, View} from '../node_modules_openlayers/ol';
-import TileLayer from '../node_modules_openlayers/ol/layer/Tile';
-import OSM from '../node_modules_openlayers/ol/source/OSM';
+import {Map, View} from '../../node-modules/node-modules-openlayers-vite/ol';
+import TileLayer from '../../node-modules/node-modules-openlayers-vite/ol/layer/Tile';
+import OSM from '../../node-modules/node-modules-openlayers-vite/ol/source/OSM';
 
 const map = new Map({
   target: 'map',
