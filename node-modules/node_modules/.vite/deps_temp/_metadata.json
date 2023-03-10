@@ -1,0 +1,13 @@
+{
+  "hash": "a8237e75",
+  "browserHash": "56ffca2d",
+  "optimized": {
+    "./../air-pol/my-air/main.js": {
+      "src": "../../../../air-pol/my-air/main.js",
+      "file": "________air-pol_my-air_main__js.js",
+      "fileHash": "faf0eaaa",
+      "needsInterop": false
+    }
+  },
+  "chunks": {}
+}
