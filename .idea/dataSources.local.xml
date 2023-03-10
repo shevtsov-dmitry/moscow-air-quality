@@ -2,21 +2,8 @@
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="IU-222.3345.118">
     <data-source name="@air_pollution" uuid="73e76f89-5c4d-4363-a398-2ad2cca17db2">
-      <database-info product="MariaDB" version="10.4.27-MariaDB" jdbc-version="4.2" driver-name="MariaDB Connector/J" driver-version="3.0.7" dbms="MARIADB" exact-version="10.4.27" exact-driver-version="3.0">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
-      <schema-mapping>
-        <introspection-scope>
-          <node kind="schema">
-            <name qname="@" />
-            <name qname="air_pollution" />
-          </node>
-        </introspection-scope>
-      </schema-mapping>
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MARIADB" exact-version="0" />
+      <schema-mapping />
     </data-source>
   </component>
 </project>
