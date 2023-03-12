@@ -35,7 +35,7 @@ form.addEventListener("submit", (event)=>{
             loginHeader.textContent = `Login ✓`;
                 setTimeout( ()=> {
                     window.location.href = "/html/admin_page.html";
-                }, 300
+                }, 400
             )
         }
         else{
@@ -48,7 +48,12 @@ form.addEventListener("submit", (event)=>{
             loginHeader.textContent =  "Login ❌";
         }
     }) // xxxxxxxxxxxxxxx  
-    .catch(error =>console.log("Error sending your request" +"\n" + error));
+    .catch(error =>{
+        console.log("Error sending your request" +"\n" + error);
+        attemptsCounter.style.display = "block";
+        attemptsCounter.textContent = "Сервер недоступен.";
+        attemptsCounter.style.color = "#9D0000";
+    });
 
     console.log(formData) // xxxxxxxxxxxxxxx 
     console.log(form.lastChild);
