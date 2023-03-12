@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Пробую изменить ArrayList для нужного формата для обработки">
+    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Переписал SQLScript для загружаемой импорта CSV в ДБ">
+      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/SQLScripts/SQLScriptImportCSVToTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/SQLScripts/SQLScriptImportCSVToTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/air-pollution-map-project-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/air-pollution-map-project-backend.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +195,7 @@
       <workItem from="1678608408874" duration="3278000" />
       <workItem from="1678621219763" duration="5332000" />
       <workItem from="1678633835357" duration="1717000" />
-      <workItem from="1678637179864" duration="4870000" />
+      <workItem from="1678637179864" duration="8697000" />
     </task>
     <task id="LOCAL-00001" summary="Синхронизация проекта с maven и merge into main">
       <created>1677517492538</created>
@@ -278,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678626466593</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Переписал SQLScript для загружаемой импорта CSV в ДБ">
+      <created>1678642366831</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1678642366831</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +317,8 @@
     <MESSAGE value="Файл отправляется но проблема с кодировкой." />
     <MESSAGE value="Проблема с кодировкой решена. Файл был сломан." />
     <MESSAGE value="Пробую изменить ArrayList для нужного формата для обработки" />
-    <option name="LAST_COMMIT_MESSAGE" value="Пробую изменить ArrayList для нужного формата для обработки" />
+    <MESSAGE value="Переписал SQLScript для загружаемой импорта CSV в ДБ" />
+    <option name="LAST_COMMIT_MESSAGE" value="Переписал SQLScript для загружаемой импорта CSV в ДБ" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
