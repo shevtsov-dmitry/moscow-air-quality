@@ -1,5 +1,6 @@
 package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
 
+import com.example.airpollutionmapprojectbackend.SQLScripts.SQLScriptImportCSVToTable;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,18 +15,14 @@ import java.util.*;
 @RestController
 public class HandlerController {
     public static List<String[]> list = new ArrayList<>();
-    public static String mutual;
     @PostMapping("/uploadCSV")
     public void uploadCSV(@RequestBody byte[] bytes) throws IOException, CsvException {
+        // read csv file into list
         var inputStream = new ByteArrayInputStream(bytes);
         var csvReader = new CSVReader(new InputStreamReader(inputStream));
-        list = csvReader.readAll();
+        List<String[]> list = csvReader.readAll();
+        // import csv to DB table
+        SQLScriptImportCSVToTable.SQLCommandBuilder(list);
     }
-    @GetMapping(value = "/uploadCSV")
-    public String showBytesOnScreen(){
-        var sb = new StringBuilder();
 
-
-        return list.toString();
-    }
 }

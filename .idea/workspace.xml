@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Проблема с кодировкой решена. Файл был сломан.">
+    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Пробую изменить ArrayList для нужного формата для обработки">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/SQLScripts/SQLScriptImportCSVToTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/SQLScripts/SQLScriptImportCSVToTable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +101,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.AirPollutionMapProjectBackendApplication">
+  <component name="RunManager" selected="Java Scratch.Scratch (1)">
     <configuration name="VerifyAdmin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.airpollutionmapprojectbackend.admin.VerifyAdmin" />
       <module name="air-pollution-map-project-backend" />
@@ -117,8 +118,12 @@
     <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
       <method v="2" />
     </configuration>
-    <configuration name="generated-requests | show not allowed HTML" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="show not allowed HTML" runType="Run single request">
-      <method v="2" />
+    <configuration name="Scratch (1)" type="Java Scratch" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/sql-script-writer.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Scratch" />
@@ -143,17 +148,17 @@
     <list>
       <item itemvalue="Application.VerifyAdmin" />
       <item itemvalue="HTTP Request.All in generated-requests" />
-      <item itemvalue="HTTP Request.generated-requests | show not allowed HTML" />
+      <item itemvalue="Java Scratch.Scratch (1)" />
       <item itemvalue="Java Scratch.Scratch" />
       <item itemvalue="Spring Boot.AirPollutionMapProjectBackendApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Java Scratch.Scratch (1)" />
         <item itemvalue="Spring Boot.AirPollutionMapProjectBackendApplication" />
         <item itemvalue="HTTP Request.All in generated-requests" />
         <item itemvalue="Java Scratch.Scratch" />
         <item itemvalue="Application.VerifyAdmin" />
-        <item itemvalue="HTTP Request.generated-requests | show not allowed HTML" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +190,9 @@
       <workItem from="1678528590137" duration="2967000" />
       <workItem from="1678533580941" duration="4643000" />
       <workItem from="1678608408874" duration="3278000" />
-      <workItem from="1678621219763" duration="3692000" />
+      <workItem from="1678621219763" duration="5332000" />
+      <workItem from="1678633835357" duration="1717000" />
+      <workItem from="1678637179864" duration="4870000" />
     </task>
     <task id="LOCAL-00001" summary="Синхронизация проекта с maven и merge into main">
       <created>1677517492538</created>
@@ -264,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678625344232</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Пробую изменить ArrayList для нужного формата для обработки">
+      <created>1678626466593</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1678626466593</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -292,7 +306,8 @@
     <MESSAGE value="Написал тренировочный код для принятия CSV файла. Пока не работает. Нашёл спороное решение с костылём через парс в JSON потом -&gt; byte array" />
     <MESSAGE value="Файл отправляется но проблема с кодировкой." />
     <MESSAGE value="Проблема с кодировкой решена. Файл был сломан." />
-    <option name="LAST_COMMIT_MESSAGE" value="Проблема с кодировкой решена. Файл был сломан." />
+    <MESSAGE value="Пробую изменить ArrayList для нужного формата для обработки" />
+    <option name="LAST_COMMIT_MESSAGE" value="Пробую изменить ArrayList для нужного формата для обработки" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
