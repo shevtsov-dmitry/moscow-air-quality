@@ -1,3 +1,9 @@
+POST http://localhost:8080/uploadCSV
+
+<> 2023-03-12T113730.400.json
+
+###
+
 GET http://localhost:8080
 
 <> 2023-03-05T202314.200.txt

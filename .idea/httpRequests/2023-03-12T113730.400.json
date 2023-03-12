@@ -1,0 +1,6 @@
+{
+  "timestamp": "2023-03-12T08:37:30.425+00:00",
+  "status": 400,
+  "error": "Bad Request",
+  "path": "/uploadCSV"
+}

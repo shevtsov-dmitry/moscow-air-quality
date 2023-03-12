@@ -1,5 +1,5 @@
 {
-  "name": "air-pollution-map-project-frontend",
+  "name": "air-pollution-map-project",
   "version": "1.0.0",
   "scripts": {
     "start": "vite",
@@ -10,6 +10,7 @@
     "vite": "^4.0.4"
   },
   "dependencies": {
+    "handsontable": "^12.3.1",
     "ol": "latest"
   }
 }
