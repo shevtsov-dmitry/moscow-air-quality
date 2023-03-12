@@ -34,7 +34,7 @@ form.addEventListener("submit", (event)=>{
             loginHeader.style.color = "green";
             loginHeader.textContent = `Login ✓`;
                 setTimeout( ()=> {
-                    window.location.href = "https://google.com";
+                    window.location.href = "/html/admin_page.html";
                 }, 300
             )
         }

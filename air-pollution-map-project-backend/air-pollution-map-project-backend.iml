@@ -15,8 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="air-pollution-map-project-backend" />
-          <factory-entry name="entityManagerFactory" value="73e76f89-5c4d-4363-a398-2ad2cca17db2" />
+          <factory-entry name="entityManagerFactory" value="fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -129,12 +128,5 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jcl:6.0.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:6.0.5" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.xmlunit:xmlunit-core:2.9.1" level="project" />
-    <orderEntry type="library" name="Maven: com.opencsv:opencsv:5.7.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.12.0" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-text:1.10.0" level="project" />
-    <orderEntry type="library" name="Maven: commons-beanutils:commons-beanutils:1.9.4" level="project" />
-    <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.2" level="project" />
-    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.2" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-collections4:4.4" level="project" />
   </component>
 </module>
