@@ -16,20 +16,16 @@ public class HandlerController {
     public static List<String[]> list = new ArrayList<>();
     public static String mutual;
     @PostMapping("/uploadCSV")
-    public String uploadCSV(@RequestBody byte[] bytes) throws IOException, CsvException {
+    public void uploadCSV(@RequestBody byte[] bytes) throws IOException, CsvException {
         var inputStream = new ByteArrayInputStream(bytes);
         var csvReader = new CSVReader(new InputStreamReader(inputStream));
         list = csvReader.readAll();
-        return list.toString();
-
     }
     @GetMapping(value = "/uploadCSV")
     public String showBytesOnScreen(){
         var sb = new StringBuilder();
-        for (String[] s:
-             list) {
-            sb.append(Arrays.toString(s));
-        }
-        return sb.toString();
+
+
+        return list.toString();
     }
 }
