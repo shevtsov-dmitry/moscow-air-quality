@@ -4,13 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Переписал SQLScript для загружаемой импорта CSV в ДБ">
-      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/Handler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/POST_CSV_Handler/HandlerService.java" afterDir="false" />
+    <list default="true" id="1fe994ca-b7c8-4c89-8867-e3ab0ee55021" name="Changes" comment="Тестовый коммит. Организовал вывод данных из БД на webpage">
+      <change afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/src/main/java/com/example/airpollutionmapprojectbackend/SQLScripts/SQLScriptImportCSVToTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa7c6a47-00d1-44ac-bdbe-ae8f9f6f58b6/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ff510786-8c5b-4189-a3a2-8a41062ff9e6.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ff510786-8c5b-4189-a3a2-8a41062ff9e6/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ff510786-8c5b-4189-a3a2-8a41062ff9e6/storage_v2/_src_/schema/mysql.osA4Bg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/ff510786-8c5b-4189-a3a2-8a41062ff9e6/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/air-pollution-map-project-backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/air-pollution-map-project-backend.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/application/admin_part/Authorization.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/application/admin_part/admin/Admin.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/AdminService.class" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/AdminService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/AuthorizationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/com/example/airpollutionmapprojectbackend/admin/VerifyAdmin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/air-pollution-map-project-backend/target/classes/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,7 +46,7 @@
     </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="backend-main" />
+        <entry key="$PROJECT_DIR$" value="find_way_to_draw_on_map" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,38 +69,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/shado/Documents/air-pollution-map-project&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3413793&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;1778364c3199f6cb7399690958099da5&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/shado/Documents/air-pollution-map-project",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "ruby.rails.projectView.checked": "true",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "spring.configuration.checksum": "1778364c3199f6cb7399690958099da5"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mariadb&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql",
+      "mariadb"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\shado\IdeaProjects\air-pollution-map-project\air-pollution-map-project-backend\src\main\resources\templates" />
@@ -104,33 +119,26 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Java Scratch.Scratch (1)">
-    <configuration name="VerifyAdmin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.airpollutionmapprojectbackend.admin.VerifyAdmin" />
-      <module name="air-pollution-map-project-backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.airpollutionmapprojectbackend.admin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in generated-requests" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http">
+  <component name="RunManager" selected="Java Scratch.Scratch(1)">
+    <configuration name="generated-requests | get smth from :5173" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="2" requestIdentifier="get smth from :5173" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="Scratch (1)" type="Java Scratch" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Scratch" />
-      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/sql-script-writer.java" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="generated-requests | show not allowed HTML" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" requestIdentifier="show not allowed HTML" runType="Run single request">
+      <method v="2" />
     </configuration>
     <configuration name="Scratch" type="Java Scratch" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Scratch" />
       <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.java" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Scratch(1)" type="Java Scratch" temporary="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="MAIN_CLASS_NAME" value="Scratch" />
+      <option name="SCRATCH_FILE_URL" value="file://$APPLICATION_CONFIG_DIR$/scratches/sql-script-writer.java" />
+      <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -149,19 +157,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.VerifyAdmin" />
-      <item itemvalue="HTTP Request.All in generated-requests" />
-      <item itemvalue="Java Scratch.Scratch (1)" />
+      <item itemvalue="HTTP Request.generated-requests | get smth from :5173" />
+      <item itemvalue="HTTP Request.generated-requests | show not allowed HTML" />
       <item itemvalue="Java Scratch.Scratch" />
+      <item itemvalue="Java Scratch.Scratch(1)" />
       <item itemvalue="Spring Boot.AirPollutionMapProjectBackendApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Java Scratch.Scratch (1)" />
-        <item itemvalue="Spring Boot.AirPollutionMapProjectBackendApplication" />
-        <item itemvalue="HTTP Request.All in generated-requests" />
+        <item itemvalue="Java Scratch.Scratch(1)" />
         <item itemvalue="Java Scratch.Scratch" />
-        <item itemvalue="Application.VerifyAdmin" />
+        <item itemvalue="Spring Boot.AirPollutionMapProjectBackendApplication" />
+        <item itemvalue="Java Scratch.Scratch" />
+        <item itemvalue="HTTP Request.generated-requests | show not allowed HTML" />
       </list>
     </recent_temporary>
   </component>
@@ -186,16 +194,9 @@
       <workItem from="1678088086352" duration="6679000" />
       <workItem from="1678098533175" duration="104000" />
       <workItem from="1678098657158" duration="4461000" />
-      <workItem from="1678374424434" duration="902000" />
-      <workItem from="1678436314972" duration="991000" />
-      <workItem from="1678464810013" duration="1254000" />
-      <workItem from="1678479899069" duration="5126000" />
-      <workItem from="1678528590137" duration="2967000" />
-      <workItem from="1678533580941" duration="4643000" />
-      <workItem from="1678608408874" duration="3278000" />
-      <workItem from="1678621219763" duration="5332000" />
-      <workItem from="1678633835357" duration="1717000" />
-      <workItem from="1678637179864" duration="8697000" />
+      <workItem from="1678214178934" duration="1313000" />
+      <workItem from="1678267433592" duration="6425000" />
+      <workItem from="1678352683804" duration="16829000" />
     </task>
     <task id="LOCAL-00001" summary="Синхронизация проекта с maven и merge into main">
       <created>1677517492538</created>
@@ -246,49 +247,7 @@
       <option name="project" value="LOCAL" />
       <updated>1678098779419</updated>
     </task>
-    <task id="LOCAL-00008" summary="Написал тренировочный код для принятия CSV файла. Пока не работает. Нашёл спороное решение с костылём через парс в JSON потом -&gt; byte array">
-      <created>1678486691775</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1678486691775</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Написал тренировочный код для принятия CSV файла. Пока не работает. Нашёл спороное решение с костылём через парс в JSON потом -&gt; byte array">
-      <created>1678486702420</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1678486702421</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Файл отправляется но проблема с кодировкой.">
-      <created>1678542261573</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1678542261573</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Проблема с кодировкой решена. Файл был сломан.">
-      <created>1678625344232</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1678625344232</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Пробую изменить ArrayList для нужного формата для обработки">
-      <created>1678626466593</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1678626466593</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Переписал SQLScript для загружаемой импорта CSV в ДБ">
-      <created>1678642366831</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1678642366831</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -313,12 +272,7 @@
     <MESSAGE value="Разбираюсь с JPA и пытаюсь достать инфу из БД" />
     <MESSAGE value="Остановился на попытках понять как использовать класс VerifyAdmin в AuthorizationController @GetMapping методе" />
     <MESSAGE value="Тестовый коммит. Организовал вывод данных из БД на webpage" />
-    <MESSAGE value="Написал тренировочный код для принятия CSV файла. Пока не работает. Нашёл спороное решение с костылём через парс в JSON потом -&gt; byte array" />
-    <MESSAGE value="Файл отправляется но проблема с кодировкой." />
-    <MESSAGE value="Проблема с кодировкой решена. Файл был сломан." />
-    <MESSAGE value="Пробую изменить ArrayList для нужного формата для обработки" />
-    <MESSAGE value="Переписал SQLScript для загружаемой импорта CSV в ДБ" />
-    <option name="LAST_COMMIT_MESSAGE" value="Переписал SQLScript для загружаемой импорта CSV в ДБ" />
+    <option name="LAST_COMMIT_MESSAGE" value="Тестовый коммит. Организовал вывод данных из БД на webpage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
