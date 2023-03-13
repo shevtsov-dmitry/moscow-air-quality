@@ -14,23 +14,14 @@ submitUploadBtn.addEventListener("click", () => {
             method: 'POST',
             body: file,
             headers: {
-                'Content-Type': 'text/csv; charset=utf-8'
+                'Content-Type': 'text/csv'
               },
           })
+        //   .then((response) =>{
+        //     let responseTXT = document.querySelector(".temptext")
+        //     responseTXT.textContent(response)
+        //     return response.json();
+        //   })
     }
     catch(error){console.log("Произошла ошибка: " + error)};
 })
-// display incomming text from request to database
-const temptext = document.querySelector(".temptext")
-const url = "http://localhost:8080/dataTableToWebsite"
-function displayIncomingText(url, textBlock){
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        textBlock.textContent = data; // do something with data
-    })
-    .catch(error =>{
-        textBlock.textContent = `Something went wrong: ${error}`
-    })
-}
-displayIncomingText(url,temptext)
