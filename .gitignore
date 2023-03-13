@@ -1,1 +1,4 @@
-air-pollution-map-project/node_modules
+air-pollution-map-project-frontend/node_modules/
+.idea
+.vscode
+.vite
