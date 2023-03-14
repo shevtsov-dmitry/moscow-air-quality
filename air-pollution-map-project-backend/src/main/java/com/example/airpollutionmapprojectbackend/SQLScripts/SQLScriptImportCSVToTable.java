@@ -8,8 +8,8 @@ import java.util.List;
 public class SQLScriptImportCSVToTable {
     public static String SQLCommandBuilder(List<String[]> list){
         var SQLScript = new StringBuilder();
-        SQLScript.append("INSERT INTO Moscow_air_pollution_data" +"(id, date, global_id,AdmArea," +
-                "District,Longitude,Latitude,Location,Results)" + " values");
+        SQLScript.append("INSERT INTO Moscow_air_pollution_data" +"(id, date, global_id,adm_area," +
+                "district,longitude,latitude,location,results)" + " values");
         for (String[] strings : list) {
             for (String line : strings) {
                 SQLScript.append("\n(");

@@ -11,6 +11,7 @@ public class Handler {
     private  long id;
     private  Date date;
     private  long global_id;
+    @Column(name ="AdmArea")
     private  String AdmArea;
     private  String District;
     private  double Longitude;
