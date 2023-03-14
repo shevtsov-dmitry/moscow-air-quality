@@ -35,10 +35,11 @@ public class HandlerController {
         // import csv to DB table
         SQLScriptImportCSVToTable.SQLCommandBuilder(list);
         HandlerService service = new HandlerService(jdbcTemplate);
+        service.importCSV(list);
     }
     //log on webpage
     @GetMapping("/uploadCSV")
-    public String showOutput(){
-        return "";
+    public List<String[]> showOutput(){
+        return list;
     }
 }

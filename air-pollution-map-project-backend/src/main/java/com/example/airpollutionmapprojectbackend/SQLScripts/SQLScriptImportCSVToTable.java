@@ -7,9 +7,10 @@ import java.util.List;
 
 public class SQLScriptImportCSVToTable {
     public static String SQLCommandBuilder(List<String[]> list){
+        final String tableName = "air_pollution_csv_table";
         var SQLScript = new StringBuilder();
-        SQLScript.append("INSERT INTO Moscow_air_pollution_data" +"(id, date, global_id,adm_area," +
-                "district,longitude,latitude,location,results)" + " values");
+        SQLScript.append("INSERT INTO " + tableName +"(id, date, global_id,adm_area," +
+                "district,longitude,latitude,location,results) values");
         for (String[] strings : list) {
             for (String line : strings) {
                 SQLScript.append("\n(");
@@ -63,7 +64,7 @@ public class SQLScriptImportCSVToTable {
             }
         }
         SQLScript.deleteCharAt(SQLScript.length() - 1); // удалить последнюю запятую из последней строки  когда всё считалось
-
+        SQLScript.append(";");
         return SQLScript.toString();
     }
 }
