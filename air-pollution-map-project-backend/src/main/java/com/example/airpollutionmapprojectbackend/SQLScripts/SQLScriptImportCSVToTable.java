@@ -10,24 +10,24 @@ public class SQLScriptImportCSVToTable {
         final String tableName = "air_pollution_csv_table";
         var SQLScript = new StringBuilder();
         SQLScript.append("INSERT INTO " + tableName +"(id, date, global_id,adm_area," +
-                "district,longitude,latitude,location,results) values");
+                "district,longitude,latitude,location,results) values ");
         for (String[] strings : list) {
             for (String line : strings) {
-                SQLScript.append("\n(");
+                SQLScript.append('('); // deleted \n
                 int countCommas = 0;
                 int rememberCount = 0;
 
                 for (int i = 0; i < line.length(); i++) {
+
                     // number format data type
                     if (line.charAt(i) == ';' && countCommas == 0 // 0 -> id
-                            || line.charAt(i) == ';' && countCommas == 1 // id -> date
                             || line.charAt(i) == ';' && countCommas == 2 //  date -> global_id
                             || line.charAt(i) == ';' && countCommas == 5 // District -> Longitude
                             || line.charAt(i) == ';' && countCommas == 6 // Longitude -> Latitude
                     ) {
                         while (rememberCount < i) {
-                            if (line.charAt(rememberCount) == ';') {
-                            } else SQLScript.append(line.charAt(rememberCount));
+                            if (line.charAt(rememberCount) == ';') {}
+                            else SQLScript.append(line.charAt(rememberCount));
                             rememberCount++;
                         }
                         SQLScript.append(',');
@@ -35,8 +35,11 @@ public class SQLScriptImportCSVToTable {
                         countCommas++;
 
                     }
+                    // date SQL format
+
                     // String format data type
                     else if (line.charAt(i) == ';' && countCommas == 3 // global_id -> AdmArea
+                            || line.charAt(i) == ';' && countCommas == 1 // id -> date
                             || line.charAt(i) == ';' && countCommas == 4 // AdmArea -> District
                             || line.charAt(i) == ';' && countCommas == 7 // Latitude -> Location
                             || line.charAt(i) == ';' && countCommas == 8 // Location -> Results
@@ -44,8 +47,8 @@ public class SQLScriptImportCSVToTable {
                     ) {
                         SQLScript.append("'");
                         while (rememberCount < i) {
-                            if (line.charAt(rememberCount) == ';') {
-                            } else SQLScript.append(line.charAt(rememberCount));
+                            if (line.charAt(rememberCount) == ';') {}
+                            else SQLScript.append(line.charAt(rememberCount));
                             rememberCount++;
                         }
                         SQLScript.append("',");
@@ -61,6 +64,7 @@ public class SQLScriptImportCSVToTable {
                 }
                 SQLScript.deleteCharAt(SQLScript.length() - 1); // Удалить последнюю запятую в заполнении
                 SQLScript.append("),");
+                SQLScript.deleteCharAt(119);
             }
         }
         SQLScript.deleteCharAt(SQLScript.length() - 1); // удалить последнюю запятую из последней строки  когда всё считалось
