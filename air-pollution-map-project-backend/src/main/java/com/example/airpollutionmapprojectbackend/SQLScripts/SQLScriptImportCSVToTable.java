@@ -48,10 +48,21 @@ public class SQLScriptImportCSVToTable {
                         countCommas++;
                     }
                     // date SQL format
+                    else if (line.charAt(i) == ';' && countCommas == 1 ) { // id -> date
+                        var sbDate = new StringBuilder();
+                        while(rememberCount < i){
+                            if(line.charAt(rememberCount) == ';'){}
+                            else sbDate.append(line.charAt(rememberCount));
+                            rememberCount++;
+                        }
+                        SQLScript.append("STR_TO_DATE('"+sbDate+"','%d.%m.%Y')"); // Реформатирование даты под Российский формат
+                        SQLScript.append(',');
+                        rememberCount = i;
+                        countCommas++;
+                    }
                     // symbol is "\uFEFF"
                     // String format data type
                     else if (line.charAt(i) == ';' && countCommas == 3 // global_id -> AdmArea
-                            || line.charAt(i) == ';' && countCommas == 1 // id -> date
                             || line.charAt(i) == ';' && countCommas == 4 // AdmArea -> District
                             || line.charAt(i) == ';' && countCommas == 7 // Latitude -> Location
                             || line.charAt(i) == ';' && countCommas == 8 // Location -> Results

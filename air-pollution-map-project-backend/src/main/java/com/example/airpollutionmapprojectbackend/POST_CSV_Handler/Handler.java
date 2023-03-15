@@ -9,7 +9,7 @@ public class Handler {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
-    private  String date;
+    private  Date date;
     private  long global_id;
     private  String adm_area;
     private  String District;
@@ -21,7 +21,7 @@ public class Handler {
     public Handler() {
     }
 
-    public Handler(Long id, String date, long global_id, String adm_area, String district,
+    public Handler(Long id, Date date, long global_id, String adm_area, String district,
                    double longitude, double latitude, String location, String results) {
         this.id = id;
         this.date = date;
@@ -34,7 +34,7 @@ public class Handler {
         Results = results;
     }
 
-    public Handler(String date, long global_id, String adm_area, String district,
+    public Handler(Date date, long global_id, String adm_area, String district,
                    double longitude, double latitude, String location, String results) {
         this.date = date;
         this.global_id = global_id;
@@ -54,11 +54,11 @@ public class Handler {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -122,7 +122,7 @@ public class Handler {
     public String toString() {
         return "Handler{" +
                 "id=" + id +
-                ", date='" + date + '\'' +
+                ", date=" + date +
                 ", global_id=" + global_id +
                 ", adm_area='" + adm_area + '\'' +
                 ", District='" + District + '\'' +
