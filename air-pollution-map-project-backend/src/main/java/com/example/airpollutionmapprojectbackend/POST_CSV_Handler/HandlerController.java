@@ -39,7 +39,13 @@ public class HandlerController {
     }
     //log on webpage
     @GetMapping("/uploadCSV")
-    public List<String[]> showOutput(){
-        return list;
+    public String showOutput(){
+        var sb = new StringBuilder();
+        for(String[] arr : list){
+            sb.append(Arrays.toString(arr));
+        }
+        return sb.toString() + "!";
     }
+
+
 }
