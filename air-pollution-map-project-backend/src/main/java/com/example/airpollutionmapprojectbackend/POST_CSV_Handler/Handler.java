@@ -8,7 +8,7 @@ import java.sql.Date;
 public class Handler {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  String id;
+    private  Long id;
     private  String date;
     private  long global_id;
     private  String AdmArea;
@@ -21,7 +21,7 @@ public class Handler {
     public Handler() {
     }
 
-    public Handler(String id, String date, long global_id, String admArea, String district,
+    public Handler(Long id, String date, long global_id, String admArea, String district,
                    double longitude, double latitude, String location, String results) {
         this.id = id;
         this.date = date;

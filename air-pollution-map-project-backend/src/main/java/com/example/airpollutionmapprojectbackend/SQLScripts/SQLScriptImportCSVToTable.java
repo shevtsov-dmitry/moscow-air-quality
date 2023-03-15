@@ -36,7 +36,7 @@ public class SQLScriptImportCSVToTable {
 
                     }
                     // date SQL format
-
+                    // symbol is "\uFEFF"
                     // String format data type
                     else if (line.charAt(i) == ';' && countCommas == 3 // global_id -> AdmArea
                             || line.charAt(i) == ';' && countCommas == 0 // 0 -> id
