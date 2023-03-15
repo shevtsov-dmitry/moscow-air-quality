@@ -16,9 +16,6 @@ import java.util.*;
 @CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class HandlerController {
-    // временные переменные для log'a
-    public static List<String[]> list = new ArrayList<>();
-    public static String output = "";
     // Добавил JDBC шаблон для возможности исполнения кода из класса HandlerService
     private final JdbcTemplate jdbcTemplate;
     @Autowired
@@ -37,15 +34,4 @@ public class HandlerController {
         HandlerService service = new HandlerService(jdbcTemplate);
         service.importCSV(list);
     }
-    //log on webpage
-    @GetMapping("/uploadCSV")
-    public String showOutput(){
-        var sb = new StringBuilder();
-        for(String[] arr : list){
-            sb.append(Arrays.toString(arr));
-        }
-        return sb.toString() + "!";
-    }
-
-
 }
