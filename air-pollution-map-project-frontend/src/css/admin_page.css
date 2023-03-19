@@ -2,6 +2,21 @@ body {
   background-color: #333;
 }
 
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(255, 255, 255);
+}
+
+td {
+  border: 1px dotted rgb(255, 255, 255);
+  padding: 10px;
+}
+
+tr {
+  font-size: 5em;
+  color: white;
+}
+
 .uploadCSV {
   margin: 20px;
   color: white;
@@ -9,7 +24,7 @@ body {
 
 .temptext {
   font-family: monospace;
-  font-size: 4em;
+  font-size: 1.5em;
   margin-left: 20px;
   color: white;
 }/*# sourceMappingURL=admin_page.css.map */
