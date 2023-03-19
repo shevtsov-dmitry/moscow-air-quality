@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @SpringBootApplication
 @RestController
 public class AirPollutionMapProjectBackendApplication {
+    // Чтобы запустить проект обязательно нужно быть подключенным к базе данных
     public static void main(String[] args) {
         SpringApplication.run(AirPollutionMapProjectBackendApplication.class, args);
     }
