@@ -8,10 +8,10 @@ import java.sql.Date;
 public class Handler {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  long id;
+    private  Long id;
     private  Date date;
     private  long global_id;
-    private  String AdmArea;
+    private  String adm_area;
     private  String District;
     private  double Longitude;
     private  double Latitude;
@@ -21,12 +21,12 @@ public class Handler {
     public Handler() {
     }
 
-    public Handler(long id, Date date, long global_id, String admArea, String district,
+    public Handler(Long id, Date date, long global_id, String adm_area, String district,
                    double longitude, double latitude, String location, String results) {
         this.id = id;
         this.date = date;
         this.global_id = global_id;
-        AdmArea = admArea;
+        this.adm_area = adm_area;
         District = district;
         Longitude = longitude;
         Latitude = latitude;
@@ -34,11 +34,11 @@ public class Handler {
         Results = results;
     }
 
-    public Handler(Date date, long global_id, String admArea, String district,
+    public Handler(Date date, long global_id, String adm_area, String district,
                    double longitude, double latitude, String location, String results) {
         this.date = date;
         this.global_id = global_id;
-        AdmArea = admArea;
+        this.adm_area = adm_area;
         District = district;
         Longitude = longitude;
         Latitude = latitude;
@@ -46,11 +46,11 @@ public class Handler {
         Results = results;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,12 +70,12 @@ public class Handler {
         this.global_id = global_id;
     }
 
-    public String getAdmArea() {
-        return AdmArea;
+    public String getAdm_area() {
+        return adm_area;
     }
 
-    public void setAdmArea(String admArea) {
-        AdmArea = admArea;
+    public void setAdm_area(String adm_area) {
+        this.adm_area = adm_area;
     }
 
     public String getDistrict() {
@@ -121,9 +121,10 @@ public class Handler {
     @Override
     public String toString() {
         return "Handler{" +
-                "date=" + date +
+                "id=" + id +
+                ", date=" + date +
                 ", global_id=" + global_id +
-                ", AdmArea='" + AdmArea + '\'' +
+                ", adm_area='" + adm_area + '\'' +
                 ", District='" + District + '\'' +
                 ", Longitude=" + Longitude +
                 ", Latitude=" + Latitude +
