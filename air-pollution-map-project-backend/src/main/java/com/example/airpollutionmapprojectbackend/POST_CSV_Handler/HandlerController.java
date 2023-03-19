@@ -3,7 +3,10 @@ package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
 import com.example.airpollutionmapprojectbackend.SQLScripts.SQLScriptImportCSVToTable;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
@@ -22,7 +25,13 @@ public class HandlerController {
         var csvReader = new CSVReader(new InputStreamReader(inputStream));
         List<String[]> list = csvReader.readAll();
         // import csv to DB table
-        SQLScriptImportCSVToTable.SQLCommandBuilder(list);
+
+
+    }
+    @GetMapping("/uploadCSV")
+    public String showOutput(){
+        String script = SQLScriptImportCSVToTable.SQLCommandBuilder(list);
+        Query query = entityManager.
     }
 
 }

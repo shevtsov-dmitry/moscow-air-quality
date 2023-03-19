@@ -1,5 +1,4 @@
 body {
-  display: block;
   background-color: #333;
 }
 
@@ -24,8 +23,8 @@ tr {
 }
 
 .temptext {
-  font-family: "Lucida Sans";
-  font-size: 2em;
+  font-family: monospace;
+  font-size: 1.5em;
   margin-left: 20px;
   color: white;
 }/*# sourceMappingURL=admin_page.css.map */
