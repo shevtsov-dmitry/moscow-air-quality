@@ -27,7 +27,7 @@ function displayIncomingText(url, textBlock){
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        textBlock.textContent = data; // do something with data
+        textBlock.textContent = JSON.stringify(data); // do something with data
     })
     .catch(error =>{
         textBlock.textContent = `Something went wrong: ${error}`
