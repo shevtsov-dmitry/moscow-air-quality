@@ -1,3 +1,7 @@
+// import '../node_modules/pikaday';
+// import Handsontable from '../node_modules/handsontable';
+import '../node_modules/handsontable/dist/handsontable.full.min.css';
+
 //const CSVFile = document.querySelector(".CSVfile");
 const CSVFile = document.querySelector('input[type="file"]');
 const submitUploadBtn = document.querySelector(".submitUploadBtn");
@@ -20,17 +24,3 @@ submitUploadBtn.addEventListener("click", () => {
     }
     catch(error){console.log("Произошла ошибка: " + error)};
 })
-// display incomming text from request to database
-const temptext = document.querySelector(".temptext")
-const url = "http://localhost:8080/dataTableToWebsite"
-function displayIncomingText(url, textBlock){
-    fetch(url)
-    .then(response => response.json())
-    .then(data => {
-        textBlock.textContent = data; // do something with data
-    })
-    .catch(error =>{
-        textBlock.textContent = `Something went wrong: ${error}`
-    })
-}
-displayIncomingText(url,temptext)
