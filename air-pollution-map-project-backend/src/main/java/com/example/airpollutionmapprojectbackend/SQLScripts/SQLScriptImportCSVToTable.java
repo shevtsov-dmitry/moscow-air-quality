@@ -12,19 +12,16 @@ public class SQLScriptImportCSVToTable {
     public static String SQLCommandBuilder(List<String[]> list){
         final String tableName = "air_pollution_csv_table";
         var SQLScript = new StringBuilder();
+        // add all columns from table to sql script builder
         var handler = new Handler();
         Field[] fields = handler.getClass().getDeclaredFields();
-        SQLScript.append("INSERT INTO " + tableName +
-                "("+fields[0].getName() + "," + // id
-                    fields[1].getName() + "," + // date
-                    fields[2].getName() + "," + // global_id
-                    fields[3].getName() + "," + // admArea
-                    fields[4].getName() + "," + // District
-                    fields[5].getName() + "," + // Longitude
-                    fields[6].getName() + "," + // Latitude
-                    fields[7].getName() + "," + // Location
-                    fields[8].getName() +       // Results
-                ") values");
+        SQLScript.append("INSERT INTO " + tableName + "(");
+        for (Field f: fields) {
+            SQLScript.append(f.getName().toLowerCase() + ",");
+        }
+        SQLScript.deleteCharAt(SQLScript.length()-1); // delete last ',' at the end of last element
+        SQLScript.append(") values");
+        // main loop
         for (String[] strings : list) {
             for (String line : strings) {
                 SQLScript.append("("); // deleted \n
