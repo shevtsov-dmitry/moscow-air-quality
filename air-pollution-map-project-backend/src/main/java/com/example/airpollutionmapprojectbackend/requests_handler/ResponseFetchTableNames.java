@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class ResponseFetchTableNames {
@@ -23,19 +25,11 @@ public class ResponseFetchTableNames {
     }
     @GetMapping("/getColumnNames")
     @ResponseBody
-    public List<Handler> getData() {
+    public List<String> getData() {
         var handler = new Handler();
         Field[] fields = handler.getClass().getDeclaredFields();
-//                "("+fields[0].getName() + "," + // id
-//                    fields[1].getName() + "," + // date
-//                    fields[2].getName() + "," + // global_id
-//                    fields[3].getName() + "," + // admArea
-//                    fields[4].getName() + "," + // District
-//                    fields[5].getName() + "," + // Longitude
-//                    fields[6].getName() + "," + // Latitude
-//                    fields[7].getName() + "," + // Location
-//                    fields[8].getName() +       // Results
-//                ") values");
-        return Arrays.stream(fields).toList();
+        // Возвращаю все названия полей класса Handler, т.е. колонок из таблицы
+        return Arrays.stream(fields).map(Field::getName).collect(Collectors.toList());
+
     }
 }
