@@ -1,13 +1,13 @@
-
-let CSVtable =[];
-// get incomming JSON table with request from database
-const temptext = document.querySelector(".temptext")
 const url = "http://localhost:8080/dataTableToWebsite"
+getCsvResponse(url)
 
+// get incomming JSON table with request from database
+// requiring JSON file from server and then use fill table
+// function to display full table, which admin just uploaded
 function getCsvResponse(url){
     fetch(url)
     .then(response => response.json())
-    .then(data => { // main part of script. using written functions
+    .then(data => {
         fillTable(data)
     })
     .catch(error =>{
@@ -15,13 +15,28 @@ function getCsvResponse(url){
     })
 }
 
-getCsvResponse(url)
-
+// get columns names from database
+async function getColumnNames(){
+    const url = "http://localhost:8080/getColumnNames";
+    const response = await fetch(url)
+    data = response => response.json()
+    return data
+}
 // display table with handsontable API
 
 function fillTable(CSVtable){
+    let list = []
+    getColumnNames().then((columnNames) =>{
+        list = columnNames
+        const displayJSON = document.querySelector('.temptext')
+        displayJSON.textContent = JSON.stringify(list)
+        
+    })
+    
+
     const csvDataDiv = document.querySelector('.csvdata')
-    let hot = new Handsontable(csvDataDiv,{
+    // table config
+    new Handsontable(csvDataDiv,{
         data: CSVtable,
         colHeaders: ['1','2','3','4','5','6','7','8','9'],
         columns: [
@@ -37,6 +52,6 @@ function fillTable(CSVtable){
         ],
         licenseKey: 'non-commercial-and-evaluation'
       })
+    //
+    
 }
-//   const displayJSON = document.querySelector('.displayJSON')
-//   displayJSON.innerHTML = JSON.stringify(CSVtable)
