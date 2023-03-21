@@ -18,11 +18,6 @@ import java.util.stream.Collectors;
 @CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class ResponseFetchTableNames {
-    private final JdbcTemplate jdbcTemplate;
-    @Autowired
-    public ResponseFetchTableNames(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
     @GetMapping("/getColumnNames")
     @ResponseBody
     public List<String> getData() {
