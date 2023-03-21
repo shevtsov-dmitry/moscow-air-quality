@@ -8,26 +8,28 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.reflect.Field;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
-public class ResponseFetchDataFromTable {
+public class ResponseFetchTableNames {
     private final JdbcTemplate jdbcTemplate;
     @Autowired
-    public ResponseFetchDataFromTable(JdbcTemplate jdbcTemplate) {
+    public ResponseFetchTableNames(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    @GetMapping("/dataTableToWebsite")
+    @GetMapping("/getColumnNames")
     @ResponseBody
-    public ResponseEntity<List<Handler>> getData() {
-        String sql = "SELECT * FROM air_pollution_csv_table";
-        List<Handler> handlers = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Handler.class));
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity<>(handlers, headers, HttpStatus.OK);
-    }
+    public List<String> getData() {
+        var handler = new Handler();
+        Field[] fields = handler.getClass().getDeclaredFields();
+        // Возвращаю все названия полей класса Handler, т.е. колонок из таблицы
+        return Arrays.stream(fields).map(Field::getName).collect(Collectors.toList());
 
+    }
 }
