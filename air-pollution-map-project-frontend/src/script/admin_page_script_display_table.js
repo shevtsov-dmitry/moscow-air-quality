@@ -19,20 +19,17 @@ function getCsvResponse(url){
 async function getColumnNames(){
     const url = "http://localhost:8080/getColumnNames";
     const response = await fetch(url)
-    data = response => response.json()
+    data = await response.json()
     return data
 }
 // display table with handsontable API
 
-function fillTable(CSVtable){
+async function fillTable(CSVtable){
     let list = []
-    getColumnNames().then((columnNames) =>{
-        list = columnNames
-        const displayJSON = document.querySelector('.temptext')
-        displayJSON.textContent = JSON.stringify(list)
-        
-    })
-    
+    const data = await getColumnNames();
+    list = data
+    const displayJSON = document.querySelector('.temptext')
+    displayJSON.textContent = list
 
     const csvDataDiv = document.querySelector('.csvdata')
     // table config
@@ -52,6 +49,5 @@ function fillTable(CSVtable){
         ],
         licenseKey: 'non-commercial-and-evaluation'
       })
-    //
     
 }
