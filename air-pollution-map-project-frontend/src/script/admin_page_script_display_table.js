@@ -16,6 +16,7 @@ function getCsvResponse(url){
 }
 
 // get columns names from database
+// parent async fn
 async function getColumnNames(){
     const url = "http://localhost:8080/getColumnNames";
     const response = await fetch(url)
@@ -23,31 +24,31 @@ async function getColumnNames(){
     return data
 }
 // display table with handsontable API
-
+// this function will start working only after parent getColumnNames()
 async function fillTable(CSVtable){
-    let list = []
-    const data = await getColumnNames();
-    list = data
-    const displayJSON = document.querySelector('.temptext')
-    displayJSON.textContent = list
-
-    const csvDataDiv = document.querySelector('.csvdata')
+    let list = '' // string of column's names
+    const data = await getColumnNames(); // getting incomming data from function
+    // fixing string to appropriate format
+    list = JSON.stringify(data)
+    list = list.substring(1,list.length - 1)
+    list = list.replaceAll('"','')
+    // adding all strings into array
+    arr = list.split(',')
+    // temp log
+    // const displayJSON = document.querySelector('.temptext')
+    // displayJSON.innerHTML = arr
+    // filling columns array with values 
+    let columns = arr.map(element => {
+        return {data: element.toLowerCase()} // lowercase is essential!
+      })
     // table config
+    const csvDataDiv = document.querySelector('.csvdata')
     new Handsontable(csvDataDiv,{
         data: CSVtable,
-        colHeaders: ['1','2','3','4','5','6','7','8','9'],
-        columns: [
-        { data: 'id' },
-        { data: 'date' },
-        { data: 'global_id' },
-        { data: 'adm_area' },
-        { data: 'location' },
-        { data: 'district' },
-        { data: 'longitude' },
-        { data: 'latitude' },
-        { data: 'results' }
-        ],
+        colHeaders: arr,
+        columns: columns,
         licenseKey: 'non-commercial-and-evaluation'
       })
-    
+      
+      
 }
