@@ -1,21 +1,5 @@
 body {
-  display: block;
   background-color: #333;
-}
-
-table {
-  border-collapse: collapse;
-  border: 2px solid rgb(255, 255, 255);
-}
-
-td {
-  border: 1px dotted rgb(255, 255, 255);
-  padding: 10px;
-}
-
-tr {
-  font-size: 5em;
-  color: white;
 }
 
 .uploadCSV {
@@ -25,7 +9,7 @@ tr {
 
 .temptext {
   font-family: monospace;
-  font-size: 1.5em;
+  font-size: 1em;
   margin-left: 20px;
   color: white;
 }/*# sourceMappingURL=admin_page.css.map */

@@ -9,48 +9,19 @@
     <title>admin page</title>
 </head>
 <body>
-    <table>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-    </table>
+
+  <!-- hadnsontable API table display -->
+  <div class="HTtable"></div>
     <!-- upload CSV -->
     <form method="POST" enctype="multipart/form-data" class="uploadCSV">
       <input class ="CSVfile" type="file" name="file">
       <input class ="submitUploadBtn" type="submit" value="Загрузить">
     </form>
+    <!-- temp output from server in String format -->
     <p class="temptext">mytext</p>
     <!-- scripts -->
-    
-    <script src="../script/admin_page_script.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+    <script type="module" src="../script/admin_page_script.js"></script>
 </body>
 </html>
