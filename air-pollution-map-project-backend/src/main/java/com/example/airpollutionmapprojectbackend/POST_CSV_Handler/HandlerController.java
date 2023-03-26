@@ -23,6 +23,7 @@ public class HandlerController {
         this.jdbcTemplate = jdbcTemplate;
     }
     // Обработка входящего запроса
+    public static String listString = new String("");
     @PostMapping("/uploadCSV")
     public void uploadCSV(@RequestBody byte[] bytes) throws IOException, CsvException {
         // read csv file into list
@@ -33,5 +34,11 @@ public class HandlerController {
         SQLScriptImportCSVToTable.SQLCommandBuilder(list);
         HandlerService service = new HandlerService(jdbcTemplate);
         service.importCSV(list);
+        listString = list.toString();
+    }
+
+    @GetMapping("/uploadCSV")
+    public String showOutput(){
+        return listString;
     }
 }

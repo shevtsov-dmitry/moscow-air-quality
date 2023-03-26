@@ -1,14 +1,17 @@
 package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
 
+import com.example.airpollutionmapprojectbackend.constants.Constans;
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
+
 @Entity
-@Table(name ="air_pollution_data")
+@Table(name = Constans.CSV_TABLE_NAME)
 public class Handler {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private Date date;
     private long global_id;
     private String station_name;
     private double latitude;
@@ -24,10 +27,12 @@ public class Handler {
     public Handler() {
     }
 
-    public Handler(long id, long global_id, String station_name, double latitude, double longitude,
-                   String surveillance_zone_characteristics, String adm_area, String district,
-                   String location, String parameter, double monthly_average, double monthly_average_pdkss) {
+    public Handler(long id, Date date, long global_id, String station_name, double latitude,
+                   double longitude, String surveillance_zone_characteristics, String adm_area,
+                   String district, String location, String parameter, double monthly_average,
+                   double monthly_average_pdkss) {
         this.id = id;
+        this.date = date;
         this.global_id = global_id;
         this.station_name = station_name;
         this.latitude = latitude;
@@ -47,6 +52,14 @@ public class Handler {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public long getGlobal_id() {
@@ -141,6 +154,7 @@ public class Handler {
     public String toString() {
         return "Handler{" +
                 "id=" + id +
+                ", date=" + date +
                 ", global_id=" + global_id +
                 ", station_name='" + station_name + '\'' +
                 ", latitude=" + latitude +
