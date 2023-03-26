@@ -22,14 +22,12 @@ public class SQLScriptImportCSVToTable {
         for (String[] strings : list) {
             for (String line : strings) {
                 SQLScript.append("("); // deleted \n
-                int countCommas = 0;
                 int rememberCount = 0;
 
                 for (int i = 0; i < line.length(); i++) { // итерритруем по всей линии
                     if(line.charAt(i) == ';' || line.charAt(i) == '\n'){ //
                         String tempString = line.substring(rememberCount,i); // выбираем один элемент между ;
-                        tempString = tempString.replaceAll(";","");
-                        tempString = tempString.replaceAll(",","");
+                        tempString = tempString.replaceAll("[;,]","");
                         try{
                             int isParsebaleToInteger = Integer.parseInt(tempString);
                             SQLScript.append(tempString).append(',');

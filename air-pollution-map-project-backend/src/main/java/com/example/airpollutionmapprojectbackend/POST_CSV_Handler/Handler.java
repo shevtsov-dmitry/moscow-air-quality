@@ -11,7 +11,7 @@ public class Handler {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private Date date;
+    private Date period;
     private long global_id;
     private String station_name;
     private double latitude;
@@ -27,12 +27,11 @@ public class Handler {
     public Handler() {
     }
 
-    public Handler(long id, Date date, long global_id, String station_name, double latitude,
-                   double longitude, String surveillance_zone_characteristics, String adm_area,
-                   String district, String location, String parameter, double monthly_average,
-                   double monthly_average_pdkss) {
+    public Handler(long id, Date period, long global_id, String station_name, double latitude, double longitude,
+                   String surveillance_zone_characteristics, String adm_area, String district, String location,
+                   String parameter, double monthly_average, double monthly_average_pdkss) {
         this.id = id;
-        this.date = date;
+        this.period = period;
         this.global_id = global_id;
         this.station_name = station_name;
         this.latitude = latitude;
@@ -54,12 +53,12 @@ public class Handler {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getPeriod() {
+        return period;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setPeriod(Date period) {
+        this.period = period;
     }
 
     public long getGlobal_id() {
@@ -154,7 +153,7 @@ public class Handler {
     public String toString() {
         return "Handler{" +
                 "id=" + id +
-                ", date=" + date +
+                ", period=" + period +
                 ", global_id=" + global_id +
                 ", station_name='" + station_name + '\'' +
                 ", latitude=" + latitude +
