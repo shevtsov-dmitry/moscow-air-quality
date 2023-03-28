@@ -5,6 +5,7 @@ import com.example.airpollutionmapprojectbackend.POST_CSV_Handler.Handler;
 import java.lang.reflect.Field;
 import java.sql.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class SQLScriptImportCSVToTable {
     public static String SQLCommandBuilder(List<String[]> list){
@@ -51,9 +52,18 @@ public class SQLScriptImportCSVToTable {
 
                         // catch for string formatting
                         catch (Exception e){
-                            SQLScript.append("'" + tempString + "'").append(',');
-                            rememberCount = i;
-                            fieldsCounter++;
+                            // проверка обрабатываемой строки дата ли это по патерну
+                            var pattern = Pattern.compile("\\d{2}\\.\\d{2}\\.\\d{4}");
+                            var matcher = pattern.matcher(tempString);
+                            if (matcher.matches()){
+                                // Реформатирование даты под Российский формат
+                                SQLScript.append("STR_TO_DATE('" + tempString + "','%d.%m.%Y')");
+                            }
+                            else {
+                                SQLScript.append("'" + tempString + "'").append(',');
+                                rememberCount = i;
+                                fieldsCounter++;
+                            }
 
                         }
                     }
