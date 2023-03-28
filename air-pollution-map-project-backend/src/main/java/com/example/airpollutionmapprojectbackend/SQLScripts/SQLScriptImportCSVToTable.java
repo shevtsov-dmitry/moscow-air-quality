@@ -3,7 +3,6 @@ package com.example.airpollutionmapprojectbackend.SQLScripts;
 import com.example.airpollutionmapprojectbackend.POST_CSV_Handler.Handler;
 
 import java.lang.reflect.Field;
-import java.sql.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -35,9 +34,9 @@ public class SQLScriptImportCSVToTable {
 
                 for (int i = 0; i < line.length(); i++) { // итерритруем по всей линии
                     // Вспомогательная конструкция для считывания последнего элемента линии
-                    if(fieldsCounter == fields.length - 1) i = line.length() - 2;
+                    if(fieldsCounter == fields.length - 1) i = line.length() - 1;
                     // классическая обработка каждого члена строки по стандартному разделителю в csv т.е. ";"
-                    if(line.charAt(i) == ';'){ //
+                    if(line.charAt(i) == ';' || fieldsCounter == fields.length - 1){ //
                         String tempString = line.substring(rememberCount,i); // выбираем один элемент между ;
                         tempString = tempString.replaceAll("[;,]","");
 
@@ -45,19 +44,29 @@ public class SQLScriptImportCSVToTable {
                         try{
                             int isParsebaleToInteger = Integer.parseInt(tempString);
                             SQLScript.append(tempString).append(',');
-                            // in the future want to write here parse into double
                             rememberCount = i;
                             fieldsCounter++;
                         }
 
                         // catch for string formatting
                         catch (Exception e){
-                            // проверка обрабатываемой строки дата ли это по патерну
-                            var pattern = Pattern.compile("\\d{2}\\.\\d{2}\\.\\d{4}");
-                            var matcher = pattern.matcher(tempString);
-                            if (matcher.matches()){
+                            // проверка обрабатываемой строки @date ли это по патерну
+                            var patternDate = Pattern.compile("\\d{2}\\.\\d{2}\\.\\d{4}");
+                            var matcherDate = patternDate.matcher(tempString);
+                            // проверка обрабатываемой строки @double ли это по патерну
+                            var patternDouble = Pattern.compile("[-+]?[0-9]*\\.[0-9]+");
+                            var matcherDouble = patternDouble.matcher(tempString);
+
+                            if (matcherDate.matches()){
                                 // Реформатирование даты под Российский формат
-                                SQLScript.append("STR_TO_DATE('" + tempString + "','%d.%m.%Y')");
+                                SQLScript.append("STR_TO_DATE('" + tempString + "','%d.%m.%Y')").append(',');
+                                rememberCount = i;
+                                fieldsCounter++;
+                            }
+                            else if(matcherDouble.matches()){
+                                SQLScript.append(tempString).append(',');
+                                rememberCount = i;
+                                fieldsCounter++;
                             }
                             else {
                                 SQLScript.append("'" + tempString + "'").append(',');
