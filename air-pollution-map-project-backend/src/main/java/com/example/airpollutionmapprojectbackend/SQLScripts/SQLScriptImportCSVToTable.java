@@ -3,6 +3,7 @@ package com.example.airpollutionmapprojectbackend.SQLScripts;
 import com.example.airpollutionmapprojectbackend.POST_CSV_Handler.Handler;
 
 import java.lang.reflect.Field;
+import java.sql.Date;
 import java.util.List;
 
 public class SQLScriptImportCSVToTable {
@@ -21,26 +22,42 @@ public class SQLScriptImportCSVToTable {
         // main loop
         for (String[] strings : list) {
             for (String line : strings) {
-                SQLScript.append("("); // deleted \n
+                SQLScript.append("(");
+
+                /* добавляю новую переменную, которая будет помогать доходить считывателю строк до конца.
+                суть в том, что итератор @fieldsCounter будет увеличиваться пока цикл не дойдёт до
+                предпоследнего элемента @fields.length - 1, тогда проигрывается прописанное в цикле условие.
+                */
+                int fieldsCounter = 0;
+                // Запоминает индекс в цикле, на котором остановился итератор. Используется в следующем цикле
                 int rememberCount = 0;
 
                 for (int i = 0; i < line.length(); i++) { // итерритруем по всей линии
-                    if(line.charAt(i) == ';' || line.charAt(i) == '\n'){ //
+                    // Вспомогательная конструкция для считывания последнего элемента линии
+                    if(fieldsCounter == fields.length - 1) i = line.length() - 2;
+                    // классическая обработка каждого члена строки по стандартному разделителю в csv т.е. ";"
+                    if(line.charAt(i) == ';'){ //
                         String tempString = line.substring(rememberCount,i); // выбираем один элемент между ;
                         tempString = tempString.replaceAll("[;,]","");
+
+                        // try for number formatting
                         try{
                             int isParsebaleToInteger = Integer.parseInt(tempString);
                             SQLScript.append(tempString).append(',');
                             // in the future want to write here parse into double
-//                            SQLScript.append(tempString).append(',');
                             rememberCount = i;
+                            fieldsCounter++;
                         }
 
+                        // catch for string formatting
                         catch (Exception e){
                             SQLScript.append("'" + tempString + "'").append(',');
                             rememberCount = i;
+                            fieldsCounter++;
+
                         }
                     }
+
                 }
 
                 SQLScript.deleteCharAt(SQLScript.length() - 1); // Удалить последнюю запятую в заполнении

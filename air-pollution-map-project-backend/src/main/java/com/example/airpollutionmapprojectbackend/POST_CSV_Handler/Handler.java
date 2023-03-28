@@ -1,15 +1,15 @@
 package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
 
-import com.example.airpollutionmapprojectbackend.constants.Constans;
+import com.example.airpollutionmapprojectbackend.constants.Constants;
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-@Table(name = Constans.CSV_TABLE_NAME)
+@Table(name = Constants.CSV_TABLE_NAME)
 public class Handler {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private Date period;
     private long global_id;
