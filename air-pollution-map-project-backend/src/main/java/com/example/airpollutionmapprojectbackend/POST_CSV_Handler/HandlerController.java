@@ -3,6 +3,8 @@ package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
 import com.example.airpollutionmapprojectbackend.SQLScripts.SQLScriptImportCSVToTable;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

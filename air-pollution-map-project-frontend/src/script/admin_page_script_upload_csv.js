@@ -1,3 +1,7 @@
+// import '../node_modules/pikaday';
+// import Handsontable from '../node_modules/handsontable';
+import '../node_modules/handsontable/dist/handsontable.full.min.css';
+
 //const CSVFile = document.querySelector(".CSVfile");
 const CSVFile = document.querySelector('input[type="file"]');
 const submitUploadBtn = document.querySelector(".submitUploadBtn");
@@ -14,14 +18,9 @@ submitUploadBtn.addEventListener("click", () => {
             method: 'POST',
             body: file,
             headers: {
-                'Content-Type': 'text/csv'
+                'Content-Type': 'text/csv; charset=utf-8'
               },
           })
-        //   .then((response) =>{
-        //     let responseTXT = document.querySelector(".temptext")
-        //     responseTXT.textContent(response)
-        //     return response.json();
-        //   })
     }
     catch(error){console.log("Произошла ошибка: " + error)};
 })
