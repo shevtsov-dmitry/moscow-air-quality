@@ -1,3 +1,6 @@
+import Handsontable from '../node_modules/handsontable'
+import '../node_modules/handsontable/dist/handsontable.full.min.css'
+
 const url = "http://localhost:8080/dataTableToWebsite"
 getCsvResponse(url)
 
@@ -44,12 +47,11 @@ async function fillTable(CSVtable){
 
     // table config
     const csvDataDiv = document.querySelector('.csvdata')
-    new Handsontable(csvDataDiv,{
+    let hot = new Handsontable(csvDataDiv,{
         data: CSVtable,
         colHeaders: arr,
         columns: columns,
         licenseKey: 'non-commercial-and-evaluation'
     })
-
-    console.log(csvDataDiv.select)
+    console.log(hot.getColumnDataAtCol(1))
 }
