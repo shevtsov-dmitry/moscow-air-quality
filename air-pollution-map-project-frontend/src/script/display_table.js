@@ -55,3 +55,4 @@ async function fillTable(CSVtable){
     })
     console.log(hot.getColumnDataAtCol(1))
 }
+
