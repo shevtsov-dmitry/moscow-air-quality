@@ -1,5 +1,5 @@
 // table initialization
-// configuration optimized in async function - fillTable()
+// configuration optimized in async function - interactionsWithTable()
 const csvDataDiv = document.querySelector('.csvdata')
 let hot = new Handsontable(csvDataDiv,{
     data: [[]],
@@ -18,7 +18,7 @@ function getCsvResponse(url){
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        fillTable(data)
+        interactionsWithTable(data)
     })
     .catch(error =>{
         textBlock.textContent = `Something went wrong: ${error}`
@@ -41,7 +41,7 @@ async function getColumnNames(){
 }
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
-async function fillTable(CSVtable){
+async function interactionsWithTable(CSVtable){
     try{
         let list = '' // string of column's names
         const data = await getColumnNames(); // getting incomming data from function
@@ -88,15 +88,9 @@ async function fillTable(CSVtable){
             hot.setDataAtCell(i, dateColumnIndex, formattedDateArray[i])
         }
         // ========================================================
-
-        let columnsDataObj = {}
-        for(let i = 0; i < hot.countCols(); i++){
-            let columnData = hot.getDataAtCol(i)
-            // console.log(columnData)
-        }
         
     }
     catch(error){
-        console.log(`Something went wrong in fillTable function: ${error}`);
+        console.log(`Something went wrong in interactionsWithTable function: ${error}`);
     }
 }
