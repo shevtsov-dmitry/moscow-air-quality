@@ -1,5 +1,5 @@
 // table initialization
-// configuration optimized in async function - fillTable()
+// configuration optimized in async function - interactionsWithTable()
 const csvDataDiv = document.querySelector('.csvdata')
 let hot = new Handsontable(csvDataDiv,{
     data: [[]],
@@ -18,7 +18,7 @@ function getCsvResponse(url){
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        fillTable(data)
+        interactionsWithTable(data)
     })
     .catch(error =>{
         textBlock.textContent = `Something went wrong: ${error}`
@@ -41,7 +41,7 @@ async function getColumnNames(){
 }
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
-async function fillTable(CSVtable){
+async function interactionsWithTable(CSVtable){
     try{
         let list = '' // string of column's names
         const data = await getColumnNames(); // getting incomming data from function
@@ -54,11 +54,16 @@ async function fillTable(CSVtable){
         // adding all strings into array
         let arr = list.split(',')
 
-        // filling columns array with values 
+        // filling columns array with values
+        // and counting the index until it's date index
+        // I will use it later to format date in table
+        let iteratorFindDate = 0; // variable just for loop below
+        let dateColumnIndex = 0 // variable, which will be used later
         let columns = arr.map(element => {
+            if(element === "period") dateColumnIndex = iteratorFindDate // little bit hard code 
+            iteratorFindDate++
             return {data: element.toLowerCase()} // lowercase is essential!
         })
-
         // table config
         hot = new Handsontable(csvDataDiv,{
             data: CSVtable,
@@ -66,40 +71,26 @@ async function fillTable(CSVtable){
             columns: columns,
             licenseKey: 'non-commercial-and-evaluation'
         })
-
-        // let dates = hot.getDataAtCol(1)
-        // for (let i = 0; i < dates.length; i++) {
-        //     const dateObj = new Date(dates[i]);
-        //     const day = dateObj.getDate();
-        //     const month = dateObj.getMonth() + 1;
-        //     const year = dateObj.getFullYear();
-        //     const formattedDate = `${day}.${month}.${year}`;
-        //     console.log(formattedDate);
-        //   }
+        
+        // changing date into new format from previosly retrieved date index
+        // at first filling new array with formated view of date
+        let dates = hot.getDataAtCol(dateColumnIndex)
+        let formattedDateArray = []
+        for (let i = 0; i < dates.length; i++) {
+            let dateObj = new Date(dates[i]);
+            // let day = dateObj.getDate(); // day is redundant
+            let month = dateObj.getMonth() + 1;
+            let year = dateObj.getFullYear();
+            formattedDateArray.push(`${month}.${year}`)
+        }
+        // then insert it into table
+        for(let i = 0; i < dates.length; i++){
+            hot.setDataAtCell(i, dateColumnIndex, formattedDateArray[i])
+        }
+        // ========================================================
+        
     }
     catch(error){
-        console.log(`Something went wrong in fillTable function: ${error}`);
+        console.log(`Something went wrong in interactionsWithTable function: ${error}`);
     }
 }
-
-async function awaitMe(){
-    let data = await hot.getDataAtCol(1)
-    return data
-}
-
-async function main() {
-    try {
-      await fillTable()
-      let arrWin = await awaitMe()
-      console.log(arrWin)
-    } catch (error) {
-      console.log(`Error in main function: ${error}`)
-    }
-  }
-  
-  main()
-
-let pressThis = document.querySelector(".temptext")
-pressThis.addEventListener('click',()=>{
-    console.log(arrWin)
-})
