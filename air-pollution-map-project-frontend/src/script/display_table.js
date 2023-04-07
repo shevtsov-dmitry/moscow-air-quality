@@ -44,7 +44,7 @@ async function getColumnNames(){
 async function interactionsWithTable(CSVtable){
     try{
         let list = '' // string of column's names
-        const data = await getColumnNames(); // getting incomming data from function
+        const data = await getColumnNames(); // getting incoming data from function
 
         // fixing string to appropriate format
         list = JSON.stringify(data)
@@ -60,7 +60,7 @@ async function interactionsWithTable(CSVtable){
         let iteratorFindDate = 0; // variable just for loop below
         let dateColumnIndex = 0 // variable, which will be used later
         let columns = arr.map(element => {
-            if(element === "period") dateColumnIndex = iteratorFindDate // little bit hard code 
+            if(element === "period") dateColumnIndex = iteratorFindDate // a little hard code
             iteratorFindDate++
             return {data: element.toLowerCase()} // lowercase is essential!
         })
@@ -72,8 +72,8 @@ async function interactionsWithTable(CSVtable){
             licenseKey: 'non-commercial-and-evaluation'
         })
         
-        // changing date into new format from previosly retrieved date index
-        // at first filling new array with formated view of date
+        // changing date into new format from previously retrieved date index
+        // at first filling new array with formatted view of date
         let dates = hot.getDataAtCol(dateColumnIndex)
         let formattedDateArray = []
         for (let i = 0; i < dates.length; i++) {
@@ -87,8 +87,17 @@ async function interactionsWithTable(CSVtable){
         for(let i = 0; i < dates.length; i++){
             hot.setDataAtCell(i, dateColumnIndex, formattedDateArray[i])
         }
-        // ========================================================
-        
+        // data array of objects, that will be sent into map HTML file
+        let dataObject = []
+        for (let i = 0; i < hot.countRows() - 1; i++) {
+            let row = hot.getDataAtRow(i)
+            let obj = {}
+            for (let j = 0; j < row.length; j++) {
+                obj[columns[j].data] = row[j]
+            }
+            dataObject.push(obj)
+        }
+        console.log(dataObject)
     }
     catch(error){
         console.log(`Something went wrong in interactionsWithTable function: ${error}`);
