@@ -59,7 +59,7 @@ public class SQLScriptImportCSVToTable {
 
                             if (matcherDate.matches()){
                                 // Реформатирование даты под Российский формат
-                                SQLScript.append("STR_TO_DATE('" + tempString + "','%d.%m.%Y')").append(',');
+                                SQLScript.append("STR_TO_DATE('" + tempString + "','%m.%Y')").append(',');
                                 rememberCount = i;
                                 fieldsCounter++;
                             }
