@@ -4,6 +4,10 @@ import {Map, View} from '../node_modules/ol';
 import TileLayer from '../node_modules/ol/layer/Tile';
 import OSM from '../node_modules/ol/source/OSM';
 
+// get data object
+
+
+
 olProj.useGeographic()
 
 // basic center map point (right on the Moscow)
