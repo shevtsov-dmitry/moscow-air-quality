@@ -72,21 +72,23 @@ async function interactionsWithTable(CSVtable){
             licenseKey: 'non-commercial-and-evaluation'
         })
         
+        // * uncomment in case if date format will be not string, but Date
         // changing date into new format from previously retrieved date index
         // at first filling new array with formatted view of date
-        let dates = hot.getDataAtCol(dateColumnIndex)
-        let formattedDateArray = []
-        for (let i = 0; i < dates.length; i++) {
-            let dateObj = new Date(dates[i]);
-            // let day = dateObj.getDate(); // day is redundant
-            let month = dateObj.getMonth() + 1;
-            let year = dateObj.getFullYear();
-            formattedDateArray.push(`${month}.${year}`)
-        }
-        // then insert it into table
-        for(let i = 0; i < dates.length; i++){
-            hot.setDataAtCell(i, dateColumnIndex, formattedDateArray[i])
-        }
+        // let dates = hot.getDataAtCol(dateColumnIndex)
+        // let formattedDateArray = []
+        // for (let i = 0; i < dates.length; i++) {
+        //     let dateObj = new Date(dates[i]);
+        //     // let day = dateObj.getDate(); // day is redundant
+        //     let month = dateObj.getMonth() + 1;
+        //     let year = dateObj.getFullYear();
+        //     formattedDateArray.push(`${month}.${year}`)
+        // }
+        // // then insert it into table
+        // for(let i = 0; i < dates.length; i++){
+        //     hot.setDataAtCell(i, dateColumnIndex, formattedDateArray[i])
+        // }
+
         // data array of objects, that will be sent into map HTML file
         let dataObject = []
         for (let i = 0; i < hot.countRows() - 1; i++) {
