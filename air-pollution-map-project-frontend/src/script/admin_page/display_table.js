@@ -101,7 +101,7 @@ async function interactionsWithTable(CSVtable){
         }
         console.log(dataObject)
     }
-    catch(error){
+        catch(error){
         console.log(`Something went wrong in interactionsWithTable function: ${error}`);
     }
 }
