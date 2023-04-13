@@ -1,5 +1,5 @@
 body {
-  background-color: #333;
+  background-color: #32BFFF;
 }
 
 .uploadCSV {
@@ -7,9 +7,4 @@ body {
   color: white;
 }
 
-.temptext {
-  font-family: monospace;
-  font-size: 4em;
-  margin-left: 20px;
-  color: white;
-}/*# sourceMappingURL=admin_page.css.map */
+/*# sourceMappingURL=admin_page.css.map */

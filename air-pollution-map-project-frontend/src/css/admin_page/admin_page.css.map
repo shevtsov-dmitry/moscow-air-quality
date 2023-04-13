@@ -1,1 +1,1 @@
-{"version":3,"sources":["admin_page.scss","admin_page.css"],"names":[],"mappings":"AAAA;EACE,sBAAA;ACCF;;ADEA;EACE,YAAA;EACA,YAAA;ACCF;;ADCA;EACE,sBAAA;EACA,cAAA;EACA,iBAAA;EACA,YAAA;ACEF","file":"admin_page.css"}
+{"version":3,"sourceRoot":"","sources":["admin_page.sass"],"names":[],"mappings":"AAAA;EACE;;;AACF;EACE;EACA","file":"admin_page.css"}
