@@ -12,18 +12,39 @@
 <body>
   <!-- upload CSV -->
   <div class="buttons-panel">
+
+<!--upload file-->
       <form method="POST" enctype="multipart/form-data" class="uploadCSV">
           <input class ="CSVFile" type="file" name="file">
           <input class ="submitUploadBtn" type="submit" value="Загрузить">
       </form>
-      <div class="buttons">
-          <input class="select" type="submit" value="Показать данные">
-          <form action="" class="select-buttons">
 
-          </form>
+<!--select data by ...-->
+      <div class="buttons">
+          <div class="form-chose-what-to-select">
+<!--              start choosing option-->
+              <button class="show-action-button">Показать данные</button>
+<!--              choose option-->
+              <div class="selectors">
+                  <button class="btn_everything">Всё</button>
+                  <button class="btn_ID">По ID</button>
+                  <button class="btn_station-name">По названию станции</button>
+                  <button class="btn_parameter">По параметру</button>
+              </div>
+<!--               choose concrete case, also fill be filled automatically -->
+<!--               variants will be preloaded and hidden until user chose the option-->
+              <form action="" method="POST" class="form-filled-with-variants">
+
+              </form>
+          </div>
       </div>
+
+<!--  clear table-->
+      <form action="" method="POST">
+          <input class="wipe-data" type="submit" value="clear table">
+      </form>
   </div>
-  <!-- hadnsontable API table display -->
+  <!-- handsontable API table display -->
   <div class="csvdata"></div>
     <!-- scripts -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
