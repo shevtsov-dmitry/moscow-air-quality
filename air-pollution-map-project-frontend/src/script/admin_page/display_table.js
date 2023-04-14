@@ -11,7 +11,7 @@ let hot = new Handsontable(csvDataDiv,{
 const url = "http://localhost:8080/dataTableToWebsite"
 getCsvResponse(url)
 
-// get incomming JSON table with request from database
+// get incoming JSON table with request from database
 // requiring JSON file from server and then use fill table
 // function to display full table, which admin just uploaded
 function getCsvResponse(url){
@@ -37,7 +37,6 @@ async function getColumnNames(){
     catch(error){
         console.log("Failed to obtain column names, because: " + error)
     }
-    
 }
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
@@ -55,13 +54,7 @@ async function interactionsWithTable(CSVtable){
         let arr = list.split(',')
 
         // filling columns array with values
-        // and counting the index until it's date index
-        // I will use it later to format date in table
-        let iteratorFindDate = 0; // variable just for loop below
-        let dateColumnIndex = 0 // variable, which will be used later
         let columns = arr.map(element => {
-            if(element === "period") dateColumnIndex = iteratorFindDate // a little hard code
-            iteratorFindDate++
             return {data: element.toLowerCase()} // lowercase is essential!
         })
         // table config
@@ -71,23 +64,6 @@ async function interactionsWithTable(CSVtable){
             columns: columns,
             licenseKey: 'non-commercial-and-evaluation'
         })
-        
-        // * uncomment in case if date format will be not string, but Date
-        // changing date into new format from previously retrieved date index
-        // at first filling new array with formatted view of date
-        // let dates = hot.getDataAtCol(dateColumnIndex)
-        // let formattedDateArray = []
-        // for (let i = 0; i < dates.length; i++) {
-        //     let dateObj = new Date(dates[i]);
-        //     // let day = dateObj.getDate(); // day is redundant
-        //     let month = dateObj.getMonth() + 1;
-        //     let year = dateObj.getFullYear();
-        //     formattedDateArray.push(`${month}.${year}`)
-        // }
-        // // then insert it into table
-        // for(let i = 0; i < dates.length; i++){
-        //     hot.setDataAtCell(i, dateColumnIndex, formattedDateArray[i])
-        // }
 
         // data array of objects, that will be sent into map HTML file
         let dataObject = []
