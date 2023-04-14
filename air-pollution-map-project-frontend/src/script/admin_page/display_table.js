@@ -99,9 +99,16 @@ async function interactionsWithTable(CSVtable){
             }
             dataObject.push(obj)
         }
-        console.log(dataObject)
+        // console.log(dataObject)
+
+        // select * from station name
     }
         catch(error){
         console.log(`Something went wrong in interactionsWithTable function: ${error}`);
     }
 }
+
+async function showAllTable(){}
+async function showById(){}
+async function showByStationName(){}
+async function showByParameter(){}
