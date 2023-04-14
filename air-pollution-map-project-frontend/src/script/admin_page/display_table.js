@@ -1,5 +1,5 @@
 // table initialization
-// configuration optimized in async function - interactionsWithTable()
+// configuration optimized in async function - createTable()
 const csvDataDiv = document.querySelector('.csvdata')
 let hot = new Handsontable(csvDataDiv,{
     data: [[]],
@@ -18,7 +18,7 @@ function getCsvResponse(url){
     fetch(url)
     .then(response => response.json())
     .then(data => {
-        interactionsWithTable(data)
+        createTable(data)
     })
     .catch(error =>{
         textBlock.textContent = `Something went wrong: ${error}`
@@ -38,35 +38,50 @@ async function getColumnNames(){
         console.log("Failed to obtain column names, because: " + error)
     }
 }
+
+async function getColHeaders(){
+    let list = '' // string of column's names
+    const data = await getColumnNames(); // getting incoming data from function
+
+    // fixing string to appropriate format
+    list = JSON.stringify(data)
+    list = list.substring(1,list.length - 1)
+    list = list.replaceAll('"','')
+
+    // adding all strings into array
+    return list.split(',')
+}
+
+async function getColumns(){
+    // filling columns array with values
+    let arr = await getColHeaders();
+    return arr.map(element => {
+        return {data: element.toLowerCase()} // lowercase is essential!
+    })
+}
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
-async function interactionsWithTable(CSVtable){
+async function createTable(CSVtable){
     try{
-        let list = '' // string of column's names
-        const data = await getColumnNames(); // getting incoming data from function
-
-        // fixing string to appropriate format
-        list = JSON.stringify(data)
-        list = list.substring(1,list.length - 1)
-        list = list.replaceAll('"','')
-
-        // adding all strings into array
-        let arr = list.split(',')
-
-        // filling columns array with values
-        let columns = arr.map(element => {
-            return {data: element.toLowerCase()} // lowercase is essential!
-        })
         // table config
         hot = new Handsontable(csvDataDiv,{
             data: CSVtable,
-            colHeaders: arr,
-            columns: columns,
+            colHeaders: await getColHeaders(),
+            columns: await getColumns(),
             licenseKey: 'non-commercial-and-evaluation'
         })
+        getAllDataFromTable(hot)
 
-        // data array of objects, that will be sent into map HTML file
-        let dataObject = []
+
+    }
+        catch(error){
+        console.log(`Something went wrong in interactionsWithTable function: ${error}`);
+    }
+}
+async function getAllDataFromTable(hot){
+    // data array of objects, that will be sent into map HTML file
+    let dataObject = []
+    let columns = await getColumns();
         for (let i = 0; i < hot.countRows() - 1; i++) {
             let row = hot.getDataAtRow(i)
             let obj = {}
@@ -75,13 +90,8 @@ async function interactionsWithTable(CSVtable){
             }
             dataObject.push(obj)
         }
-        // console.log(dataObject)
-
-        // select * from station name
-    }
-        catch(error){
-        console.log(`Something went wrong in interactionsWithTable function: ${error}`);
-    }
+    console.log("it works")
+    console.log(dataObject)
 }
 
 async function showAllTable(){}
