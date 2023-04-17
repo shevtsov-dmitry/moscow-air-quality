@@ -92,6 +92,8 @@ async function createTable(CSVtable){
             licenseKey: 'non-commercial-and-evaluation'
         })
         // ----------------------------------
+        // hide the main table
+        hot_main.rootElement.style.display = 'none'
 
         getAllDataFromTable(hot_main)
 
