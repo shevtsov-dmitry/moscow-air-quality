@@ -1,8 +1,8 @@
 import * as olProj from 'ol/proj';
-import '../css/style.css';
-import {Map, View} from '../node_modules/ol';
-import TileLayer from '../node_modules/ol/layer/Tile';
-import OSM from '../node_modules/ol/source/OSM';
+import '../../css/map/style.css';
+import {Map, View} from 'ol';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
 
 // get data object
 

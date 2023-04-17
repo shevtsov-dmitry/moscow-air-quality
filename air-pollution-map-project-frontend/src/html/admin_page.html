@@ -4,25 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="../css/admin_page.css">
+    <link rel="icon" type="image/x-icon" href="../static/tab_icon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" />
+    <link rel="stylesheet" href="../css/admin_page/admin_page.css">
     <title>admin page</title>
 </head>
 <body>
   <!-- upload CSV -->
-  <form method="POST" enctype="multipart/form-data" class="uploadCSV">
-    <input class ="CSVfile" type="file" name="file">
-    <input class ="submitUploadBtn" type="submit" value="Загрузить">
-  </form>
-  <!-- hadnsontable API table display -->
+  <div class="buttons-panel">
+
+<!--upload file-->
+      <form method="POST" enctype="multipart/form-data" class="uploadCSV">
+          <input class ="CSVFile" type="file" name="file">
+          <input class ="submitUploadBtn" type="submit" value="Загрузить">
+      </form>
+
+<!--select data by ...-->
+      <div class="buttons">
+          <div class="form-chose-what-to-select">
+<!--              start choosing option-->
+              <button class="show-action-button">Показать данные</button>
+<!--              choose option-->
+              <div class="selectors">
+                  <button class="btn_everything">Всё</button>
+                  <button class="btn_ID">По ID</button>
+                  <button class="btn_station-name">По названию станции</button>
+                  <button class="btn_parameter">По параметру</button>
+              </div>
+<!--               choose concrete case, also fill be filled automatically -->
+<!--               variants will be preloaded and hidden until user chose the option-->
+              <form action="" method="POST" class="form-filled-with-variants">
+
+              </form>
+          </div>
+      </div>
+
+<!--  clear table-->
+      <form action="" method="POST">
+          <input class="wipe-data" type="submit" value="clear table">
+      </form>
+  </div>
+  <!-- handsontable API table display -->
   <div class="csvdata"></div>
-    
-    <!-- temp output from server in String format
-    <p class="temptext">mytext</p> -->
     <!-- scripts -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script> -->
-    <script type="module" src="../script/upload_csv.js"></script>
-    <script type="module" src="../script/display_table.js"></script>
+    <script type="module" src="../script/admin_page/upload_csv.js"></script>
+    <script type="module" src="../script/admin_page/display_table.js"></script>
 </body>
 </html>

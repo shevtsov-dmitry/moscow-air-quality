@@ -1,6 +1,6 @@
 // import '../node_modules/pikaday';
 // import Handsontable from '../node_modules/handsontable';
-import '../node_modules/handsontable/dist/handsontable.full.min.css';
+import 'handsontable/dist/handsontable.full.min.css';
 
 //const CSVFile = document.querySelector(".CSVfile");
 const CSVFile = document.querySelector('input[type="file"]');
