@@ -13,7 +13,7 @@ let hot = new Handsontable(csvDataDiv,{
 const url = "http://localhost:8080/dataTableToWebsite"
 public_static_void_main_String_args(url)
 
-// * Main function
+// ** Main function
 // get incoming JSON table with request from database
 // requiring JSON file from server and then use fill table
 // function to display full table, which admin just uploaded
@@ -66,42 +66,75 @@ async function getAllDataFromTable(hot){
     // data array of objects, that will be sent into map HTML file
     let dataObject = []
     let columns = await getColumns();
-        for (let i = 0; i < hot.countRows() - 1; i++) {
-            let row = hot.getDataAtRow(i)
-            let obj = {}
-            for (let j = 0; j < row.length; j++) {
-                obj[columns[j].data] = row[j]
-            }
-            dataObject.push(obj)
+    for (let i = 0; i < hot.countRows() - 1; i++) {
+        let row = hot.getDataAtRow(i)
+        let obj = {}
+        for (let j = 0; j < row.length; j++) {
+            obj[columns[j].data] = row[j]
         }
+        dataObject.push(obj)
+    }
+    console.log(dataObject)
+        
 }
 
+// ** fn displays the table and interacts with it and create other exemples
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
 async function createTable(CSVtable){
     try{
         // table config
         // getAllDataFromTable(hot)
-        let hot = new Handsontable(csvDataDiv, {
+        let hot_main = new Handsontable(csvDataDiv, {
             data: CSVtable,
             colHeaders: await getColHeaders(),
             columns: await getColumns(),
             licenseKey: 'non-commercial-and-evaluation'
         })
         // ----------------------------------
-        
-        // showByStationName(hot)
-        // showByParameter(hot)
-        // showById(hot)
+
+        getAllDataFromTable(hot_main)
+
         // ----------------------------------
-        return hot
+        return hot_main
     }
     catch(error){
         console.log(`Something went wrong in createTable function: ${error}`);
     }
 }
 
-// * Functions, related to filling the user's choosing form
+// ** Button events
+
+// declaration
+const btn_everything = document.querySelector('.btn_everything')
+const btn_ID = document.querySelector('.btn_ID')
+const btn_station_name = document.querySelector('.btn_station_name')
+const btn_parameter = document.querySelector('.btn_parameter')
+
+// add event listeners
+btn_everything.addEventListener('click', clickButtonAction)
+btn_ID.addEventListener('click', clickButtonAction)
+btn_station_name.addEventListener('click', clickButtonAction)
+btn_parameter.addEventListener('click', clickButtonAction)
+
+// click button action function
+async function clickButtonAction(initial_table){
+
+    if(this === btn_everything){
+        alert("everything")
+    } 
+    else if(this === btn_ID){
+        alert("ID")
+    } 
+    else if(this === btn_station_name){
+        alert("station_name")
+    } 
+    else if(this === btn_parameter){
+        alert("param")
+    }
+}
+
+// * functions, related to filling the user's choosing form
 
 let form = document.querySelector(".form-filled-with-variants")
 
