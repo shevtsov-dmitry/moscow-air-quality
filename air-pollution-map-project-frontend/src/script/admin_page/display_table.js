@@ -1,5 +1,5 @@
-// table initialization
-// configuration optimized in async function - createTable()
+// *** table initialization
+// * configuration optimized in async function - createTable()
 const csvDataDiv = document.querySelector('.csvdata')
 let hot = new Handsontable(csvDataDiv,{
     data: [[]],
@@ -13,13 +13,14 @@ let hot = new Handsontable(csvDataDiv,{
 const url = "http://localhost:8080/dataTableToWebsite"
 public_static_void_main_String_args(url)
 
+// * Main function
 // get incoming JSON table with request from database
 // requiring JSON file from server and then use fill table
 // function to display full table, which admin just uploaded
 function public_static_void_main_String_args(url){
     fetch(url)
     .then(response => response.json())
-    .then(data => { // * Main part of the function is working here
+    .then(data => { 
         let hot = createTable(data)
         // console.log(hot) PROMISE PENDING
 
@@ -29,7 +30,7 @@ function public_static_void_main_String_args(url){
     })
 }
 
-// get columns names from database
+// * getters
 // parent async fn
 async function getColumnNames(){
     try{
@@ -45,12 +46,10 @@ async function getColumnNames(){
 async function getColHeaders(){
     let list = '' // string of column's names
     const data = await getColumnNames(); // getting incoming data from function
-
     // fixing string to appropriate format
     list = JSON.stringify(data)
     list = list.substring(1,list.length - 1)
     list = list.replaceAll('"','')
-
     // adding all strings into array
     return list.split(',')
 }
@@ -61,6 +60,20 @@ async function getColumns(){
     return arr.map(element => {
         return {data: element.toLowerCase()} // lowercase is essential!
     })
+}
+
+async function getAllDataFromTable(hot){
+    // data array of objects, that will be sent into map HTML file
+    let dataObject = []
+    let columns = await getColumns();
+        for (let i = 0; i < hot.countRows() - 1; i++) {
+            let row = hot.getDataAtRow(i)
+            let obj = {}
+            for (let j = 0; j < row.length; j++) {
+                obj[columns[j].data] = row[j]
+            }
+            dataObject.push(obj)
+        }
 }
 
 // display table with handsontable API
@@ -76,9 +89,10 @@ async function createTable(CSVtable){
             licenseKey: 'non-commercial-and-evaluation'
         })
         // ----------------------------------
+        
         // showByStationName(hot)
         // showByParameter(hot)
-        showById(hot)
+        // showById(hot)
         // ----------------------------------
         return hot
     }
@@ -87,26 +101,8 @@ async function createTable(CSVtable){
     }
 }
 
-async function getAllDataFromTable(hot){
-    // data array of objects, that will be sent into map HTML file
-    let dataObject = []
-    let columns = await getColumns();
-        for (let i = 0; i < hot.countRows() - 1; i++) {
-            let row = hot.getDataAtRow(i)
-            let obj = {}
-            for (let j = 0; j < row.length; j++) {
-                obj[columns[j].data] = row[j]
-            }
-            dataObject.push(obj)
-        }
-
-    // console.log("it works")
-    // console.log(dataObject)
-
-
-}
-
 // * Functions, related to filling the user's choosing form
+
 let form = document.querySelector(".form-filled-with-variants")
 
 // column names 
@@ -158,7 +154,7 @@ async function showByStationName(hot){
     for (let i = 0; i < no_dups_station_names.length; i++) {
         form.innerHTML += `<li>${no_dups_station_names[i]}</li>`
     }
-}
+} 
 
 async function showByParameter(hot){
     let dataCol = 0
