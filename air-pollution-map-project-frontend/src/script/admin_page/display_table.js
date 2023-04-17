@@ -119,8 +119,18 @@ btn_ID.addEventListener('click', clickButtonAction)
 btn_station_name.addEventListener('click', clickButtonAction)
 btn_parameter.addEventListener('click', clickButtonAction)
 
+// ** new table to display data
+const new_table = document.querySelector('.display_table')
+let hot_new = new Handsontable(new_table,{
+    data: [1,1],
+    colHeaders: await getColHeaders(),
+    columns: await getColumns(),
+    licenseKey: 'non-commercial-and-evaluation'
+})
 // click button action function
 async function clickButtonAction(initial_table){
+    // create @param hot - new empty table , which 
+    // will be filled with if else statements below
 
     if(this === btn_everything){
         alert("everything")
