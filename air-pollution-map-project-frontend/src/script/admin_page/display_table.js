@@ -85,7 +85,7 @@ async function createTable(CSVtable){
     try{
         // table config
         // getAllDataFromTable(hot)
-        let hot_main = new Handsontable(csvDataDiv, {
+        hot = new Handsontable(csvDataDiv, {
             data: CSVtable,
             colHeaders: await getColHeaders(),
             columns: await getColumns(),
@@ -93,12 +93,12 @@ async function createTable(CSVtable){
         })
         // ----------------------------------
         // hide the main table
-        hot_main.rootElement.style.display = 'none'
-
-        getAllDataFromTable(hot_main)
-
+        hot.rootElement.style.display = 'none'
+        
+        await clickButtonAction(hot)
+        // getAllDataFromTable(hot_main)
+        //  hot_main.rootElement.style.display = 'initial'
         // ----------------------------------
-        return hot_main
     }
     catch(error){
         console.log(`Something went wrong in createTable function: ${error}`);
@@ -106,7 +106,6 @@ async function createTable(CSVtable){
 }
 
 // ** Button events
-
 // declaration
 const btn_everything = document.querySelector('.btn_everything')
 const btn_ID = document.querySelector('.btn_ID')
@@ -133,7 +132,8 @@ async function clickButtonAction(initial_table){
     // will be filled with if else statements below
 
     if(this === btn_everything){
-        alert("everything")
+        hot_new.rootElement.style.display = 'none'
+        hot.rootElement.style.display = 'initial'
     } 
     else if(this === btn_ID){
         alert("ID")
