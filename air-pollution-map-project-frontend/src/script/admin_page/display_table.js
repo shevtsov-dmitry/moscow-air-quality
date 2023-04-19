@@ -1,7 +1,7 @@
 // *** table initialization
 // * configuration optimized in async function - createTable()
 const csvDataDiv = document.querySelector('.csvdata')
-let hot = new Handsontable(csvDataDiv,{
+let hot = new Handsontable(csvDataDiv, {
     data: [[]],
     colHeaders: true,
     columns: true,
@@ -17,52 +17,52 @@ public_static_void_main_String_args(url)
 // get incoming JSON table with request from database
 // requiring JSON file from server and then use fill table
 // function to display full table, which admin just uploaded
-function public_static_void_main_String_args(url){
+function public_static_void_main_String_args(url) {
     fetch(url)
-    .then(response => response.json())
-    .then(data => { 
-        let hot = createTable(data)
-        // console.log(hot) PROMISE PENDING
+        .then(response => response.json())
+        .then(data => {
+            let hot = createTable(data)
+            // console.log(hot) PROMISE PENDING
 
-    })
-    .catch(error =>{
-        console.log(`Something went wrong: ${error}`)
-    })
+        })
+        .catch(error => {
+            console.log(`Something went wrong: ${error}`)
+        })
 }
 
 // * getters
 // parent async fn
-async function getColumnNames(){
-    try{
+async function getColumnNames() {
+    try {
         const url = "http://localhost:8080/getColumnNames";
         const response = await fetch(url)
         return await response.json()
     }
-    catch(error){
+    catch (error) {
         console.log("Failed to obtain column names, because: " + error)
     }
 }
 
-async function getColHeaders(){
+async function getColHeaders() {
     let list = '' // string of column's names
     const data = await getColumnNames(); // getting incoming data from function
     // fixing string to appropriate format
     list = JSON.stringify(data)
-    list = list.substring(1,list.length - 1)
-    list = list.replaceAll('"','')
+    list = list.substring(1, list.length - 1)
+    list = list.replaceAll('"', '')
     // adding all strings into array
     return list.split(',')
 }
 
-async function getColumns(){
+async function getColumns() {
     // filling columns array with values
     let arr = await getColHeaders();
     return arr.map(element => {
-        return {data: element.toLowerCase()} // lowercase is essential!
+        return { data: element.toLowerCase() } // lowercase is essential!
     })
 }
 
-async function getAllDataFromTable(hot){
+async function getAllDataFromTable(hot) {
     // data array of objects, that will be sent into map HTML file
     let dataObject = []
     let columns = await getColumns();
@@ -75,14 +75,14 @@ async function getAllDataFromTable(hot){
         dataObject.push(obj)
     }
     console.log(dataObject)
-        
+
 }
 
 // ** fn displays the table and interacts with it and create other exemples
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
-async function createTable(CSVtable){
-    try{
+async function createTable(CSVtable) {
+    try {
         // table config
         // getAllDataFromTable(hot)
         hot = new Handsontable(csvDataDiv, {
@@ -94,13 +94,13 @@ async function createTable(CSVtable){
         // ----------------------------------
         // hide the main table
         hot.rootElement.style.display = 'none'
-        
+
         await clickButtonAction(hot)
         // getAllDataFromTable(hot_main)
         //  hot_main.rootElement.style.display = 'initial'
         // ----------------------------------
     }
-    catch(error){
+    catch (error) {
         console.log(`Something went wrong in createTable function: ${error}`);
     }
 }
@@ -120,29 +120,32 @@ btn_parameter.addEventListener('click', clickButtonAction)
 
 // ** new table to display data
 const new_table = document.querySelector('.display_table')
-let hot_new = new Handsontable(new_table,{
-    data: [1,1],
+let hot_new = new Handsontable(new_table, {
+    data: [1, 1],
     colHeaders: await getColHeaders(),
     columns: await getColumns(),
     licenseKey: 'non-commercial-and-evaluation'
 })
 // click button action function
-async function clickButtonAction(initial_table){
+async function clickButtonAction() {
     // create @param hot - new empty table , which 
     // will be filled with if else statements below
 
-    if(this === btn_everything){
+    if (this === btn_everything) {
         hot_new.rootElement.style.display = 'none'
         hot.rootElement.style.display = 'initial'
-    } 
-    else if(this === btn_ID){
-        alert("ID")
-    } 
-    else if(this === btn_station_name){
-        alert("station_name")
-    } 
-    else if(this === btn_parameter){
-        alert("param")
+    }
+    else if (this === btn_ID) {
+        form.innerHTML = '<input type="text" placeholder="Введите ID">'
+        form.innerHTML += '<button class="fn_btn">accept</button>'
+        const btn = document.querySelector('.fn_btn')
+        await showById(hot,btn)
+    }
+    else if (this === btn_station_name) {
+        showByStationName(hot)
+    }
+    else if (this === btn_parameter) {
+        showByParameter(hot)
     }
 }
 
@@ -156,22 +159,20 @@ const station_col_name = 'station_name'
 const parameter_col_name = 'parameter'
 
 // functions related to these column names to display all its content without duplicates
-async function showAllTable(){}
+async function showAllTable() { }
 
 // function will take an user's input and will compare it with availible ones
-async function showById(hot){
-    form.innerHTML = '<input type="text" placeholder="Введите ID">'
-    form.innerHTML += '<button class="fn_btn">accept</button>'
-    const btn = document.querySelector('.fn_btn')
-    try{
-        btn.addEventListener('click',()=>{
+async function showById(hot,btn) {
+    try {
+        btn.addEventListener('click', () => {
+            event.preventDefault();
             let input = form.firstChild.value
-            if(isNaN(input)) throw new TypeError("Вы должны ввести число.")
-            else{
-                let IDs = hot.getDataAtCol(0)
+            if (isNaN(input)) throw new TypeError("Вы должны ввести число.")
+            else {
+                const IDs = hot.getDataAtCol(0)
                 let iterator = 0
-                while(iterator < IDs.length){
-                    if(IDs[iterator] == input){
+                while (iterator < IDs.length) {
+                    if (IDs[iterator] == input) {
                         console.log(hot.getDataAtRow(iterator))
                         break
                     }
@@ -181,16 +182,17 @@ async function showById(hot){
             }
         })
     }
-    catch(e){
+    catch (e) {
         console.log(e)
     }
 }
 
 // two similiar functions, which will automatically choose all 
 // types of data from a certain column without duplicates
-async function showByStationName(hot){
+async function showByStationName(hot) {
+    form.innerHTML = ''
     let dataCol = 0
-    for(let i=0; i < hot.countCols();i++){
+    for (let i = 0; i < hot.countCols(); i++) {
         let column = hot.getColHeader(i);
         if (column == station_col_name) dataCol = i
     }
@@ -199,11 +201,12 @@ async function showByStationName(hot){
     for (let i = 0; i < no_dups_station_names.length; i++) {
         form.innerHTML += `<li>${no_dups_station_names[i]}</li>`
     }
-} 
+}
 
-async function showByParameter(hot){
+async function showByParameter(hot) {
+    form.innerHTML = ''
     let dataCol = 0
-    for(let i=0; i < hot.countCols();i++){
+    for (let i = 0; i < hot.countCols(); i++) {
         let column = hot.getColHeader(i);
         if (column == parameter_col_name) dataCol = i
     }
