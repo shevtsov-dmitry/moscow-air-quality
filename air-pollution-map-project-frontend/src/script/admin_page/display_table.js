@@ -132,8 +132,7 @@ async function clickButtonAction() {
     // will be filled with if else statements below
 
     if (this === btn_everything) {
-        hot_new.rootElement.style.display = 'none'
-        hot.rootElement.style.display = 'initial'
+        showAllTable()
     }
     else if (this === btn_ID) {
         form.innerHTML = '<input type="text" placeholder="Введите ID">'
@@ -159,7 +158,10 @@ const station_col_name = 'station_name'
 const parameter_col_name = 'parameter'
 
 // functions related to these column names to display all its content without duplicates
-async function showAllTable() { }
+async function showAllTable() {
+    hot_new.rootElement.style.display = 'none'
+    hot.rootElement.style.display = 'initial'
+}
 
 // function will take an user's input and will compare it with availible ones
 async function showById(hot,btn) {
@@ -183,6 +185,7 @@ async function showById(hot,btn) {
         })
     }
     catch (e) {
+        form.innerHTML += `<p class="possible_exception">${e}</p>`
         console.log(e)
     }
 }
