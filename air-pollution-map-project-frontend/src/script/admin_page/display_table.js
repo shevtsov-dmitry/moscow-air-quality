@@ -164,6 +164,9 @@ async function showAllTable() {
     hot.rootElement.style.display = 'initial'
 }
 
+// * caution text if didn't find ID
+let caution = document.querySelector('.caution')
+
 // function will take a user's input and will compare it with available ones
 async function showById(hot, btn) {
     btn.addEventListener('click', () => {
@@ -177,15 +180,20 @@ async function showById(hot, btn) {
             let iterator = 0
             while (iterator < IDs.length) {
                 if (IDs[iterator] == input) {
-                    // console.log(hot.getDataAtRow(iterator))
+                    // clear htmls
+                    hot.rootElement.style.display = 'none'
+                    new_table.innerHTML = ""
+                    caution.innerHTML = ''
+
+                    // get data from row
                     const dataAtRow = hot.getDataAtRow(iterator)
-                    // set data at cells
+                    // insert data from object into array
                     let arrayDataAtRow = []
                     for(let objectElement in dataAtRow){
                         arrayDataAtRow.push(dataAtRow[objectElement])
                     }
-                    console.log(arrayDataAtRow)
-                    placeholder_hot_table.destroy()
+
+                    // create new table
                     new Handsontable(new_table, {
                         data: [arrayDataAtRow],
                         colHeaders: getColHeaders(),
@@ -197,7 +205,12 @@ async function showById(hot, btn) {
                 }
                 iterator++
             }
-            if (iterator == IDs.length) console.log("Совпадений не найдено")
+
+            // if didn't find anything
+            if (iterator == IDs.length) {
+                console.log("Совпадений не найдено")
+                caution.innerHTML = 'Совпадений не найдено'
+            }
         }
     })
 }
