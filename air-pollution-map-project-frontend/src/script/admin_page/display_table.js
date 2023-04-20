@@ -120,7 +120,7 @@ btn_parameter.addEventListener('click', clickButtonAction)
 
 // ** new table to display data
 const new_table = document.querySelector('.display_table')
-let hot_new = new Handsontable(new_table, {
+let placeholder_hot_table = new Handsontable(new_table, {
     data: [1, 1],
     colHeaders: await getColHeaders(),
     columns: await getColumns(),
@@ -138,13 +138,14 @@ async function clickButtonAction() {
         form.innerHTML = '<input type="text" placeholder="Введите ID">'
         form.innerHTML += '<button class="fn_btn">accept</button>'
         const btn = document.querySelector('.fn_btn')
-        await showById(hot,btn)
+        await showById(hot, btn)
+
     }
     else if (this === btn_station_name) {
-        showByStationName(hot)
+        await showByStationName(hot)
     }
     else if (this === btn_parameter) {
-        showByParameter(hot)
+        await showByParameter(hot)
     }
 }
 
@@ -159,35 +160,46 @@ const parameter_col_name = 'parameter'
 
 // functions related to these column names to display all its content without duplicates
 async function showAllTable() {
-    hot_new.rootElement.style.display = 'none'
+    placeholder_hot_table.destroy()
     hot.rootElement.style.display = 'initial'
 }
 
-// function will take an user's input and will compare it with availible ones
-async function showById(hot,btn) {
-    try {
-        btn.addEventListener('click', () => {
-            event.preventDefault();
-            let input = form.firstChild.value
-            if (isNaN(input)) throw new TypeError("Вы должны ввести число.")
-            else {
-                const IDs = hot.getDataAtCol(0)
-                let iterator = 0
-                while (iterator < IDs.length) {
-                    if (IDs[iterator] == input) {
-                        console.log(hot.getDataAtRow(iterator))
-                        break
+// function will take a user's input and will compare it with available ones
+async function showById(hot, btn) {
+    btn.addEventListener('click', () => {
+        event.preventDefault();
+        let input = form.firstChild.value
+        if (isNaN(input)){
+            form.innerHTML += "ВЫ должны ввести число"
+        }
+        else {
+            const IDs = hot.getDataAtCol(0)
+            let iterator = 0
+            while (iterator < IDs.length) {
+                if (IDs[iterator] == input) {
+                    // console.log(hot.getDataAtRow(iterator))
+                    const dataAtRow = hot.getDataAtRow(iterator)
+                    // set data at cells
+                    let arrayDataAtRow = []
+                    for(let objectElement in dataAtRow){
+                        arrayDataAtRow.push(dataAtRow[objectElement])
                     }
-                    iterator++
+                    console.log(arrayDataAtRow)
+                    placeholder_hot_table.destroy()
+                    new Handsontable(new_table, {
+                        data: [arrayDataAtRow],
+                        colHeaders: getColHeaders(),
+                        columns: getColumns(),
+                        licenseKey: 'non-commercial-and-evaluation'
+                    })
+
+                    break
                 }
-                if (iterator == IDs.length) console.log("Совпадений не найдено")
+                iterator++
             }
-        })
-    }
-    catch (e) {
-        form.innerHTML += `<p class="possible_exception">${e}</p>`
-        console.log(e)
-    }
+            if (iterator == IDs.length) console.log("Совпадений не найдено")
+        }
+    })
 }
 
 // two similiar functions, which will automatically choose all 
@@ -218,4 +230,5 @@ async function showByParameter(hot) {
     for (let i = 0; i < no_dups_parameters.length; i++) {
         form.innerHTML += `<li>${no_dups_parameters[i]}</li>`
     }
+
 }
