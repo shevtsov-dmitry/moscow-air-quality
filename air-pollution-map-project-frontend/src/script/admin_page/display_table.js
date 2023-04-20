@@ -138,14 +138,19 @@ async function clickButtonAction() {
         form.innerHTML = '<input type="text" placeholder="Введите ID">'
         form.innerHTML += '<button class="fn_btn">accept</button>'
         const btn = document.querySelector('.fn_btn')
-        await showById(hot, btn)
-
+        showById(hot, btn)
     }
     else if (this === btn_station_name) {
-        await showByStationName(hot)
+        let dataCol = showByStationName(hot)
+        let children = form.children
+        for(let child of children){
+            child.addEventListener('click',()=>{
+                fillTableByChosenValue(child.innerHTML, dataCol)
+            })
+        }
     }
     else if (this === btn_parameter) {
-        await showByParameter(hot)
+        showByParameter(hot)
     }
 }
 
@@ -158,17 +163,19 @@ const id_col_name = 'id'
 const station_col_name = 'station_name'
 const parameter_col_name = 'parameter'
 
+// ** ALL TABLE
 // functions related to these column names to display all its content without duplicates
-async function showAllTable() {
+function showAllTable() {
     placeholder_hot_table.destroy()
     hot.rootElement.style.display = 'initial'
 }
 
+// ** ID
 // * caution text if didn't find ID
 let caution = document.querySelector('.caution')
 
 // function will take a user's input and will compare it with available ones
-async function showById(hot, btn) {
+ function showById(hot, btn) {
     btn.addEventListener('click', () => {
         event.preventDefault();
         let input = form.firstChild.value
@@ -215,23 +222,53 @@ async function showById(hot, btn) {
     })
 }
 
+// ** STATION NAME
 // two similiar functions, which will automatically choose all 
 // types of data from a certain column without duplicates
-async function showByStationName(hot) {
+ function showByStationName(hot) {
     form.innerHTML = ''
+     // find col name
     let dataCol = 0
     for (let i = 0; i < hot.countCols(); i++) {
         let column = hot.getColHeader(i);
         if (column == station_col_name) dataCol = i
     }
+    //generate fields
     const station_names = hot.getDataAtCol(dataCol)
     const no_dups_station_names = [...new Set(station_names)]
     for (let i = 0; i < no_dups_station_names.length; i++) {
         form.innerHTML += `<li>${no_dups_station_names[i]}</li>`
     }
+    // return value to use in fillTableFunction
+    return dataCol
+}
+// FIXME TypeError -> empty table
+function fillTableByChosenValue(value_name, dataCol){
+    placeholder_hot_table.innerHTML = ""
+    let data = [[]]
+    const station_names = hot.getDataAtCol(dataCol)
+    for (let i = 0; i < hot.countRows(); i++) {
+        if (station_names[i] == value_name){
+            let dataObject = hot.getDataAtRow(i)
+            let dataArray = []
+            for(let data in dataObject) {
+                dataArray.push(dataObject[data])
+            }
+            data.push(dataArray)
+        }
+    }
+    console.log(data)
+    // create new table
+    new Handsontable(new_table, {
+        data: data,
+        colHeaders: getColHeaders(),
+        columns: getColumns(),
+        licenseKey: 'non-commercial-and-evaluation'
+    })
 }
 
-async function showByParameter(hot) {
+// ** PARAMETER
+ function showByParameter(hot) {
     form.innerHTML = ''
     let dataCol = 0
     for (let i = 0; i < hot.countCols(); i++) {
