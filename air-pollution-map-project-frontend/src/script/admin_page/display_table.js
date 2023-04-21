@@ -1,3 +1,10 @@
+// * show buttons which show table
+const show_buttons_btn  = document.querySelector('.show-action-button')
+const selectors = document.querySelector('.selectors')
+show_buttons_btn.addEventListener('click', ()=>{
+    selectors.style.display = 'flex'
+})
+
 // *** table initialization
 // * configuration optimized in async function - createTable()
 const csvDataDiv = document.querySelector('.csvdata')
@@ -7,8 +14,6 @@ let hot = new Handsontable(csvDataDiv, {
     columns: true,
     licenseKey: 'non-commercial-and-evaluation'
 })
-
-// TODO - MAKE LOADING SIGN WHEN UPLOAD TABLE
 
 const url = "http://localhost:8080/dataTableToWebsite"
 public_static_void_main_String_args(url)
