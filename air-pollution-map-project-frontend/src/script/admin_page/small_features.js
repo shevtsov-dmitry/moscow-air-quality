@@ -5,4 +5,11 @@ show_buttons_btn.addEventListener('click', ()=>{
     selectors.style.display = 'flex'
 })
 
-// show gif when upload file
+
+const upload_btn = document.querySelector('.submitUploadBtn')
+const loading_gif = document.querySelector('.loading-gif')
+
+// * show gif when upload file
+upload_btn.addEventListener('click', ()=>{
+    loading_gif.style.display = 'initial'
+})
