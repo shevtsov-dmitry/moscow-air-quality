@@ -9,7 +9,7 @@ show_buttons_btn.addEventListener('click', ()=>{
 // * configuration optimized in async function - createTable()
 const csvDataDiv = document.querySelector('.csvdata')
 let hot = new Handsontable(csvDataDiv, {
-    data: [[]],
+    data: [[]], // ?????????????????????????????????????????
     colHeaders: true,
     columns: true,
     licenseKey: 'non-commercial-and-evaluation'
@@ -26,9 +26,8 @@ function public_static_void_main_String_args(url) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            let hot = createTable(data)
+            createInitialTable(data)
             // console.log(hot) PROMISE PENDING
-
         })
         .catch(error => {
             console.log(`Something went wrong: ${error}`)
@@ -86,7 +85,7 @@ async function getAllDataFromTable(hot) {
 // ** fn displays the table and interacts with it and create other exemples
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
-async function createTable(CSVtable) {
+async function createInitialTable(CSVtable) {
     try {
         // table config
         // getAllDataFromTable(hot)
