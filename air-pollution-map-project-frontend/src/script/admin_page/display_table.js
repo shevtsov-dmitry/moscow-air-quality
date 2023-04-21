@@ -199,7 +199,6 @@ let caution = document.querySelector('.caution')
                     for(let objectElement in dataAtRow){
                         arrayDataAtRow.push(dataAtRow[objectElement])
                     }
-
                     // create new table
                     new Handsontable(new_table, {
                         data: [arrayDataAtRow],
@@ -242,10 +241,9 @@ let caution = document.querySelector('.caution')
     // return value to use in fillTableFunction
     return dataCol
 }
-// FIXME TypeError -> empty table
 function fillTableByChosenValue(value_name, dataCol){
-    placeholder_hot_table.innerHTML = ""
-    let data = [[]]
+    new_table.innerHTML = ""
+    let data = [] //! The main problem was here. I shouldn't insert empty array like this [[]]
     const station_names = hot.getDataAtCol(dataCol)
     for (let i = 0; i < hot.countRows(); i++) {
         if (station_names[i] == value_name){
@@ -257,7 +255,6 @@ function fillTableByChosenValue(value_name, dataCol){
             data.push(dataArray)
         }
     }
-    console.log(data)
     // create new table
     new Handsontable(new_table, {
         data: data,
