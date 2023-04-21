@@ -1,4 +1,5 @@
 const wipe_data_btn = document.querySelector(".wipe-data")
+const error_on_wipe = document.querySelector('.cation-on-failed-wipe')
 
 // function, which will send request to the server
 // to wipe all data from mySQL database table
@@ -13,10 +14,11 @@ wipe_data_btn.addEventListener('click', ()=>{
             if(!response.ok) {
                 throw new Error("Error wiping data")
             }
-            // TODO output this into the div not in console
-            console.log("data wiped successfully")
             location.reload()
         })
     }
-    catch (error){console.log(error)}
+    // * show an error message after unsuccessful wipe of data
+    catch (error){
+        error_on_wipe.innerHTML = error
+    }
 })

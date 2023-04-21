@@ -1,4 +1,4 @@
-// * show buttons which show table
+// * show buttons which will show table
 const show_buttons_btn  = document.querySelector('.show-action-button')
 const selectors = document.querySelector('.selectors')
 show_buttons_btn.addEventListener('click', ()=>{
