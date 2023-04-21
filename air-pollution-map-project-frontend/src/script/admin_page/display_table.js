@@ -2,13 +2,11 @@
 // * configuration optimized in async function - createTable()
 const csvDataDiv = document.querySelector('.csvdata')
 let hot = new Handsontable(csvDataDiv, {
-    data: [[]],
+    data: [],
     colHeaders: true,
     columns: true,
     licenseKey: 'non-commercial-and-evaluation'
 })
-
-// TODO - MAKE LOADING SIGN WHEN UPLOAD TABLE
 
 const url = "http://localhost:8080/dataTableToWebsite"
 public_static_void_main_String_args(url)
@@ -21,9 +19,7 @@ function public_static_void_main_String_args(url) {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            let hot = createTable(data)
-            // console.log(hot) PROMISE PENDING
-
+            createInitialTable(data)
         })
         .catch(error => {
             console.log(`Something went wrong: ${error}`)
@@ -32,17 +28,6 @@ function public_static_void_main_String_args(url) {
 
 // * getters
 // parent async fn
-async function getColumnNames() {
-    try {
-        const url = "http://localhost:8080/getColumnNames";
-        const response = await fetch(url)
-        return await response.json()
-    }
-    catch (error) {
-        console.log("Failed to obtain column names, because: " + error)
-    }
-}
-
 async function getColHeaders() {
     let list = '' // string of column's names
     const data = await getColumnNames(); // getting incoming data from function
@@ -52,6 +37,17 @@ async function getColHeaders() {
     list = list.replaceAll('"', '')
     // adding all strings into array
     return list.split(',')
+}
+
+async function getColumnNames() {
+    try {
+        const url = "http://localhost:8080/getColumnNames";
+        const response = await fetch(url)
+        return await response.json()
+    }
+    catch (error) {
+        console.log("Failed to obtain column names, because: " + error)
+    }
 }
 
 async function getColumns() {
@@ -75,13 +71,12 @@ async function getAllDataFromTable(hot) {
         dataObject.push(obj)
     }
     console.log(dataObject)
-
 }
 
 // ** fn displays the table and interacts with it and create other exemples
 // display table with handsontable API
 // this function will start working only after parent getColumnNames()
-async function createTable(CSVtable) {
+async function createInitialTable(CSVtable) {
     try {
         // table config
         // getAllDataFromTable(hot)
@@ -91,14 +86,10 @@ async function createTable(CSVtable) {
             columns: await getColumns(),
             licenseKey: 'non-commercial-and-evaluation'
         })
-        // ----------------------------------
         // hide the main table
         hot.rootElement.style.display = 'none'
 
         await clickButtonAction(hot)
-        // getAllDataFromTable(hot_main)
-        //  hot_main.rootElement.style.display = 'initial'
-        // ----------------------------------
     }
     catch (error) {
         console.log(`Something went wrong in createTable function: ${error}`);
@@ -237,7 +228,7 @@ let caution = document.querySelector('.caution')
 }
 
 // ** STATION NAME
-// two similiar functions, which will automatically choose all 
+// two similar functions, which will automatically choose all
 // types of data from a certain column without duplicates
  function showByStationName(hot) {
     form.innerHTML = ''
