@@ -145,7 +145,8 @@ async function clickButtonAction() {
         let children = form.children
         for(let child of children){
             child.addEventListener('click',()=>{
-                fillTableByChosenValue(child.innerHTML, dataCol)
+                let data = fillTableByChosenValue(child.innerHTML, dataCol)
+                createNewTable(data)
             })
         }
     }
@@ -154,7 +155,8 @@ async function clickButtonAction() {
         let children = form.children
         for (const child of children) {
             child.addEventListener('click', ()=> {
-                fillTableByChosenParameter(child.innerHTML, dataCol)
+                let data = fillTableByChosenParameter(child.innerHTML, dataCol)
+                createNewTable(data)
             })
         }
     }
@@ -176,6 +178,19 @@ function showAllTable() {
     hot.rootElement.style.display = 'initial'
 }
 
+// create new table function
+function createNewTable(data){
+    // clear table
+    hot.rootElement.style.display = 'none'
+    new_table.innerHTML = ""
+    // create new table
+    new Handsontable(new_table, {
+        data: data,
+        colHeaders: getColHeaders(),
+        columns: getColumns(),
+        licenseKey: 'non-commercial-and-evaluation'
+    })
+}
 // ** ID
 // * caution text if didn't find ID
 let caution = document.querySelector('.caution')
@@ -194,8 +209,6 @@ let caution = document.querySelector('.caution')
             while (iterator < IDs.length) {
                 if (IDs[iterator] == input) {
                     // clear htmls
-                    hot.rootElement.style.display = 'none'
-                    new_table.innerHTML = ""
                     caution.innerHTML = ''
 
                     // get data from row
@@ -205,13 +218,9 @@ let caution = document.querySelector('.caution')
                     for(let objectElement in dataAtRow){
                         arrayDataAtRow.push(dataAtRow[objectElement])
                     }
-                    // create new table
-                    new Handsontable(new_table, {
-                        data: [arrayDataAtRow],
-                        colHeaders: getColHeaders(),
-                        columns: getColumns(),
-                        licenseKey: 'non-commercial-and-evaluation'
-                    })
+                    // contain @param arrayDataAtRow into the array to use @createNewTable()
+                    let twoDimArray = [arrayDataAtRow]
+                    createNewTable(twoDimArray)
 
                     break
                 }
@@ -248,7 +257,6 @@ let caution = document.querySelector('.caution')
     return dataCol
 }
 function fillTableByChosenValue(value_name, dataCol){
-    new_table.innerHTML = ""
     let data = [] //! The main problem was here. I shouldn't insert empty array like this [[]]
     const station_names = hot.getDataAtCol(dataCol)
     for (let i = 0; i < hot.countRows(); i++) {
@@ -261,14 +269,9 @@ function fillTableByChosenValue(value_name, dataCol){
             data.push(dataArray)
         }
     }
-    // create new table
-    new Handsontable(new_table, {
-        data: data,
-        colHeaders: getColHeaders(),
-        columns: getColumns(),
-        licenseKey: 'non-commercial-and-evaluation'
-    })
+    return data
 }
+
 
 // ** PARAMETER
  function showByParameter(hot) {
@@ -287,7 +290,6 @@ function fillTableByChosenValue(value_name, dataCol){
 }
 
 function fillTableByChosenParameter(parameter_name, dataCol){
-    new_table.innerHTML = ""
     const parameter_names = hot.getDataAtCol(dataCol)
     let data = []
     for (let i = 0; i < hot.countRows(); i++) {
@@ -300,11 +302,5 @@ function fillTableByChosenParameter(parameter_name, dataCol){
             data.push(dataArray)
         }
     }
-    // create new table
-    new Handsontable(new_table, {
-        data: data,
-        colHeaders: getColHeaders(),
-        columns: getColumns(),
-        licenseKey: 'non-commercial-and-evaluation'
-    })
+    return data
 }
