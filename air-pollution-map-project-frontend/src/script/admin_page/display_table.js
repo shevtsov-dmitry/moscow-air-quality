@@ -150,7 +150,13 @@ async function clickButtonAction() {
         }
     }
     else if (this === btn_parameter) {
-        showByParameter(hot)
+        let dataCol = showByParameter(hot)
+        let children = form.children
+        for (const child of children) {
+            child.addEventListener('click', ()=> {
+                fillTableByChosenParameter(child.innerHTML, dataCol)
+            })
+        }
     }
 }
 
@@ -277,5 +283,28 @@ function fillTableByChosenValue(value_name, dataCol){
     for (let i = 0; i < no_dups_parameters.length; i++) {
         form.innerHTML += `<li>${no_dups_parameters[i]}</li>`
     }
+    return dataCol
+}
 
+function fillTableByChosenParameter(parameter_name, dataCol){
+    new_table.innerHTML = ""
+    const parameter_names = hot.getDataAtCol(dataCol)
+    let data = []
+    for (let i = 0; i < hot.countRows(); i++) {
+        if(parameter_names[i] == parameter_name){
+            let dataObject = hot.getDataAtRow(i)
+            let dataArray = []
+            for(let data in dataObject) {
+                dataArray.push(dataObject[data])
+            }
+            data.push(dataArray)
+        }
+    }
+    // create new table
+    new Handsontable(new_table, {
+        data: data,
+        colHeaders: getColHeaders(),
+        columns: getColumns(),
+        licenseKey: 'non-commercial-and-evaluation'
+    })
 }
