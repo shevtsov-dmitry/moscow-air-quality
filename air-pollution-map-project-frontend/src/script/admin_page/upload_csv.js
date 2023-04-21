@@ -1,19 +1,12 @@
-// import '../node_modules/pikaday';
-// import Handsontable from '../node_modules/handsontable';
-import 'handsontable/dist/handsontable.full.min.css';
-
-//const CSVFile = document.querySelector(".CSVfile");
 const CSVFile = document.querySelector('input[type="file"]');
 const submitUploadBtn = document.querySelector(".submitUploadBtn");
-// когда кнопка "Загрузить" нажата
+
+// when the "Download" button is pressed make event
+// which will request data from server
 submitUploadBtn.addEventListener("click", () => {
     event.preventDefault();
-
     try{
-        const file = CSVFile.files[0];
-        //const FileObject = new FormData();
-        //FileObject.append('file',file) // ???
-        
+        const file = CSVFile.files[0]; // actual file user has chosen to upload
         const url = 'http://localhost:8080/uploadCSV';
         fetch(url, {
             method: 'POST',

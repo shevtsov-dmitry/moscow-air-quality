@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="../static/tab_icon.png" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" />
     <link rel="stylesheet" href="../css/admin_page/admin_page.css">
-    <title>admin page</title>
+    <title>administration page</title>
 </head>
 <body>
   <!-- upload CSV -->
@@ -33,22 +33,25 @@
               </div>
 <!--               choose concrete case, also fill be filled automatically -->
 <!--               variants will be preloaded and hidden until user chose the option-->
-              <ul action="" method="POST" class="form-filled-with-variants">
-
-              </ul>
+              <ul action="" method="POST" class="form-filled-with-variants"></ul>
           </div>
       </div>
 
 <!--  clear table-->
-      <form action="" method="POST">
-          <input class="wipe-data" type="submit" value="Удалить всю таблицу">
-      </form>
+      <div class="wipe-table-div">
+          <form action="" method="POST">
+              <input class="wipe-data" type="submit" value="Удалить всю таблицу">
+          </form>
+          <p class="cation-on-failed-wipe"></p>
+      </div>
   </div>
+
   <!-- main table from query to server -->
   <div class="csvdata"></div>
 <!-- additional table for displaying data by selection with buttons -->
   <div class="display_table"></div>
   <p class="caution"></p>
+
     <!-- scripts -->
      <script src="../script/admin_page/wipe-data.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
