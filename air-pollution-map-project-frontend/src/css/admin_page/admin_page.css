@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght300&display=swap");
 body {
   background-color: floralwhite;
 }
@@ -13,8 +14,11 @@ body {
   justify-content: space-evenly;
 }
 
-.form-chose-what-to-select {
-  display: flex;
+.show-action-button {
+  height: 50%;
+}
+.show-action-button:hover {
+  cursor: pointer;
 }
 
 .selectors {
@@ -29,6 +33,40 @@ body {
   cursor: pointer;
   background-color: #999999;
   color: white;
+}
+
+.loading-gif {
+  display: none;
+}
+
+.form-chose-what-to-select {
+  display: flex;
+  height: 10vh;
+}
+
+.form-filled-with-variants {
+  max-width: 270px;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 999;
+  position: absolute;
+  background: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  overflow: clip;
+}
+.form-filled-with-variants li {
+  color: #000000;
+  list-style-type: none;
+  font-family: "Source Sans Pro", sans-serif;
+  margin-bottom: 2px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+.form-filled-with-variants li:first-child {
+  box-shadow: none;
+}
+.form-filled-with-variants li:hover {
+  color: blue;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=admin_page.css.map */
