@@ -14,10 +14,13 @@
   <div class="buttons-panel">
 
 <!--upload file-->
-      <form method="POST" enctype="multipart/form-data" class="uploadCSV">
-          <input class ="CSVFile" type="file" name="file">
-          <input class ="submitUploadBtn" type="submit" value="Загрузить">
-      </form>
+      <div class="file-upload-div">
+          <form method="POST" enctype="multipart/form-data" class="uploadCSV">
+              <input class ="CSVFile" type="file" name="file">
+              <input class ="submitUploadBtn" type="submit" value="Загрузить">
+          </form>
+
+      </div>
 
 <!--select data by ...-->
       <div class="buttons">
@@ -53,6 +56,7 @@
   <p class="caution"></p>
 
     <!-- scripts -->
+  <script src="../script/admin_page/small_features.js"></script>
   <script src="../script/admin_page/wipe-data.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
   <script type="module" src="../script/admin_page/upload_csv.js"></script>
