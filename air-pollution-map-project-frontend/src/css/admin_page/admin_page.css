@@ -140,4 +140,8 @@ body {
   width: 100vw;
 }
 
+.idForm {
+  display: none;
+}
+
 /*# sourceMappingURL=admin_page.css.map */

@@ -20,15 +20,14 @@ btn_everything.addEventListener('click',()=>{
 })
 btn_ID.addEventListener('click',()=>{
     hideCloseSign()
-    showForm()
 })
 btn_station_name.addEventListener('click',()=>{
     showCloseSign()
     showForm()
 })
 btn_parameter.addEventListener('click',()=>{
-    showCloseSign()
-    showForm()
+    // showCloseSign()
+    // showForm()
 })
 
 const submit_btn = document.querySelector('.submitUploadBtn')
@@ -52,8 +51,9 @@ close_sign.addEventListener('click',()=>{
     },200)
 })
 
+// FIXME Как то нужно починить то что не появляется style в html теге
 function showCloseSign(){
-    close_sign.style.display = 'initial'
+    close_sign.style.display = 'block'
 }
 function hideCloseSign(){
     close_sign.style.display = 'none'
@@ -61,7 +61,7 @@ function hideCloseSign(){
 
 const form_filled_with_variants = document.querySelector('.form-filled-with-variants')
 function showForm(){
-    form_filled_with_variants.style.display = 'initial'
+    form_filled_with_variants.style.display = 'block'
 }
 function hideForm(){
     form_filled_with_variants.style.display = 'none'

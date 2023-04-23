@@ -117,21 +117,32 @@ let placeholder_hot_table = new Handsontable(new_table, {
     columns: await getColumns(),
     licenseKey: 'non-commercial-and-evaluation'
 })
+
+const id_div = document.querySelector('.choose-list-div')
+id_div.innerHTML += `<div class="idForm">
+            <input type="text" placeholder="Введите ID">
+            <button class="fn_btn">accept</button>
+        </div>`
 // click button action function
 async function clickButtonAction() {
+
     // create @param hot - new empty table , which 
     // will be filled with if else statements below
 
     if (this === btn_everything) {
         showAllTable()
+        hideIdForm()
     }
     else if (this === btn_ID) {
-        form.innerHTML = '<input type="text" placeholder="Введите ID">'
-        form.innerHTML += '<button class="fn_btn">accept</button>'
+        form.innerHTML = ""
+        // hideForm()
+        showIdForm()
+
         const btn = document.querySelector('.fn_btn')
         showById(hot, btn)
     }
     else if (this === btn_station_name) {
+        // hideIdForm()
         let dataCol = showByStationName(hot)
         let children = form.children
         for(let child of children){
@@ -142,6 +153,7 @@ async function clickButtonAction() {
         }
     }
     else if (this === btn_parameter) {
+        // hideIdForm()
         let dataCol = showByParameter(hot)
         let children = form.children
         for (const child of children) {
@@ -152,7 +164,14 @@ async function clickButtonAction() {
         }
     }
 }
+const idForm = document.querySelector('.idForm')
+function hideIdForm(){
+    idForm.style.display = 'none'
+}
+function showIdForm(){
+    idForm.style.display = 'initial'
 
+}
 // * functions, related to filling the user's choosing form
 
 let form = document.querySelector(".form-filled-with-variants")
