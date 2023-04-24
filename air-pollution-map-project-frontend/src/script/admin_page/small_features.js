@@ -5,6 +5,13 @@ show_buttons_btn.addEventListener('click', ()=>{
     selectors.style.display = 'flex'
 })
 
+const id_div = document.querySelector('.choose-list-div')
+id_div.innerHTML += `<div class="idForm">
+            <input type="text" placeholder="Введите ID">
+            <button class="fn_btn">accept</button>
+        </div>`
+const idForm = document.querySelector('.idForm')
+
 // buttons
 const btn_everything = document.querySelector(".btn_everything")
 const btn_ID = document.querySelector(".btn_ID")
@@ -14,21 +21,33 @@ const btn_parameter = document.querySelector(".btn_parameter")
 // functions of buttons
 
 btn_everything.addEventListener('click',()=>{
+    form_filled_with_variants.innerHTML=""
     hideCloseSign()
     hideForm()
-    form_filled_with_variants.innerHTML=""
+    hideIdForm()
 })
 btn_ID.addEventListener('click',()=>{
     hideCloseSign()
+    hideForm()
+    showIdForm()
 })
 btn_station_name.addEventListener('click',()=>{
+    hideIdForm()
     showCloseSign()
     showForm()
 })
-btn_parameter.addEventListener('click',()=>{
-    // showCloseSign()
-    // showForm()
+btn_parameter.addEventListener('click', ()=>{
+    hideIdForm()
+    showCloseSign()
+    showForm()
 })
+
+function hideIdForm(){
+    idForm.style.display = 'none'
+}
+function showIdForm(){
+    idForm.style.display = 'initial'
+}
 
 const submit_btn = document.querySelector('.submitUploadBtn')
 const loading_gif = document.querySelector('.loading-gif')
@@ -51,7 +70,6 @@ close_sign.addEventListener('click',()=>{
     },200)
 })
 
-// FIXME Как то нужно починить то что не появляется style в html теге
 function showCloseSign(){
     close_sign.style.display = 'block'
 }
@@ -61,7 +79,7 @@ function hideCloseSign(){
 
 const form_filled_with_variants = document.querySelector('.form-filled-with-variants')
 function showForm(){
-    form_filled_with_variants.style.display = 'block'
+    form_filled_with_variants.style.display = 'initial'
 }
 function hideForm(){
     form_filled_with_variants.style.display = 'none'

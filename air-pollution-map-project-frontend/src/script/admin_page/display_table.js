@@ -118,11 +118,7 @@ let placeholder_hot_table = new Handsontable(new_table, {
     licenseKey: 'non-commercial-and-evaluation'
 })
 
-const id_div = document.querySelector('.choose-list-div')
-id_div.innerHTML += `<div class="idForm">
-            <input type="text" placeholder="Введите ID">
-            <button class="fn_btn">accept</button>
-        </div>`
+
 // click button action function
 async function clickButtonAction() {
 
@@ -131,18 +127,13 @@ async function clickButtonAction() {
 
     if (this === btn_everything) {
         showAllTable()
-        hideIdForm()
     }
     else if (this === btn_ID) {
         form.innerHTML = ""
-        // hideForm()
-        showIdForm()
-
         const btn = document.querySelector('.fn_btn')
         showById(hot, btn)
     }
     else if (this === btn_station_name) {
-        // hideIdForm()
         let dataCol = showByStationName(hot)
         let children = form.children
         for(let child of children){
@@ -153,7 +144,6 @@ async function clickButtonAction() {
         }
     }
     else if (this === btn_parameter) {
-        // hideIdForm()
         let dataCol = showByParameter(hot)
         let children = form.children
         for (const child of children) {
@@ -164,14 +154,7 @@ async function clickButtonAction() {
         }
     }
 }
-const idForm = document.querySelector('.idForm')
-function hideIdForm(){
-    idForm.style.display = 'none'
-}
-function showIdForm(){
-    idForm.style.display = 'initial'
 
-}
 // * functions, related to filling the user's choosing form
 
 let form = document.querySelector(".form-filled-with-variants")
@@ -209,9 +192,9 @@ let caution = document.querySelector('.caution')
  function showById(hot, btn) {
     btn.addEventListener('click', () => {
         event.preventDefault();
-        let input = form.firstChild.value
+        let input = idForm.firstChild.value
         if (isNaN(input)){
-            form.innerHTML += "ВЫ должны ввести число"
+            idForm.innerHTML += "<p>ВЫ должны ввести число</p>"
         }
         else {
             const IDs = hot.getDataAtCol(0)

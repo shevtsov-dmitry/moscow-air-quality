@@ -143,5 +143,11 @@ body {
 .idForm {
   display: none;
 }
+.idForm p {
+  padding: 0;
+  margin: 8px 0px 0px 5px;
+  font-family: "Helvetica Neue", sans-serif;
+  color: firebrick;
+}
 
 /*# sourceMappingURL=admin_page.css.map */
