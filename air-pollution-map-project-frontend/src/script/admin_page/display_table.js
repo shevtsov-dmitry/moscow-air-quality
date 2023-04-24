@@ -191,6 +191,7 @@ function createNewTable(data){
 let caution = document.querySelector('.caution')
 
 // function will take a user's input and will compare it with available ones
+// FIXME button cannot be pressed again after if isNaN happens
  function showById(hot, btn) {
     btn.addEventListener('click', () => {
         let value = document.querySelector('.id-form-text-input').value // !X
