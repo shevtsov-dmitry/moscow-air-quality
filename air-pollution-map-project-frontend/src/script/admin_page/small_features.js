@@ -7,7 +7,7 @@ show_buttons_btn.addEventListener('click', ()=>{
 
 const id_div = document.querySelector('.choose-list-div')
 id_div.innerHTML += `<div class="idForm">
-            <input type="text" placeholder="Введите ID">
+            <input class="id-form-text-input" type="text" placeholder="Введите ID">
             <button class="fn_btn">accept</button>
         </div>`
 const idForm = document.querySelector('.idForm')

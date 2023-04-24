@@ -160,12 +160,12 @@ async function clickButtonAction() {
 let form = document.querySelector(".form-filled-with-variants")
 
 // column names 
-const id_col_name = 'id'
 const station_col_name = 'station_name'
 const parameter_col_name = 'parameter'
 
 // ** ALL TABLE
 // functions related to these column names to display all its content without duplicates
+// FIXME can't press show all table button next time because of destroy table
 function showAllTable() {
     placeholder_hot_table.destroy()
     hot.rootElement.style.display = 'initial'
@@ -191,16 +191,16 @@ let caution = document.querySelector('.caution')
 // function will take a user's input and will compare it with available ones
  function showById(hot, btn) {
     btn.addEventListener('click', () => {
+        let value = document.querySelector('.id-form-text-input').value
         event.preventDefault();
-        let input = idForm.firstChild.value
-        if (isNaN(input)){
+        if (isNaN(value)){
             idForm.innerHTML += "<p>ВЫ должны ввести число</p>"
         }
         else {
             const IDs = hot.getDataAtCol(0)
             let iterator = 0
             while (iterator < IDs.length) {
-                if (IDs[iterator] == input) {
+                if (IDs[iterator] == value) {
                     // clear htmls
                     caution.innerHTML = ''
 
