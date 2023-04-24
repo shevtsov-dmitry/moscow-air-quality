@@ -1,27 +1,173 @@
+//@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght300&display=swap')
+
 body
   background-color: floralwhite
 
-
 .uploadCSV
-  margin: 20px
+  //margin: 20px
   color: black
+  display: flex
+  justify-content: center
+  align-items: center
+
+.CSVFile
+  margin: 25px 0px 0px 0px
+
+.file-upload-div
+  display: flex
+  align-items: center
+  img
+    margin-left: 10px
+    position: relative
+    width: 40px
+    height: 40px
+
+@mixin button-mutual-styles
+  height: 50px
+  background-color: white
+  border-style: none
+  padding: 10px
+  font-size: 1em
+  border-radius: 10px
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px
+
+@mixin button-on-hover
+  cursor: pointer
+  background-color: #999999
+  color: white
 
 .buttons-panel
+  width: 100%
   display: flex
   align-items: center
   justify-content: space-evenly
+  input
+    @include button-mutual-styles
+  button
+    @include button-mutual-styles
 
-.form-chose-what-to-select
-  display: flex
+.submitUploadBtn, .wipe-data
+  &:hover
+    @include button-on-hover
+.wipe-data
+  //margin-top: 10px
+
+.CSVFile
+  background-color: floralwhite !important
+  box-shadow: none !important
+
+.show-action-button
+  margin-right: 5px
+  //height: 50%
+  align-self: center
+  &:hover
+    cursor: pointer
+    @include button-on-hover
 
 .selectors
+  margin-top: 23px
   display: none
   flex-direction: column
+    //border-radius: 10px 10px 0px 0px !important
   button
+    z-index: 999
+    border-radius: 0px
     border-style: none
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px
     &:hover
-      cursor: pointer
-      background-color: #999999
-      color: white
+      @include button-on-hover
 
+.btn_everything
+  border-radius: 10px 10px 0px 0px !important
+.btn_parameter
+  border-radius: 0px 0px 10px 10px !important
+
+.loading-gif
+  display: none
+
+.fn-btn
+  margin-left: 5px
+  &:hover
+    background-color: #0077cc
+    color: white
+
+.form-chose-what-to-select
+  display: flex
+  height: 10vh
+.choose-list-div
+  display: flex
+  input
+    height: 30px
+
+
+.form-filled-with-variants
+  margin: 23px 0px 0px 5px
+  display: none
+  flex-direction: column
+  max-width: 270px
+  padding: 10px
+  border-radius: 10px
+  z-index: 999
+  position: absolute
+  background: white
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px
+  overflow: clip
+  li
+    color: #000000
+    list-style-type: none
+    font-family: 'Source Sans Pro', sans-serif
+    margin-bottom: 2px
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset
+    &:first-child
+      margin-top: 15px
+      box-shadow: none
+    &:hover
+      color: blue
+      cursor: pointer
+  input
+    box-shadow: none !important
+    width: 92%
+  button
+    //margin-top: 5px
+    box-shadow: none !important
+    background-color: #0077cc
+    color: white
+    font-weight: 700
+    align-self: center
+
+.close-sign
+  display: none
+  padding: 0
+  margin: 23px 0px 0px 13px
+  position: fixed
+  z-index: 1000
+  font-size: 1.5em
+  font-family: monospace
+  &:hover
+    cursor: pointer
+    transform: rotate(15deg)
+    transition: transform 0.25s ease-out
+
+// tables
+.tables
+.csvdata, .display_table
+
+.idForm
+  display: none
+  margin-top: 23px
+  p
+    padding: 0
+    margin: 0px 0px 0px 0px
+    font-family: "Helvetica Neue", sans-serif
+    color: firebrick
+
+.back-to-map
+  //margin-top: -8px
+  &:hover
+    color: white
+    background-color: #0077cc
+
+.wipe-table-div
+  display: flex
+  justify-content: center
+  align-items: center

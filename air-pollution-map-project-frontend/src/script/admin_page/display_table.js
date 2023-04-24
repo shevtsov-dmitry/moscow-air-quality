@@ -89,7 +89,7 @@ async function createInitialTable(CSVtable) {
         // hide the main table
         hot.rootElement.style.display = 'none'
 
-        await clickButtonAction(hot)
+        clickButtonAction(hot)
     }
     catch (error) {
         console.log(`Something went wrong in createTable function: ${error}`);
@@ -117,21 +117,28 @@ let placeholder_hot_table = new Handsontable(new_table, {
     columns: await getColumns(),
     licenseKey: 'non-commercial-and-evaluation'
 })
+
+// * functions, related to filling the user's choosing form
+let form = document.querySelector(".form-filled-with-variants")
+
 // click button action function
-async function clickButtonAction() {
+function clickButtonAction() {
+
     // create @param hot - new empty table , which 
     // will be filled with if else statements below
 
     if (this === btn_everything) {
         showAllTable()
+        form.style.display = "none" // !X
     }
     else if (this === btn_ID) {
-        form.innerHTML = '<input type="text" placeholder="Введите ID">'
-        form.innerHTML += '<button class="fn_btn">accept</button>'
-        const btn = document.querySelector('.fn_btn')
+        form.style.display = "none" // !X
+        form.innerHTML = ""
+        const btn = document.querySelector('.fn-btn')
         showById(hot, btn)
     }
     else if (this === btn_station_name) {
+        form.style.display = "initial" // !X
         let dataCol = showByStationName(hot)
         let children = form.children
         for(let child of children){
@@ -142,6 +149,7 @@ async function clickButtonAction() {
         }
     }
     else if (this === btn_parameter) {
+        form.style.display = "initial" // !X
         let dataCol = showByParameter(hot)
         let children = form.children
         for (const child of children) {
@@ -153,17 +161,13 @@ async function clickButtonAction() {
     }
 }
 
-// * functions, related to filling the user's choosing form
-
-let form = document.querySelector(".form-filled-with-variants")
-
 // column names 
-const id_col_name = 'id'
 const station_col_name = 'station_name'
 const parameter_col_name = 'parameter'
 
 // ** ALL TABLE
 // functions related to these column names to display all its content without duplicates
+// FIXME can't press show all table button next time because of destroy table
 function showAllTable() {
     placeholder_hot_table.destroy()
     hot.rootElement.style.display = 'initial'
@@ -187,18 +191,23 @@ function createNewTable(data){
 let caution = document.querySelector('.caution')
 
 // function will take a user's input and will compare it with available ones
+// FIXME button cannot be pressed again after if isNaN happens
  function showById(hot, btn) {
     btn.addEventListener('click', () => {
+        let form_input = document.querySelector('.id-form-text-input')
+        let value = form_input.value // !X
+        let isThereValue = false
         event.preventDefault();
-        let input = form.firstChild.value
-        if (isNaN(input)){
-            form.innerHTML += "ВЫ должны ввести число"
+        if (isNaN(value)){
+            form_input.value = ""
+            form_input.setAttribute("placeholder", "Вы должны ввести число")
+            // id_form.innerHTML += "<p>ВЫ должны ввести число</p>"
         }
         else {
             const IDs = hot.getDataAtCol(0)
             let iterator = 0
             while (iterator < IDs.length) {
-                if (IDs[iterator] == input) {
+                if (IDs[iterator] == value) {
                     // clear htmls
                     caution.innerHTML = ''
 
@@ -213,15 +222,22 @@ let caution = document.querySelector('.caution')
                     let twoDimArray = [arrayDataAtRow]
                     createNewTable(twoDimArray)
 
+                    // input form field cleanup
+                    form_input.value = ""
+                    form_input.setAttribute("placeholder", "Введите ID")
+
+                    // set true value to break the first loop
+                    isThereValue = true
                     break
                 }
+                if(isThereValue) break
                 iterator++
             }
 
             // if didn't find anything
             if (iterator == IDs.length) {
-                console.log("Совпадений не найдено")
-                caution.innerHTML = 'Совпадений не найдено'
+                form_input.value = ""
+                form_input.setAttribute("placeholder", "Совпадений не найдено")
             }
         }
     })
@@ -295,3 +311,12 @@ function fillTableByChosenParameter(parameter_name, dataCol){
     }
     return data
 }
+
+// !X
+const close_sign = document.querySelector('.close-sign')
+close_sign.addEventListener('click', ()=>{
+    setTimeout(()=>{
+        form.style.display = "none"
+    },200)
+})
+

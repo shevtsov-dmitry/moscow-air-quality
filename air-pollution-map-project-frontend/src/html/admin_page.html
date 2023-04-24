@@ -36,7 +36,11 @@
               </div>
 <!--               choose concrete case, also fill be filled automatically -->
 <!--               variants will be preloaded and hidden until user chose the option-->
-              <ul action="" method="POST" class="form-filled-with-variants"></ul>
+              <div class="choose-list-div">
+                <ul class="form-filled-with-variants"></ul>
+                  <p class="close-sign">X</p>
+              </div>
+
           </div>
       </div>
 
@@ -45,21 +49,27 @@
           <form action="" method="POST">
               <input class="wipe-data" type="submit" value="Удалить всю таблицу">
           </form>
-          <p class="cation-on-failed-wipe"></p>
+      </div>
+
+<!--back to map div-->
+      <div class="map-text-div">
+          <button class="back-to-map">Вернуться к карте</button>
       </div>
   </div>
 
   <!-- main table from query to server -->
-  <div class="csvdata"></div>
-<!-- additional table for displaying data by selection with buttons -->
-  <div class="display_table"></div>
+  <div class="tables">
+      <div class="csvdata"></div>
+      <!-- additional table for displaying data by selection with buttons -->
+      <div class="display_table"></div>
+  </div>
   <p class="caution"></p>
 
     <!-- scripts -->
-  <script src="../script/admin_page/small_features.js"></script>
-  <script src="../script/admin_page/wipe-data.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
   <script type="module" src="../script/admin_page/upload_csv.js"></script>
   <script type="module" src="../script/admin_page/display_table.js"></script>
+  <script type="text/javascript" src="../script/admin_page/small_features.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+  <script src="../script/admin_page/wipe-data.js"></script>
 </body>
 </html>
