@@ -13,6 +13,17 @@ body {
   margin: 25px 0px 0px 0px;
 }
 
+.file-upload-div {
+  display: flex;
+  align-items: center;
+}
+.file-upload-div img {
+  margin-left: 10px;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
 .buttons-panel {
   width: 100%;
   display: flex;
@@ -92,6 +103,10 @@ body {
 .fn-btn {
   margin-left: 5px;
 }
+.fn-btn:hover {
+  background-color: #0077cc;
+  color: white;
+}
 
 .form-chose-what-to-select {
   display: flex;
@@ -106,7 +121,7 @@ body {
 }
 
 .form-filled-with-variants {
-  margin: 22px 0px 0px 5px;
+  margin: 23px 0px 0px 5px;
   display: none;
   flex-direction: column;
   max-width: 270px;
@@ -169,6 +184,11 @@ body {
   margin: 0px 0px 0px 0px;
   font-family: "Helvetica Neue", sans-serif;
   color: firebrick;
+}
+
+.back-to-map:hover {
+  color: white;
+  background-color: #0077cc;
 }
 
 .wipe-table-div {

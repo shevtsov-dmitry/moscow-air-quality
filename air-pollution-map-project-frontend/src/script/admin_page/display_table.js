@@ -194,10 +194,14 @@ let caution = document.querySelector('.caution')
 // FIXME button cannot be pressed again after if isNaN happens
  function showById(hot, btn) {
     btn.addEventListener('click', () => {
-        let value = document.querySelector('.id-form-text-input').value // !X
+        let form_input = document.querySelector('.id-form-text-input')
+        let value = form_input.value // !X
+        let isThereValue = false
         event.preventDefault();
         if (isNaN(value)){
-            id_form.innerHTML += "<p>ВЫ должны ввести число</p>"
+            form_input.value = ""
+            form_input.setAttribute("placeholder", "Вы должны ввести число")
+            // id_form.innerHTML += "<p>ВЫ должны ввести число</p>"
         }
         else {
             const IDs = hot.getDataAtCol(0)
@@ -218,15 +222,22 @@ let caution = document.querySelector('.caution')
                     let twoDimArray = [arrayDataAtRow]
                     createNewTable(twoDimArray)
 
+                    // input form field cleanup
+                    form_input.value = ""
+                    form_input.setAttribute("placeholder", "Введите ID")
+
+                    // set true value to break the first loop
+                    isThereValue = true
                     break
                 }
+                if(isThereValue) break
                 iterator++
             }
 
             // if didn't find anything
             if (iterator == IDs.length) {
-                console.log("Совпадений не найдено")
-                caution.innerHTML = 'Совпадений не найдено'
+                form_input.value = ""
+                form_input.setAttribute("placeholder", "Совпадений не найдено")
             }
         }
     })
@@ -308,3 +319,4 @@ close_sign.addEventListener('click', ()=>{
         form.style.display = "none"
     },200)
 })
+

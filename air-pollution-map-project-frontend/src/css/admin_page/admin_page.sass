@@ -9,8 +9,19 @@ body
   display: flex
   justify-content: center
   align-items: center
+
 .CSVFile
   margin: 25px 0px 0px 0px
+
+.file-upload-div
+  display: flex
+  align-items: center
+  img
+    margin-left: 10px
+    position: relative
+    width: 40px
+    height: 40px
+
 @mixin button-mutual-styles
   height: 50px
   background-color: white
@@ -76,6 +87,9 @@ body
 
 .fn-btn
   margin-left: 5px
+  &:hover
+    background-color: #0077cc
+    color: white
 
 .form-chose-what-to-select
   display: flex
@@ -87,7 +101,7 @@ body
 
 
 .form-filled-with-variants
-  margin: 22px 0px 0px 5px
+  margin: 23px 0px 0px 5px
   display: none
   flex-direction: column
   max-width: 270px
@@ -149,6 +163,9 @@ body
 
 .back-to-map
   //margin-top: -8px
+  &:hover
+    color: white
+    background-color: #0077cc
 
 .wipe-table-div
   display: flex
