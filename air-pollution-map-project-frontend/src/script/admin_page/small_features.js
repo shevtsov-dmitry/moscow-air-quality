@@ -1,30 +1,32 @@
 // * show buttons which will show table
-const show_buttons_btn  = document.querySelector('.show-action-button')
-show_buttons_btn.addEventListener('click', ()=>{
-    selectors.style.display = 'flex'
+const show_selectors_button  = document.querySelector('.show-action-button')
+show_selectors_button.addEventListener('click', ()=> {
+    show(selectors)
+    hide(id_form)
 })
 
-// selectors which will display form
+// functions either hide or display DOM element
+function hide(value){
+    value.style.display = "none"
+}
+function show(value){
+    value.style.display = "flex"
+}
+// divs of form
 const selectors = document.querySelector('.selectors')
-function showSelectors(){
-    selectors.style.display = "initial"
-}
-function hideSelectors(){
-    selectors.style.display = "none"
-}
-
 const id_div = document.querySelector('.choose-list-div')
+const form_filled_with_variants = document.querySelector('.form-filled-with-variants')
+
 id_div.innerHTML += `<div class="idForm">
             <input class="id-form-text-input" type="text" placeholder="Введите ID">
             <button class="fn-btn">accept</button>
         </div>`
-const idForm = document.querySelector('.idForm')
 
-//
+const id_form = document.querySelector('.idForm')
 const fn_btn = document.querySelector('.fn-btn')
+
 fn_btn.addEventListener('click',()=>{
-    hideSelectors()
-    hideIdForm()
+    hide(selectors)
 })
 // buttons
 const btn_everything = document.querySelector(".btn_everything")
@@ -32,40 +34,31 @@ const btn_ID = document.querySelector(".btn_ID")
 const btn_station_name = document.querySelector(".btn_station_name")
 const btn_parameter = document.querySelector(".btn_parameter")
 
-// functions of buttons
-
+// functions of buttons which manages show or hide each other on click
 btn_everything.addEventListener('click',()=>{
-    form_filled_with_variants.innerHTML=""
-    hideCloseSign()
-    hideForm()
-    hideIdForm()
-    hideSelectors()
+    hide(close_sign)
+    hide(form_filled_with_variants)
+    hide(id_form)
+    hide(selectors)
 })
 btn_ID.addEventListener('click',()=>{
-    hideCloseSign()
-    hideForm()
-    showIdForm()
-    hideSelectors()
+    hide(close_sign)
+    hide(selectors)
+
+    show(id_form)
 })
 btn_station_name.addEventListener('click',()=>{
-    hideIdForm()
-    showCloseSign()
-    showForm()
-    hideSelectors()
+    hide(id_form)
+
+    show(close_sign)
+    show(form_filled_with_variants)
 })
 btn_parameter.addEventListener('click', ()=>{
-    hideSelectors()
-    hideIdForm()
-    showCloseSign()
-    showForm()
-})
+    hide(id_form)
 
-function hideIdForm(){
-    idForm.style.display = 'none'
-}
-function showIdForm(){
-    idForm.style.display = 'initial'
-}
+    show(close_sign)
+    show(form_filled_with_variants)
+})
 
 const submit_btn = document.querySelector('.submitUploadBtn')
 const loading_gif = document.querySelector('.loading-gif')
@@ -82,32 +75,17 @@ submit_btn.addEventListener('click', ()=>{
 const close_sign = document.querySelector('.close-sign')
 close_sign.addEventListener('click',()=>{
     setTimeout(()=>{
-        hideCloseSign()
-        hideForm()
+        hide(close_sign)
+        hide(form_filled_with_variants)
         form_filled_with_variants.innerHTML = ''
     },200)
 })
 
-function showCloseSign(){
-    close_sign.style.display = 'block'
-}
-function hideCloseSign(){
-    close_sign.style.display = 'none'
-}
-
-const form_filled_with_variants = document.querySelector('.form-filled-with-variants')
-function showForm(){
-    form_filled_with_variants.style.display = 'initial'
-}
-function hideForm(){
-    form_filled_with_variants.style.display = 'none'
-}
-
 form_filled_with_variants.addEventListener('click',()=>{
     setTimeout(()=>{
-        hideCloseSign()
+        hide(close_sign)
+        hide(form_filled_with_variants)
         form_filled_with_variants.innerHTML = ""
-        hideForm()
     },500)
 })
 

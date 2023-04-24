@@ -84,6 +84,7 @@ body {
 
 .form-filled-with-variants {
   display: none;
+  flex-direction: column;
   max-width: 270px;
   padding: 10px;
   border-radius: 10px;

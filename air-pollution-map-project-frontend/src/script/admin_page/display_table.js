@@ -89,7 +89,7 @@ async function createInitialTable(CSVtable) {
         // hide the main table
         hot.rootElement.style.display = 'none'
 
-        await clickButtonAction(hot)
+        clickButtonAction(hot)
     }
     catch (error) {
         console.log(`Something went wrong in createTable function: ${error}`);
@@ -118,9 +118,11 @@ let placeholder_hot_table = new Handsontable(new_table, {
     licenseKey: 'non-commercial-and-evaluation'
 })
 
+// * functions, related to filling the user's choosing form
+let form = document.querySelector(".form-filled-with-variants")
 
 // click button action function
-async function clickButtonAction() {
+function clickButtonAction() {
 
     // create @param hot - new empty table , which 
     // will be filled with if else statements below
@@ -154,10 +156,6 @@ async function clickButtonAction() {
         }
     }
 }
-
-// * functions, related to filling the user's choosing form
-
-let form = document.querySelector(".form-filled-with-variants")
 
 // column names 
 const station_col_name = 'station_name'
@@ -194,7 +192,7 @@ let caution = document.querySelector('.caution')
         let value = document.querySelector('.id-form-text-input').value
         event.preventDefault();
         if (isNaN(value)){
-            idForm.innerHTML += "<p>ВЫ должны ввести число</p>"
+            id_form.innerHTML += "<p>ВЫ должны ввести число</p>"
         }
         else {
             const IDs = hot.getDataAtCol(0)
