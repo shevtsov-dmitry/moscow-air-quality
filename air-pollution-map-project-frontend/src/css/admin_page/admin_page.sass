@@ -4,10 +4,15 @@ body
   background-color: floralwhite
 
 .uploadCSV
-  margin: 20px
+  //margin: 20px
   color: black
-
+  display: flex
+  justify-content: center
+  align-items: center
+.CSVFile
+  margin: 25px 0px 0px 0px
 @mixin button-mutual-styles
+  height: 50px
   background-color: white
   border-style: none
   padding: 10px
@@ -21,10 +26,10 @@ body
   color: white
 
 .buttons-panel
-  width: 100vw
+  width: 100%
   display: flex
   align-items: center
-  justify-content: space-between
+  justify-content: space-evenly
   input
     @include button-mutual-styles
   button
@@ -34,7 +39,7 @@ body
   &:hover
     @include button-on-hover
 .wipe-data
-  margin-top: 10px
+  //margin-top: 10px
 
 .CSVFile
   background-color: floralwhite !important
@@ -42,15 +47,17 @@ body
 
 .show-action-button
   margin-right: 5px
-  height: 50%
+  //height: 50%
   align-self: center
   &:hover
     cursor: pointer
     @include button-on-hover
 
 .selectors
+  margin-top: 23px
   display: none
   flex-direction: column
+    //border-radius: 10px 10px 0px 0px !important
   button
     z-index: 999
     border-radius: 0px
@@ -59,14 +66,28 @@ body
     &:hover
       @include button-on-hover
 
+.btn_everything
+  border-radius: 10px 10px 0px 0px !important
+.btn_parameter
+  border-radius: 0px 0px 10px 10px !important
+
 .loading-gif
   display: none
+
+.fn-btn
+  margin-left: 5px
 
 .form-chose-what-to-select
   display: flex
   height: 10vh
+.choose-list-div
+  display: flex
+  input
+    height: 30px
+
 
 .form-filled-with-variants
+  margin: 22px 0px 0px 5px
   display: none
   flex-direction: column
   max-width: 270px
@@ -93,7 +114,7 @@ body
     box-shadow: none !important
     width: 92%
   button
-    margin-top: 5px
+    //margin-top: 5px
     box-shadow: none !important
     background-color: #0077cc
     color: white
@@ -103,7 +124,7 @@ body
 .close-sign
   display: none
   padding: 0
-  margin: 18px 0px 0px 10px
+  margin: 23px 0px 0px 13px
   position: fixed
   z-index: 1000
   font-size: 1.5em
@@ -115,16 +136,21 @@ body
 
 // tables
 .tables
-  width: 100vw
-  //display: flex
-  //flex-direction: column
-  //align-items: center
 .csvdata, .display_table
 
 .idForm
   display: none
+  margin-top: 23px
   p
     padding: 0
-    margin: 8px 0px 0px 5px
+    margin: 0px 0px 0px 0px
     font-family: "Helvetica Neue", sans-serif
     color: firebrick
+
+.back-to-map
+  //margin-top: -8px
+
+.wipe-table-div
+  display: flex
+  justify-content: center
+  align-items: center

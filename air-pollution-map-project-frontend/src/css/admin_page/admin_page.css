@@ -3,17 +3,24 @@ body {
 }
 
 .uploadCSV {
-  margin: 20px;
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CSVFile {
+  margin: 25px 0px 0px 0px;
 }
 
 .buttons-panel {
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .buttons-panel input {
+  height: 50px;
   background-color: white;
   border-style: none;
   padding: 10px;
@@ -22,6 +29,7 @@ body {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .buttons-panel button {
+  height: 50px;
   background-color: white;
   border-style: none;
   padding: 10px;
@@ -36,10 +44,6 @@ body {
   color: white;
 }
 
-.wipe-data {
-  margin-top: 10px;
-}
-
 .CSVFile {
   background-color: floralwhite !important;
   box-shadow: none !important;
@@ -47,7 +51,6 @@ body {
 
 .show-action-button {
   margin-right: 5px;
-  height: 50%;
   align-self: center;
 }
 .show-action-button:hover {
@@ -58,6 +61,7 @@ body {
 }
 
 .selectors {
+  margin-top: 23px;
   display: none;
   flex-direction: column;
 }
@@ -73,8 +77,20 @@ body {
   color: white;
 }
 
+.btn_everything {
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+.btn_parameter {
+  border-radius: 0px 0px 10px 10px !important;
+}
+
 .loading-gif {
   display: none;
+}
+
+.fn-btn {
+  margin-left: 5px;
 }
 
 .form-chose-what-to-select {
@@ -82,7 +98,15 @@ body {
   height: 10vh;
 }
 
+.choose-list-div {
+  display: flex;
+}
+.choose-list-div input {
+  height: 30px;
+}
+
 .form-filled-with-variants {
+  margin: 22px 0px 0px 5px;
   display: none;
   flex-direction: column;
   max-width: 270px;
@@ -114,7 +138,6 @@ body {
   width: 92%;
 }
 .form-filled-with-variants button {
-  margin-top: 5px;
   box-shadow: none !important;
   background-color: #0077cc;
   color: white;
@@ -125,7 +148,7 @@ body {
 .close-sign {
   display: none;
   padding: 0;
-  margin: 18px 0px 0px 10px;
+  margin: 23px 0px 0px 13px;
   position: fixed;
   z-index: 1000;
   font-size: 1.5em;
@@ -137,18 +160,21 @@ body {
   transition: transform 0.25s ease-out;
 }
 
-.tables {
-  width: 100vw;
-}
-
 .idForm {
   display: none;
+  margin-top: 23px;
 }
 .idForm p {
   padding: 0;
-  margin: 8px 0px 0px 5px;
+  margin: 0px 0px 0px 0px;
   font-family: "Helvetica Neue", sans-serif;
   color: firebrick;
+}
+
+.wipe-table-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=admin_page.css.map */
