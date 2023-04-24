@@ -130,7 +130,7 @@ async function clickButtonAction() {
     }
     else if (this === btn_ID) {
         form.innerHTML = ""
-        const btn = document.querySelector('.fn_btn')
+        const btn = document.querySelector('.fn-btn')
         showById(hot, btn)
     }
     else if (this === btn_station_name) {

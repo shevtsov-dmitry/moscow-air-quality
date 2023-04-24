@@ -1,17 +1,31 @@
 // * show buttons which will show table
 const show_buttons_btn  = document.querySelector('.show-action-button')
-const selectors = document.querySelector('.selectors')
 show_buttons_btn.addEventListener('click', ()=>{
     selectors.style.display = 'flex'
 })
 
+// selectors which will display form
+const selectors = document.querySelector('.selectors')
+function showSelectors(){
+    selectors.style.display = "initial"
+}
+function hideSelectors(){
+    selectors.style.display = "none"
+}
+
 const id_div = document.querySelector('.choose-list-div')
 id_div.innerHTML += `<div class="idForm">
             <input class="id-form-text-input" type="text" placeholder="Введите ID">
-            <button class="fn_btn">accept</button>
+            <button class="fn-btn">accept</button>
         </div>`
 const idForm = document.querySelector('.idForm')
 
+//
+const fn_btn = document.querySelector('.fn-btn')
+fn_btn.addEventListener('click',()=>{
+    hideSelectors()
+    hideIdForm()
+})
 // buttons
 const btn_everything = document.querySelector(".btn_everything")
 const btn_ID = document.querySelector(".btn_ID")
@@ -25,18 +39,22 @@ btn_everything.addEventListener('click',()=>{
     hideCloseSign()
     hideForm()
     hideIdForm()
+    hideSelectors()
 })
 btn_ID.addEventListener('click',()=>{
     hideCloseSign()
     hideForm()
     showIdForm()
+    hideSelectors()
 })
 btn_station_name.addEventListener('click',()=>{
     hideIdForm()
     showCloseSign()
     showForm()
+    hideSelectors()
 })
 btn_parameter.addEventListener('click', ()=>{
+    hideSelectors()
     hideIdForm()
     showCloseSign()
     showForm()
