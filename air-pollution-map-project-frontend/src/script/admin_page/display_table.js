@@ -129,13 +129,16 @@ function clickButtonAction() {
 
     if (this === btn_everything) {
         showAllTable()
+        form.style.display = "none" // !X
     }
     else if (this === btn_ID) {
+        form.style.display = "none" // !X
         form.innerHTML = ""
         const btn = document.querySelector('.fn-btn')
         showById(hot, btn)
     }
     else if (this === btn_station_name) {
+        form.style.display = "initial" // !X
         let dataCol = showByStationName(hot)
         let children = form.children
         for(let child of children){
@@ -146,6 +149,7 @@ function clickButtonAction() {
         }
     }
     else if (this === btn_parameter) {
+        form.style.display = "initial" // !X
         let dataCol = showByParameter(hot)
         let children = form.children
         for (const child of children) {
@@ -189,7 +193,7 @@ let caution = document.querySelector('.caution')
 // function will take a user's input and will compare it with available ones
  function showById(hot, btn) {
     btn.addEventListener('click', () => {
-        let value = document.querySelector('.id-form-text-input').value
+        let value = document.querySelector('.id-form-text-input').value // !X
         event.preventDefault();
         if (isNaN(value)){
             id_form.innerHTML += "<p>ВЫ должны ввести число</p>"
@@ -295,3 +299,11 @@ function fillTableByChosenParameter(parameter_name, dataCol){
     }
     return data
 }
+
+// !X
+const close_sign = document.querySelector('.close-sign')
+close_sign.addEventListener('click', ()=>{
+    setTimeout(()=>{
+        form.style.display = "none"
+    },200)
+})
