@@ -9,42 +9,93 @@ const div_list_of_dates = document.querySelector(".list-of-dates-div")
 const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
 
+let constructed_date = ""
+
 const urlDates = "http://localhost:8080/getDates"
-function chooseDate(urlDates) {
+function retrieveDates(urlDates) {
   fetch(urlDates)
       .then(response => response.json())
-      .then(dates => {
-        // years
-        let years = filterYears(dates)
-        for (const year of years) {
-          year_chooser.innerHTML += `<li>${year}</li>`
-        }
-
-        let year_chooser_children = year_chooser.children // choosing all years
-          // for each year add event listener on click to display months
-          for (const yearsChild of year_chooser_children) {
-              yearsChild.addEventListener('click', ()=>{
-                month_chooser.innerHTML = "" // clear months if user will choose other year
-                let input = yearsChild.innerHTML
-                let months = filterDates(dates, input)
-
-                for (const month of months) {
-                    month_chooser.innerHTML += `<li>${month}</li>`
-                }
-
-            })
-
-        }
-          // months
-
-
+      .then(async (dates) => {
+          // addYears(dates)
+          // let year_input = await defineInput(year_chooser)
+          // console.log(await year_input)
+          // await addMonths(dates, year_input)
+          // let month_input = await defineInput(month_chooser)
+          // constructed_date = await constructDate(month_input, year_input)
+          main(dates)
       })
       .catch(error => {
         console.log(`Something went wrong: ${error}`)
       })
 }
 
-chooseDate(urlDates)
+//xxxxxxxxxxxxx
+function main(dates){
+    let years = filterYears(dates)
+    for (const year of years) {
+        year_chooser.innerHTML += `<li>${year}</li>`
+    }
+    let year_chooser_children = year_chooser.children // choosing all years
+    // for each year add event listener on click to display months
+    for (const yearsChild of year_chooser_children) {
+        yearsChild.addEventListener('click', ()=>{
+            let year_input = yearsChild.innerHTML
+            let months = filterMonths(dates, year_input)
+
+            // months
+            // for each day add event listener to construct actual date that will be retrieved from db
+            for (const month of months) {
+                month_chooser.innerHTML += `<li>${month}</li>`
+            }
+
+            let month_chooser_children = month_chooser.children
+            for (const monthChooserChild of month_chooser_children) {
+                monthChooserChild.addEventListener("click", ()=>{
+                    let month_input = monthChooserChild.innerHTML
+                    constructed_date = `${month_input}.${year_input}`
+                    // send here
+                    console.log(constructed_date)
+
+                })
+            }
+
+        })
+    }
+}
+
+retrieveDates(urlDates)
+
+// years
+async function addYears(dates){
+    let years = filterYears(dates)
+    for (const year of years) {
+        year_chooser.innerHTML += `<li>${year}</li>`
+    }
+}
+
+// months
+async function addMonths(dates, input){
+    let months = filterMonths(dates, input)
+    for (const month of months) {
+        month_chooser.innerHTML += `<li>${month}</li>`
+    }
+}
+
+// define input
+async function defineInput(chooser){
+    let list = chooser.children
+    for (const element of list) {
+        element.addEventListener('click',()=>{
+            return chooser.innerHTML // the year user has chosen
+        })
+    }
+}
+
+async function constructDate(month_input, year_input){
+    console.log(`${month_input}.${year_input}`)
+    return `${month_input}.${year_input}`
+}
+
 
 function filterYears(list){
   return list.map(str => str.match(/\d+/g))
@@ -55,7 +106,7 @@ function filterYears(list){
         })
 }
 
-function filterDates(list, input){
+function filterMonths(list, input){
     let dates = list.map(str => {
     if(str.includes(input)){
       return str.replace(input.toString(), '').replace('.','')
