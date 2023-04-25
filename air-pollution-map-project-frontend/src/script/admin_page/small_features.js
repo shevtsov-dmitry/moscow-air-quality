@@ -89,11 +89,3 @@ form_filled_with_variants.addEventListener('click',()=>{
     },500)
 })
 
-window.addEventListener('scroll',()=>{
-    if(window.pageYOffset >= 20){
-        hide(close_sign)
-    }
-    else{
-        show(close_sign)
-    }
-})

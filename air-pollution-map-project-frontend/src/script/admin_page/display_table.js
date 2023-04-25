@@ -173,6 +173,7 @@ function showAllTable() {
     hot.rootElement.style.display = 'initial'
 }
 
+// FIXME column headers don't show because function is not async
 // create new table function
 function createNewTable(data){
     // clear table
@@ -320,3 +321,11 @@ close_sign.addEventListener('click', ()=>{
     },200)
 })
 
+window.addEventListener('scroll',()=>{
+    if(window.pageYOffset >= 20){
+        hide(close_sign)
+    }
+    else if(form.getAttribute("style") == "display: flex"){
+        show(close_sign)
+    }
+})
