@@ -93,11 +93,12 @@ close_sign.addEventListener('click',()=>{
     },200)
 })
 
-form_filled_with_variants.addEventListener('click',()=>{
-    setTimeout(()=>{
-        hide(close_sign)
-        hide(form_filled_with_variants)
-        form_filled_with_variants.innerHTML = ""
-    },500)
-})
+// FIXME repair this form in the future ( also need to erase display changes related to this form from display_table )
+// form_filled_with_variants.addEventListener('click',()=>{
+//     setTimeout(()=>{
+//         hide(close_sign)
+//         hide(form_filled_with_variants)
+//         form_filled_with_variants.innerHTML = ""
+//     },500)
+// })
 
