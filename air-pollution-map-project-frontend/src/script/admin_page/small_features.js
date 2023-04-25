@@ -24,6 +24,10 @@ id_div.innerHTML += `<div class="idForm">
 
 const id_form = document.querySelector('.idForm')
 const fn_btn = document.querySelector('.fn-btn')
+const tables = document.querySelector('.tables')
+function alignTableLeft(){
+    tables.style.justifyContent = "left"
+}
 
 fn_btn.addEventListener('click',()=>{
     hide(selectors)
@@ -40,24 +44,32 @@ btn_everything.addEventListener('click',()=>{
     hide(form_filled_with_variants)
     hide(id_form)
     hide(selectors)
+
+    alignTableLeft()
 })
 btn_ID.addEventListener('click',()=>{
     hide(close_sign)
     hide(selectors)
 
     show(id_form)
+
+    alignTableLeft()
 })
 btn_station_name.addEventListener('click',()=>{
     hide(id_form)
 
     show(close_sign)
     show(form_filled_with_variants)
+
+    alignTableLeft()
 })
 btn_parameter.addEventListener('click', ()=>{
     hide(id_form)
 
     show(close_sign)
     show(form_filled_with_variants)
+
+    alignTableLeft()
 })
 
 const submit_btn = document.querySelector('.submitUploadBtn')

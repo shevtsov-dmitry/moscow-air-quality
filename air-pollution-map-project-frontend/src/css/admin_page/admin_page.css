@@ -175,6 +175,11 @@ body {
   transition: transform 0.25s ease-out;
 }
 
+.tables {
+  display: flex;
+  justify-content: center;
+}
+
 .idForm {
   display: none;
   margin-top: 23px;

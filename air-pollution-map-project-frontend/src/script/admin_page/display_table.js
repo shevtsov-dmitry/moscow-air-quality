@@ -321,6 +321,7 @@ close_sign.addEventListener('click', ()=>{
     },200)
 })
 
+// !X
 window.addEventListener('scroll',()=>{
     if(window.pageYOffset >= 20){
         hide(close_sign)
@@ -329,3 +330,4 @@ window.addEventListener('scroll',()=>{
         show(close_sign)
     }
 })
+
