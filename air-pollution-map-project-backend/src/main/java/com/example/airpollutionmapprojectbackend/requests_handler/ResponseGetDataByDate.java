@@ -1,6 +1,9 @@
 package com.example.airpollutionmapprojectbackend.requests_handler;
 
+
 import com.example.airpollutionmapprojectbackend.constants.Constants;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -9,27 +12,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 @CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
-public class ResponseAllDates {
+public class ResponseGetDataByDate {
+    private static final Logger logger = LoggerFactory.getLogger(ResponseGetDataByDate.class);
     private final JdbcTemplate jdbcTemplate;
     @Autowired
-    public ResponseAllDates(JdbcTemplate jdbcTemplate) {
+    public ResponseGetDataByDate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    @GetMapping("/getDates")
-    public List<String> sendDates(){
-        String SQLscript = "SELECT date FROM " + Constants.CSV_TABLE_NAME;
-        return getStrings(SQLscript, jdbcTemplate); // method in ResponseGetDataByDate.java
-    }
-    public List<String> getStrings(String SQLscript, JdbcTemplate jdbcTemplate) {
+    @PostMapping("/getDataByDate")
+    @ResponseBody
+    public List<String> getDataByDate(@RequestBody String dateFromRequest){
+        String formattedInput = dateFromRequest.replace("\"","");
+        String SQLscript = "SELECT * FROM " + Constants.CSV_TABLE_NAME +
+                           " WHERE date = " + "'" + formattedInput +"';";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQLscript);
-        List<String> dates = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         for (Map<String, Object> row : rows) {
-            String date = (String) row.get("date");
-            dates.add(date);
+            result.add(row.toString());
         }
-        return dates;
+        return result;
     }
+
 }
