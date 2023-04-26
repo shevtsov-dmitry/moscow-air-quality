@@ -39,6 +39,8 @@ function main(dates){
     // for each year add event listener on click to display months
     for (const yearsChild of year_chooser_children) {
         yearsChild.addEventListener('click', ()=>{
+            // everytime click on year clear @param month_chooser to not stack values
+            month_chooser.innerHTML = ""
             let year_input = yearsChild.innerHTML
             let months = filterMonths(dates, year_input)
 
@@ -52,15 +54,44 @@ function main(dates){
             for (const monthChooserChild of month_chooser_children) {
                 monthChooserChild.addEventListener("click", ()=>{
                     let month_input = monthChooserChild.innerHTML
+                    // got constructed_date
                     constructed_date = `${month_input}.${year_input}`
-                    // send here
                     console.log(constructed_date)
+                    // send request to retrieve needed data by year and month
+
+                    // ? await
+                    retrieveDataByChosenDate(constructed_date)
 
                 })
             }
 
         })
     }
+}
+
+//
+const urlData = "http://localhost:8080/getDataByDate"
+function retrieveDataByChosenDate(date_to_send){
+    fetch(urlData, {
+      method: 'POST',
+      headers:{
+          'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(date_to_send)
+    })
+        .then(response => response.json())
+        .then( data => {
+            // -----------------------
+            // console.log(data[3].global_id)
+            // -----------------------
+        })
+        .catch(error => {
+            console.log(`Something went wrong: ${error}`)
+        })
+}
+
+function JSON_parser(data){
+
 }
 
 retrieveDates(urlDates)
