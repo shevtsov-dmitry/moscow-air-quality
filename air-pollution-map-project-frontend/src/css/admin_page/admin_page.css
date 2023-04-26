@@ -1,0 +1,205 @@
+body {
+  background-color: floralwhite;
+}
+
+.uploadCSV {
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CSVFile {
+  margin: 25px 0px 0px 0px;
+}
+
+.file-upload-div {
+  display: flex;
+  align-items: center;
+}
+.file-upload-div img {
+  margin-left: 10px;
+  position: relative;
+  width: 40px;
+  height: 40px;
+}
+
+.buttons-panel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.buttons-panel input {
+  height: 50px;
+  background-color: white;
+  border-style: none;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.buttons-panel button {
+  height: 50px;
+  background-color: white;
+  border-style: none;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.submitUploadBtn:hover, .wipe-data:hover {
+  cursor: pointer;
+  background-color: #999999;
+  color: white;
+}
+
+.CSVFile {
+  background-color: floralwhite !important;
+  box-shadow: none !important;
+}
+
+.show-action-button {
+  margin-right: 5px;
+  align-self: center;
+}
+.show-action-button:hover {
+  cursor: pointer;
+  cursor: pointer;
+  background-color: #999999;
+  color: white;
+}
+
+.selectors {
+  margin-top: 23px;
+  display: none;
+  flex-direction: column;
+}
+.selectors button {
+  z-index: 999;
+  border-radius: 0px;
+  border-style: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.selectors button:hover {
+  cursor: pointer;
+  background-color: #999999;
+  color: white;
+}
+
+.btn_everything {
+  border-radius: 10px 10px 0px 0px !important;
+}
+
+.btn_parameter {
+  border-radius: 0px 0px 10px 10px !important;
+}
+
+.loading-gif {
+  display: none;
+}
+
+.fn-btn {
+  margin-left: 5px;
+}
+.fn-btn:hover {
+  background-color: #0077cc;
+  color: white;
+}
+
+.form-chose-what-to-select {
+  display: flex;
+  height: 10vh;
+}
+
+.choose-list-div {
+  display: flex;
+}
+.choose-list-div input {
+  height: 30px;
+}
+
+.form-filled-with-variants {
+  margin: 23px 0px 0px 5px;
+  display: none;
+  flex-direction: column;
+  max-width: 270px;
+  padding: 10px;
+  border-radius: 10px;
+  z-index: 999;
+  position: absolute;
+  background: white;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  overflow: clip;
+}
+.form-filled-with-variants li {
+  color: #000000;
+  list-style-type: none;
+  font-family: "Source Sans Pro", sans-serif;
+  margin-bottom: 2px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+.form-filled-with-variants li:first-child {
+  margin-top: 15px;
+  box-shadow: none;
+}
+.form-filled-with-variants li:hover {
+  color: blue;
+  cursor: pointer;
+}
+.form-filled-with-variants input {
+  box-shadow: none !important;
+  width: 92%;
+}
+.form-filled-with-variants button {
+  box-shadow: none !important;
+  background-color: #0077cc;
+  color: white;
+  font-weight: 700;
+  align-self: center;
+}
+
+.close-sign {
+  display: none;
+  padding: 0;
+  margin: 23px 0px 0px 13px;
+  position: fixed;
+  z-index: 1000;
+  font-size: 1.5em;
+  font-family: monospace;
+}
+.close-sign:hover {
+  cursor: pointer;
+  transform: rotate(15deg);
+  transition: transform 0.25s ease-out;
+}
+
+.tables {
+  display: flex;
+  justify-content: center;
+}
+
+.idForm {
+  display: none;
+  margin-top: 23px;
+}
+.idForm p {
+  padding: 0;
+  margin: 0px 0px 0px 0px;
+  font-family: "Helvetica Neue", sans-serif;
+  color: firebrick;
+}
+
+.back-to-map:hover {
+  color: white;
+  background-color: #0077cc;
+}
+
+.wipe-table-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=admin_page.css.map */

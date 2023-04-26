@@ -1,0 +1,17 @@
+.authorization-icon {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  margin: 1%;
+}
+.authorization-icon img {
+  width: 60px;
+  height: 60px;
+  opacity: 0.3;
+}
+.authorization-icon:hover img {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=index_style.css.map */
