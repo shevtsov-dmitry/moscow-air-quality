@@ -25,6 +25,5 @@ public class ResponseFetchTableNames {
         Field[] fields = handler.getClass().getDeclaredFields();
         // Возвращаю все названия полей класса Handler, т.е. колонок из таблицы
         return Arrays.stream(fields).map(Field::getName).collect(Collectors.toList());
-
     }
 }
