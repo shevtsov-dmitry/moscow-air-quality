@@ -23,16 +23,12 @@ public class ResponseGetDataByDate {
     }
     @PostMapping("/getDataByDate")
     @ResponseBody
-    public List<String> getDataByDate(@RequestBody String dateFromRequest){
+    public List<Map<String,Object>> getDataByDate(@RequestBody String dateFromRequest){
         String formattedInput = dateFromRequest.replace("\"","");
         String SQLscript = "SELECT * FROM " + Constants.CSV_TABLE_NAME +
                            " WHERE date = " + "'" + formattedInput +"';";
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQLscript);
-        List<String> result = new ArrayList<>();
-        for (Map<String, Object> row : rows) {
-            result.add(row.toString());
-        }
-        return result;
+        return rows;
     }
 
 }
