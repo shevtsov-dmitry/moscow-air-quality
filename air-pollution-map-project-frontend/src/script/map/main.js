@@ -146,16 +146,6 @@ function retrieveDataByChosenDate(date_to_send){
                 const newLayer = createLayer(obj)
                 map.addLayer(newLayer)
             
-            //     // blur.addEventListener('input', function () {
-            //     //     newLayer.setBlur(parseInt(blur.value, 10));
-            //     // });
-            //     //
-            //     // radius.addEventListener('input', function () {
-            //     //     newLayer.setRadius(parseInt(radius.value, 10));
-            //     // });
-            //
-            // }
-            // 
             // console.log(map.getLayers())
             }
 
