@@ -6,12 +6,50 @@ import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
 
-// *** fetch interactions
+// *** geo data display
+// olProj.useGeographic()
+useGeographic()
+
+const moscowLon = 37.6173,
+    moscowLat = 55.7558
+
+const blur = document.getElementById('blur');
+const radius = document.getElementById('radius');
+
+const vector = new HeatmapLayer({
+    source: new VectorSource({
+        features: [
+            new Feature(new Point(fromLonLat([moscowLon, moscowLat])))
+        ]
+    }),
+    blur: parseInt(blur.value, 10),
+    radius: parseInt(radius.value, 10),
+});
+
+const raster = new TileLayer({
+    source: new Stamen({
+        layer: 'toner',
+    }),
+});
+
+// map initialization
+const map = new Map({
+    target: 'map',
+    layers: [raster, vector],
+    view: new View({
+        center: [moscowLon,moscowLat],
+        zoom: 8
+    })
+});
+
+
+
+
+// *** fetch interactions ----------------------------------------------------------------
 const div_list_of_dates = document.querySelector(".list-of-dates-div")
 const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
 
-let constructed_date = ""
 
 const urlDates = "http://localhost:8080/getDates"
 function retrieveDates(urlDates) {
@@ -31,6 +69,7 @@ function retrieveDates(urlDates) {
       })
 }
 
+let constructed_date = ""
 //xxxxxxxxxxxxx
 function main(dates){
     let years = filterYears(dates)
@@ -58,7 +97,7 @@ function main(dates){
                     let month_input = monthChooserChild.innerHTML
                     // got constructed_date
                     constructed_date = `${month_input}.${year_input}`
-                    console.log(constructed_date)
+                    // console.log(constructed_date)
                     // send request to retrieve needed data by year and month
 
                     // ? await
@@ -70,7 +109,6 @@ function main(dates){
         })
     }
 }
-
 //
 const urlData = "http://localhost:8080/getDataByDate"
 function retrieveDataByChosenDate(date_to_send){
@@ -85,50 +123,80 @@ function retrieveDataByChosenDate(date_to_send){
         .then( data => {
             // -----------------------
 
+            map.getLayers().forEach( layer => {
+                map.removeLayer(layer);
+            });
+            map.addLayer(raster)
+
+            // ! sort data
+            let uniqueList = []
+            let additionalLists = []
+            for(let obj of data){
+                if(uniqueList.find(e => e.station_name == obj.station_name) == undefined){
+                    uniqueList.push(obj)
+                }
+                else{
+                    additionalLists.push(obj)
+                }
+            }
+            console.log(uniqueList)
+            console.log(additionalLists)
             // -----------------------
+            for (const obj of uniqueList) {
+                const newLayer = createLayer(obj)
+                map.addLayer(newLayer)
+            
+            //     // blur.addEventListener('input', function () {
+            //     //     newLayer.setBlur(parseInt(blur.value, 10));
+            //     // });
+            //     //
+            //     // radius.addEventListener('input', function () {
+            //     //     newLayer.setRadius(parseInt(radius.value, 10));
+            //     // });
+            //
+            // }
+            // 
+            // console.log(map.getLayers())
+            }
+
         })
         .catch(error => {
             console.log(`Something went wrong: ${error}`)
         })
 }
 
-function JSON_parser(data){
-
-}
-
 retrieveDates(urlDates)
 
-// years
-async function addYears(dates){
-    let years = filterYears(dates)
-    for (const year of years) {
-        year_chooser.innerHTML += `<li>${year}</li>`
-    }
-}
-
-// months
-async function addMonths(dates, input){
-    let months = filterMonths(dates, input)
-    for (const month of months) {
-        month_chooser.innerHTML += `<li>${month}</li>`
-    }
-}
-
-// define input
-async function defineInput(chooser){
-    let list = chooser.children
-    for (const element of list) {
-        element.addEventListener('click',()=>{
-            return chooser.innerHTML // the year user has chosen
-        })
-    }
-}
-
-async function constructDate(month_input, year_input){
-    console.log(`${month_input}.${year_input}`)
-    return `${month_input}.${year_input}`
-}
-
+// // years
+// async function addYears(dates){
+//     let years = filterYears(dates)
+//     for (const year of years) {
+//         year_chooser.innerHTML += `<li>${year}</li>`
+//     }
+// }
+//
+// // months
+// async function addMonths(dates, input){
+//     let months = filterMonths(dates, input)
+//     for (const month of months) {
+//         month_chooser.innerHTML += `<li>${month}</li>`
+//     }
+// }
+//
+// // define input
+// async function defineInput(chooser){
+//     let list = chooser.children
+//     for (const element of list) {
+//         element.addEventListener('click',()=>{
+//             return chooser.innerHTML // the year user has chosen
+//         })
+//     }
+// }
+//
+// async function constructDate(month_input, year_input){
+//     console.log(`${month_input}.${year_input}`)
+//     return `${month_input}.${year_input}`
+// }
 
 function filterYears(list){
   return list.map(str => str.match(/\d+/g))
@@ -148,48 +216,18 @@ function filterMonths(list, input){
     return [...new Set(dates)] // return the Set to delete all duplicates
 }
 
-// *** geo data display
-// olProj.useGeographic()
-useGeographic()
+function createLayer(data){
+    const longitude = data.longitude
+    const latitude = data.latitude
 
-const moscowLon = 37.6173,
-      moscowLat = 55.7558
+    return new HeatmapLayer({
+        source: new VectorSource({
+            features: [
+                new Feature(new Point(fromLonLat([longitude, latitude])))
+            ]
+        }),
 
-const blur = document.getElementById('blur');
-const radius = document.getElementById('radius');
-
-const vector = new HeatmapLayer({
-    source: new VectorSource({
-        features: [
-            new Feature(new Point(fromLonLat([moscowLon, moscowLat])))
-        ]
-    }),
-    blur: parseInt(blur.value, 10),
-    radius: parseInt(radius.value, 10),
-});
-
-const raster = new TileLayer({
-    source: new Stamen({
-        layer: 'toner',
-    }),
-});
-
-// map initialization
-const map = new Map({
-  target: 'map',
-  layers: [
-      raster, vector
-  ],
-  view: new View({
-    center: [moscowLon,moscowLat],
-    zoom: 8
-  })
-});
-
-blur.addEventListener('input', function () {
-    vector.setBlur(parseInt(blur.value, 10));
-});
-
-radius.addEventListener('input', function () {
-    vector.setRadius(parseInt(radius.value, 10));
-});
+        blur: 30 - Math.floor(Math.random() * 10),
+        radius:  27 - Math.floor(Math.random() * 25)
+    });
+}
