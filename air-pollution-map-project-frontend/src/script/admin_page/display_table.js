@@ -120,6 +120,13 @@ let placeholder_hot_table = new Handsontable(new_table, {
 
 // * functions, related to filling the user's choosing form
 let form = document.querySelector(".form-filled-with-variants")
+form.addEventListener('click',()=>{
+    setTimeout(()=>{
+        form.style.display = 'none'
+        close_sign.style.display = 'none'
+        form.innerHTML = ""
+    }, 400)
+})
 
 // click button action function
 function clickButtonAction() {

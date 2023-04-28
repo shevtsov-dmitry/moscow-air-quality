@@ -14,4 +14,27 @@
   opacity: 1;
 }
 
+.list-of-dates-div {
+  font-family: monospace;
+  position: fixed;
+  z-index: 999;
+  background-color: white;
+  font-size: 2em;
+  color: black;
+}
+.list-of-dates-div li {
+  list-style: none;
+}
+.list-of-dates-div:hover {
+  cursor: pointer;
+}
+
+.radius-blur-form {
+  position: fixed;
+  z-index: 1000;
+  left: 300px;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
 /*# sourceMappingURL=index_style.css.map */
