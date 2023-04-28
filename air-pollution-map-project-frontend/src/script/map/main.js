@@ -1,8 +1,10 @@
-import * as olProj from 'ol/proj';
 import '../../css/map/style.css';
-import {Map, View} from 'ol';
-import TileLayer from 'ol/layer/Tile';
-import OSM from 'ol/source/OSM';
+import {Feature, Map, View} from 'ol';
+import {fromLonLat, useGeographic} from "ol/proj";
+import {Point} from "ol/geom";
+import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
+import Stamen from 'ol/source/Stamen.js';
+import VectorSource from 'ol/source/Vector.js';
 
 // *** fetch interactions
 const div_list_of_dates = document.querySelector(".list-of-dates-div")
@@ -82,7 +84,7 @@ function retrieveDataByChosenDate(date_to_send){
         .then(response => response.json())
         .then( data => {
             // -----------------------
-            // console.log(data[3].global_id)
+
             // -----------------------
         })
         .catch(error => {
@@ -146,25 +148,48 @@ function filterMonths(list, input){
     return [...new Set(dates)] // return the Set to delete all duplicates
 }
 
-
-
 // *** geo data display
-olProj.useGeographic()
+// olProj.useGeographic()
+useGeographic()
 
-// basic center map point (right on the Moscow)
-const MoscowLat = 55.755829;
-const MoscowLon = 37.617627;
+const moscowLon = 37.6173,
+      moscowLat = 55.7558
+
+const blur = document.getElementById('blur');
+const radius = document.getElementById('radius');
+
+const vector = new HeatmapLayer({
+    source: new VectorSource({
+        features: [
+            new Feature(new Point(fromLonLat([moscowLon, moscowLat])))
+        ]
+    }),
+    blur: parseInt(blur.value, 10),
+    radius: parseInt(radius.value, 10),
+});
+
+const raster = new TileLayer({
+    source: new Stamen({
+        layer: 'toner',
+    }),
+});
+
 // map initialization
 const map = new Map({
   target: 'map',
   layers: [
-    new TileLayer({
-      source: new OSM()
-    })
+      raster, vector
   ],
   view: new View({
-    center: [MoscowLat,MoscowLon],
-    zoom: 6
+    center: [moscowLon,moscowLat],
+    zoom: 8
   })
 });
 
+blur.addEventListener('input', function () {
+    vector.setBlur(parseInt(blur.value, 10));
+});
+
+radius.addEventListener('input', function () {
+    vector.setRadius(parseInt(radius.value, 10));
+});

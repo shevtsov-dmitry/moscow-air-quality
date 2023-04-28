@@ -29,4 +29,12 @@
   cursor: pointer;
 }
 
+.radius-blur-form {
+  position: fixed;
+  z-index: 1000;
+  left: 300px;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
 /*# sourceMappingURL=index_style.css.map */
