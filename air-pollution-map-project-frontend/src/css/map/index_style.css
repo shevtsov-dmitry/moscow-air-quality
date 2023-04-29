@@ -8,7 +8,7 @@
 .authorization-icon img {
   width: 60px;
   height: 60px;
-  opacity: 0.3;
+  opacity: 70%;
 }
 .authorization-icon:hover img {
   opacity: 1;
@@ -25,8 +25,8 @@
 }
 
 .choose-date-icon-div {
-  opacity: 50%;
-  margin: 0% 0% 0% 3%;
+  opacity: 70%;
+  margin: 0.3% 0% 0% 3%;
   position: fixed;
   z-index: 2;
   width: 70px;
@@ -34,6 +34,7 @@
 }
 .choose-date-icon-div:hover {
   opacity: 1;
+  cursor: pointer;
 }
 .choose-date-icon-div:hover::before {
   content: "select date";
@@ -46,37 +47,51 @@
   padding: 5px;
 }
 .choose-date-icon-div img {
+  margin: 0;
+  padding: 0;
   width: inherit;
   height: inherit;
 }
 
 .list-of-dates-div {
-  font-family: monospace;
+  top: 10%;
+  left: 3.8%;
+  font-family: Helvetica, sans-serif;
   position: fixed;
   z-index: 999;
-  background-color: white;
-  font-size: 2em;
+  background-color: rgba(246, 248, 250, 0.93);
+  font-size: 1.5em;
   color: black;
-  display: flex;
   display: none;
 }
 .list-of-dates-div ul {
-  border: 2px solid hotpink;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+.list-of-dates-div li {
+  margin: 0;
+  padding: 10px;
+  list-style: none;
+}
+.list-of-dates-div li:hover {
+  cursor: pointer;
+  color: #0077cc;
+}
+.list-of-dates-div .choose-year {
   font-size: 1em;
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
+  border-radius: 7px 0px 0px 7px;
 }
-.list-of-dates-div li {
+.list-of-dates-div .choose-month {
   margin: 0;
   padding: 0;
-  list-style: none;
+  border-radius: 0px 7px 7px 0px;
 }
-.list-of-dates-div li:hover {
-  cursor: pointer;
-  color: red;
+.list-of-dates-div .choose-month li {
+  margin-left: 10px;
 }
 
 .radius-blur-form {

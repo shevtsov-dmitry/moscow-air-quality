@@ -11,20 +11,7 @@ import VectorSource from 'ol/source/Vector.js';
 useGeographic()
 
 const moscowLon = 37.6173,
-    moscowLat = 55.7558
-
-const blur = document.getElementById('blur');
-const radius = document.getElementById('radius');
-
-const vector = new HeatmapLayer({
-    source: new VectorSource({
-        features: [
-            new Feature(new Point(fromLonLat([moscowLon, moscowLat])))
-        ]
-    }),
-    blur: parseInt(blur.value, 10),
-    radius: parseInt(radius.value, 10),
-});
+      moscowLat = 55.7558
 
 const raster = new TileLayer({
     source: new Stamen({
@@ -35,15 +22,16 @@ const raster = new TileLayer({
 // map initialization
 const map = new Map({
     target: 'map',
-    layers: [raster, vector],
+    layers: [raster],
     view: new View({
         center: [moscowLon,moscowLat],
         zoom: 8
     })
 });
 
-
-
+// elements to show div of dates
+const btn_show_chooser_div = document.querySelector(".btn-img-to-show-date-choose")
+const list_of_dates = document.querySelector('.list-of-dates-div')
 
 // *** fetch interactions ----------------------------------------------------------------
 const div_list_of_dates = document.querySelector(".list-of-dates-div")
@@ -56,6 +44,10 @@ function retrieveDates(urlDates) {
   fetch(urlDates)
       .then(response => response.json())
       .then(async (dates) => {
+          // show date chooser div on icon click
+          btn_show_chooser_div.addEventListener('click', ()=>{
+              list_of_dates.style.display = 'flex'
+          })
           // addYears(dates)
           // let year_input = await defineInput(year_chooser)
           // console.log(await year_input)
@@ -94,6 +86,9 @@ function main(dates){
             let month_chooser_children = month_chooser.children
             for (const monthChooserChild of month_chooser_children) {
                 monthChooserChild.addEventListener("click", ()=>{
+                    // hide dates on month choose
+                    list_of_dates.style.display = 'none'
+
                     let month_input = monthChooserChild.innerHTML
                     // got constructed_date
                     constructed_date = `${month_input}.${year_input}`
@@ -145,8 +140,10 @@ function retrieveDataByChosenDate(date_to_send){
             for (const obj of uniqueList) {
                 const newLayer = createLayer(obj)
                 map.addLayer(newLayer)
-            
-            // console.log(map.getLayers())
+                // TODO need to add event listener on click to show station info 
+                // newLayer.addEventListener('click',()=>{
+                //     console.log("!!!!")
+                // })
             }
 
         })
@@ -218,6 +215,8 @@ function createLayer(data){
         }),
 
         blur: 30 - Math.floor(Math.random() * 10),
-        radius:  27 - Math.floor(Math.random() * 25)
+        radius:  27 - Math.floor(Math.random() * 25),
+        
     });
 }
+
