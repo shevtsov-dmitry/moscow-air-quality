@@ -6,6 +6,8 @@ import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
 
+
+
 // *** geo data display
 // olProj.useGeographic()
 useGeographic()
@@ -29,15 +31,24 @@ const map = new Map({
     })
 });
 
+
+// *** fetch interactions ----------------------------------------------------------------
+// * check if there is any data in table
+const text_not_uploaded = document.querySelector('.text-is-not-uploaded')
+const urlIsTableEmpty = "http://localhost:8080/isTableEmpty"
+fetch(urlIsTableEmpty)
+    .then(response => response.json())
+    .then(answer => {
+        if(answer === true){
+            text_not_uploaded.style.display = 'flex'
+        }
+    })
+    .catch(e => {console.log(e)})
 // elements to show div of dates
 const btn_show_chooser_div = document.querySelector(".btn-img-to-show-date-choose")
 const list_of_dates = document.querySelector('.list-of-dates-div')
-
-// *** fetch interactions ----------------------------------------------------------------
-const div_list_of_dates = document.querySelector(".list-of-dates-div")
 const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
-
 
 const urlDates = "http://localhost:8080/getDates"
 function retrieveDates(urlDates) {
