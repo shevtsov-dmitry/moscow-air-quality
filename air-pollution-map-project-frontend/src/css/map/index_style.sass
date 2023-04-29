@@ -3,6 +3,7 @@ $authorization-icon-img-width: 60px
 $authorization-icon-img-height: 60px
 $authorization-icon-img-opacity: 0.3
 
+// RIGHT ICON
 .authorization-icon
     position: fixed
     top: 0
@@ -14,11 +15,44 @@ $authorization-icon-img-opacity: 0.3
         width: $authorization-icon-img-width
         height: $authorization-icon-img-height
         opacity: $authorization-icon-img-opacity
-
     &:hover
         img
             opacity: 1
+    &:hover::before
+        font-family: Arial, serif
+        content: "Admin Page"
+        position: absolute
+        top: 100%
+        left: 0
+        background-color: #000
+        color: #fff
+        padding: 5px
 
+// LEFT ICON
+.choose-date-icon-div
+    opacity: 50%
+    margin: 0% 0% 0% 3%
+    position: fixed
+    z-index: 2
+    width: $authorization-icon-img-width + 10
+    height: $authorization-icon-img-height + 10
+    &:hover
+        opacity: 1
+
+    &:hover::before
+        content: "select date"
+        font-family: Arial, serif
+        position: absolute
+        top: 100%
+        left: 0
+        background-color: #000
+        color: #fff
+        padding: 5px
+
+    img
+        width: inherit
+        height: inherit
+// LIST OF DATES
 .list-of-dates-div
     font-family: monospace
     position: fixed
@@ -26,10 +60,26 @@ $authorization-icon-img-opacity: 0.3
     background-color: white
     font-size: 2em
     color: black
-    li
+    display: flex
+    display: none
+
+    ul
+        border: 2px solid hotpink
+        font-size: 1em
         list-style: none
-    &:hover
-        cursor: pointer
+        padding: 0
+        margin: 0
+        display: flex
+        flex-direction: column
+
+    li
+        margin: 0
+        padding: 0
+        list-style: none
+        &:hover
+            cursor: pointer
+            color: red
+
 
 .radius-blur-form
     position: fixed
@@ -37,3 +87,4 @@ $authorization-icon-img-opacity: 0.3
     left: 300px
     font-family: monospace
     font-size: 1.5em
+
