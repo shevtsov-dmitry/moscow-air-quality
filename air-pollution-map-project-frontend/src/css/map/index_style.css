@@ -22,14 +22,18 @@
   margin: 1%;
 }
 .authorization-icon img {
+  width: 70px;
+}
+
+cd img {
   width: 60px;
   height: 60px;
   opacity: 70%;
 }
-.authorization-icon:hover img {
+cd:hover img {
   opacity: 1;
 }
-.authorization-icon:hover::before {
+cd:hover::before {
   font-family: Arial, serif;
   content: "Admin Page";
   position: absolute;

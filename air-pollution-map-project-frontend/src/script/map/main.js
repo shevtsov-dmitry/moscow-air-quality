@@ -5,6 +5,7 @@ import {Point} from "ol/geom";
 import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
+import {Select} from "ol/interaction";
 
 
 
@@ -148,14 +149,25 @@ function retrieveDataByChosenDate(date_to_send){
             console.log(uniqueList)
             console.log(additionalLists)
             // -----------------------
+            let select_vectors_list = []
+
             for (const obj of uniqueList) {
                 const newLayer = createLayer(obj)
+                // TODO need to add event listener on click to show station info
                 map.addLayer(newLayer)
-                // TODO need to add event listener on click to show station info 
-                // newLayer.addEventListener('click',()=>{
-                //     console.log("!!!!")
-                // })
+                select_vectors_list.push(newLayer)
             }
+            let select = new Select({
+                layers: select_vectors_list
+            })
+            select.on('select', selected_point =>{
+                // ON CLICK FUNCTION
+                // console.log(selected_point)
+                console.log()
+            })
+            console.log(select.getLayer())
+
+            map.addInteraction(select)
 
         })
         .catch(error => {
