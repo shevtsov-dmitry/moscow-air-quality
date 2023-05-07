@@ -9,12 +9,20 @@
   </head>
   <body>
 
+  <!--  caution if data is not uploaded-->
+  <div class="text-is-not-uploaded">
+      <h1>Данные не загружены</h1>
+  </div>
+
 <!--    authorization icon-->
     <div class="authorization-icon">
       <a href="html/authorization.html"><img src="static/authorization_icon.png" alt="log in"></a>
     </div>
 
 <!--    choose date-->
+    <div class="choose-date-icon-div">
+      <img src="static/calendar.png" class="btn-img-to-show-date-choose" alt="" srcset="">
+    </div>
     <div class="list-of-dates-div">
       <ul class="choose-year">
       </ul>
@@ -22,17 +30,14 @@
       </ul>
     </div>
 
+<!--  block show info on select-->
+  <div class="select-container">
+    <ul class="select-ul">
+    
+    </ul>
+  </div>
 <!--    map-->
     <div id="map"></div>
-
-<!--    change radius || blur form-->
-
-    <form class="radius-blur-form">
-      <label for="radius">radius size</label>
-      <input id="radius" type="range" min="1" max="50" step="1" value="5"/>
-      <label for="blur">blur size</label>
-      <input id="blur" type="range" min="1" max="50" step="1" value="15"/>
-    </form>
 
     <script type="module" src="script/map/main.js"></script>
   </body>

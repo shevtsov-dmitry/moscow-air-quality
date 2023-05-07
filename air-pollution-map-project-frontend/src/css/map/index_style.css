@@ -1,3 +1,19 @@
+.text-is-not-uploaded {
+  display: none;
+  z-index: 2;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: white;
+  position: fixed;
+  margin-top: 0.5%;
+  border-radius: 5px;
+}
+.text-is-not-uploaded h1 {
+  font-size: 2.5em;
+  padding: 0px 20px;
+  font-family: Cambria, "Times New Roman", serif;
+}
+
 .authorization-icon {
   position: fixed;
   top: 0;
@@ -6,27 +22,96 @@
   margin: 1%;
 }
 .authorization-icon img {
+  width: 70px;
+}
+
+cd img {
   width: 60px;
   height: 60px;
-  opacity: 0.3;
+  opacity: 70%;
 }
-.authorization-icon:hover img {
+cd:hover img {
   opacity: 1;
+}
+cd:hover::before {
+  font-family: Arial, serif;
+  content: "Admin Page";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+}
+
+.choose-date-icon-div {
+  opacity: 70%;
+  margin: 0.3% 0% 0% 3%;
+  position: fixed;
+  z-index: 2;
+  width: 70px;
+  height: 70px;
+}
+.choose-date-icon-div:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.choose-date-icon-div:hover::before {
+  content: "select date";
+  font-family: Arial, serif;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #000;
+  color: #fff;
+  padding: 5px;
+}
+.choose-date-icon-div img {
+  margin: 0;
+  padding: 0;
+  width: inherit;
+  height: inherit;
 }
 
 .list-of-dates-div {
-  font-family: monospace;
+  top: 10%;
+  left: 3.8%;
+  font-family: Helvetica, sans-serif;
   position: fixed;
   z-index: 999;
-  background-color: white;
-  font-size: 2em;
+  background-color: rgba(246, 248, 250, 0.93);
+  font-size: 1.5em;
   color: black;
+  display: none;
+}
+.list-of-dates-div ul {
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 .list-of-dates-div li {
+  margin: 0;
+  padding: 10px;
   list-style: none;
 }
-.list-of-dates-div:hover {
+.list-of-dates-div li:hover {
   cursor: pointer;
+  color: #0077cc;
+}
+.list-of-dates-div .choose-year {
+  font-size: 1em;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 7px 0px 0px 7px;
+}
+.list-of-dates-div .choose-month {
+  margin: 0;
+  padding: 0;
+  border-radius: 0px 7px 7px 0px;
+}
+.list-of-dates-div .choose-month li {
+  margin-left: 10px;
 }
 
 .radius-blur-form {
@@ -35,6 +120,17 @@
   left: 300px;
   font-family: monospace;
   font-size: 1.5em;
+}
+
+.select-container {
+  display: none;
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background-color: aquamarine;
+  z-index: 5;
+  left: 50%;
+  transform: translate(-50%);
 }
 
 /*# sourceMappingURL=index_style.css.map */

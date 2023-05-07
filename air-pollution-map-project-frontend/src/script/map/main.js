@@ -5,26 +5,16 @@ import {Point} from "ol/geom";
 import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
+import {Select} from "ol/interaction";
+
+
 
 // *** geo data display
 // olProj.useGeographic()
 useGeographic()
 
 const moscowLon = 37.6173,
-    moscowLat = 55.7558
-
-const blur = document.getElementById('blur');
-const radius = document.getElementById('radius');
-
-const vector = new HeatmapLayer({
-    source: new VectorSource({
-        features: [
-            new Feature(new Point(fromLonLat([moscowLon, moscowLat])))
-        ]
-    }),
-    blur: parseInt(blur.value, 10),
-    radius: parseInt(radius.value, 10),
-});
+      moscowLat = 55.7558
 
 const raster = new TileLayer({
     source: new Stamen({
@@ -35,7 +25,7 @@ const raster = new TileLayer({
 // map initialization
 const map = new Map({
     target: 'map',
-    layers: [raster, vector],
+    layers: [raster],
     view: new View({
         center: [moscowLon,moscowLat],
         zoom: 8
@@ -43,19 +33,33 @@ const map = new Map({
 });
 
 
-
-
 // *** fetch interactions ----------------------------------------------------------------
-const div_list_of_dates = document.querySelector(".list-of-dates-div")
+// * check if there is any data in table
+const text_not_uploaded = document.querySelector('.text-is-not-uploaded')
+const urlIsTableEmpty = "http://localhost:8080/isTableEmpty"
+fetch(urlIsTableEmpty)
+    .then(response => response.json())
+    .then(answer => {
+        if(answer === true){
+            text_not_uploaded.style.display = 'flex'
+        }
+    })
+    .catch(e => {console.log(e)})
+// elements to show div of dates
+const btn_show_chooser_div = document.querySelector(".btn-img-to-show-date-choose")
+const list_of_dates = document.querySelector('.list-of-dates-div')
 const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
-
 
 const urlDates = "http://localhost:8080/getDates"
 function retrieveDates(urlDates) {
   fetch(urlDates)
       .then(response => response.json())
       .then(async (dates) => {
+          // show date chooser div on icon click
+          btn_show_chooser_div.addEventListener('click', ()=>{
+              list_of_dates.style.display = 'flex'
+          })
           // addYears(dates)
           // let year_input = await defineInput(year_chooser)
           // console.log(await year_input)
@@ -94,6 +98,9 @@ function main(dates){
             let month_chooser_children = month_chooser.children
             for (const monthChooserChild of month_chooser_children) {
                 monthChooserChild.addEventListener("click", ()=>{
+                    // hide dates on month choose
+                    list_of_dates.style.display = 'none'
+
                     let month_input = monthChooserChild.innerHTML
                     // got constructed_date
                     constructed_date = `${month_input}.${year_input}`
@@ -109,6 +116,10 @@ function main(dates){
         })
     }
 }
+// select block DOM elements
+const select_container = document.querySelector(".select-container")
+const select_ul = document.querySelector(".select-ul")
+
 //
 const urlData = "http://localhost:8080/getDataByDate"
 function retrieveDataByChosenDate(date_to_send){
@@ -142,22 +153,30 @@ function retrieveDataByChosenDate(date_to_send){
             console.log(uniqueList)
             console.log(additionalLists)
             // -----------------------
+            let select_vectors_list = []
+
             for (const obj of uniqueList) {
                 const newLayer = createLayer(obj)
+                // TODO need to add event listener on click to show station info
                 map.addLayer(newLayer)
-            
-            //     // blur.addEventListener('input', function () {
-            //     //     newLayer.setBlur(parseInt(blur.value, 10));
-            //     // });
-            //     //
-            //     // radius.addEventListener('input', function () {
-            //     //     newLayer.setRadius(parseInt(radius.value, 10));
-            //     // });
-            //
-            // }
-            // 
-            // console.log(map.getLayers())
+                select_vectors_list.push(newLayer)
             }
+            let select = new Select({
+                layers: select_vectors_list
+            })
+            select.on('select', () =>{
+                select_ul.innerHTML = ""
+                // ON CLICK FUNCTION
+                select_container.style.display = "block"
+                let index = Math.floor(Math.random() * uniqueList.length)
+                for (const value in uniqueList[index]) {
+                select_ul.innerHTML += `<li>${value}: ${uniqueList[index][value]}</li>`
+
+                }
+            })
+
+            map.addInteraction(select)
+
 
         })
         .catch(error => {
@@ -228,6 +247,8 @@ function createLayer(data){
         }),
 
         blur: 30 - Math.floor(Math.random() * 10),
-        radius:  27 - Math.floor(Math.random() * 25)
+        radius:  27 - Math.floor(Math.random() * 25),
+        minResolution: 5
     });
 }
+
