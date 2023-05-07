@@ -116,6 +116,10 @@ function main(dates){
         })
     }
 }
+// select block DOM elements
+const select_container = document.querySelector(".select-container")
+const select_ul = document.querySelector(".select-ul")
+
 //
 const urlData = "http://localhost:8080/getDataByDate"
 function retrieveDataByChosenDate(date_to_send){
@@ -160,14 +164,19 @@ function retrieveDataByChosenDate(date_to_send){
             let select = new Select({
                 layers: select_vectors_list
             })
-            select.on('select', selected_point =>{
+            select.on('select', () =>{
+                select_ul.innerHTML = ""
                 // ON CLICK FUNCTION
-                // console.log(selected_point)
-                console.log()
+                select_container.style.display = "block"
+                let index = Math.floor(Math.random() * uniqueList.length)
+                for (const value in uniqueList[index]) {
+                select_ul.innerHTML += `<li>${value}: ${uniqueList[index][value]}</li>`
+
+                }
             })
-            console.log(select.getLayer())
 
             map.addInteraction(select)
+
 
         })
         .catch(error => {
@@ -239,7 +248,7 @@ function createLayer(data){
 
         blur: 30 - Math.floor(Math.random() * 10),
         radius:  27 - Math.floor(Math.random() * 25),
-        
+        minResolution: 5
     });
 }
 
