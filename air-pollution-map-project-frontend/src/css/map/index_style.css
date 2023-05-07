@@ -22,18 +22,14 @@
   margin: 1%;
 }
 .authorization-icon img {
-  width: 70px;
-}
-
-cd img {
   width: 60px;
   height: 60px;
-  opacity: 70%;
+  opacity: 75%;
 }
-cd:hover img {
+.authorization-icon:hover img {
   opacity: 1;
 }
-cd:hover::before {
+.authorization-icon:hover::before {
   font-family: Arial, serif;
   content: "Admin Page";
   position: absolute;
@@ -45,7 +41,7 @@ cd:hover::before {
 }
 
 .choose-date-icon-div {
-  opacity: 70%;
+  opacity: 75%;
   margin: 0.3% 0% 0% 3%;
   position: fixed;
   z-index: 2;
