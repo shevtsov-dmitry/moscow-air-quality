@@ -28,7 +28,7 @@ const map = new Map({
     layers: [raster],
     view: new View({
         center: [moscowLon,moscowLat],
-        zoom: 8
+        zoom: 10
     })
 });
 
@@ -182,25 +182,25 @@ function retrieveDataByChosenDate(date_to_send){
                 let index = Math.floor(Math.random() * uniqueList.length)
                 for (let value in uniqueList[index]) {
                     let word_to_translate = value
-                    let air_pollution_index = uniqueList[index][value]
+                    let element_value = uniqueList[index][value]
                     // rusification of values from database
                     word_to_translate = rusificate(value)
 
                     if(value == "monthly_average") {
-                        air_pollution_index = (parseFloat(air_pollution_index) +
+                        element_value = (parseFloat(element_value) +
                             parseFloat(uniqueList[index].monthly_average_pdkss))
-                        color_block.style.backgroundColor = visualizeAwarenessByNumber(air_pollution_index)
-                        image_block.style.backgroundImage = `url(${showFaceByAwarenessNumber(air_pollution_index)})`
+                        color_block.style.backgroundColor = visualizeAwarenessByNumber(element_value)
+                        image_block.style.backgroundImage = `url(${showFaceByAwarenessNumber(element_value)})`
+                        element_value = element_value.toFixed(2)
                     }
                     if(value == "monthly_average_pdkss") break
 
-                    select_ul.innerHTML += `<li>${word_to_translate}: ${air_pollution_index}</li>`
+                    select_ul.innerHTML += `<li>${word_to_translate}: ${element_value}</li>`
 
                 }
             })
 
             map.addInteraction(select)
-
 
         })
         .catch(error => {
@@ -320,5 +320,16 @@ function showFaceByAwarenessNumber(num){
     else if (num > 0.322 && num <= 0.488) return face_neutral
     else if (num > 0.488 && num <= 0.654) return face_bad
     else if (num > 0.654 && num <= 0.82) return face_angry
-    else if (num > 0.82 && num <= 1) return face_demon
+    else if (num > 0.82) return face_demon
 }
+
+const body = document.querySelector('body');
+
+// add a click event listener to the body
+body.addEventListener('click', (event) => {
+    // check if the clicked element is inside the form
+    if (!select_container.contains(event.target)) {
+        // if the clicked element is not inside the form, hide the form
+        select_container.style.display = 'none';
+    }
+});
