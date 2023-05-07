@@ -127,7 +127,7 @@ cd:hover::before {
   position: fixed;
   width: 500px;
   height: 500px;
-  background-color: aquamarine;
+  background-color: gainsboro;
   z-index: 5;
   left: 50%;
   transform: translate(-50%);
@@ -144,6 +144,23 @@ cd:hover::before {
   cursor: pointer;
   transform: rotate(-15deg);
   transition: transform 0.25s ease-out;
+}
+
+.color-block {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-block {
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /*# sourceMappingURL=index_style.css.map */

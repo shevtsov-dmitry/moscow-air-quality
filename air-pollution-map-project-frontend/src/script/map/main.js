@@ -36,6 +36,8 @@ const map = new Map({
 const select_container = document.querySelector(".select-container")
 const select_ul = document.querySelector(".select-ul")
 const select_close_sign = document.querySelector('.select-close-sign')
+const color_block = document.querySelector('.color-block')
+const image_block = document.querySelector('.image-block')
 
 select_close_sign.addEventListener('click',()=>{
     select_container.style.display = 'none'
@@ -170,13 +172,29 @@ function retrieveDataByChosenDate(date_to_send){
                 layers: select_vectors_list
             })
             select.on('select', () =>{
-                select_close_sign.style.display = 'block'
+                // clear content
+                image_block.style.backgroundImage = "url()"
                 select_ul.innerHTML = ""
-                // ON CLICK FUNCTION
+                // display content
+                select_close_sign.style.display = 'block'
                 select_container.style.display = "block"
+                // ON CLICK FUNCTION
                 let index = Math.floor(Math.random() * uniqueList.length)
-                for (const value in uniqueList[index]) {
-                select_ul.innerHTML += `<li>${value}: ${uniqueList[index][value]}</li>`
+                for (let value in uniqueList[index]) {
+                    let word_to_translate = value
+                    let air_pollution_index = uniqueList[index][value]
+                    // rusification of values from database
+                    word_to_translate = rusificate(value)
+
+                    if(value == "monthly_average") {
+                        air_pollution_index = (parseFloat(air_pollution_index) +
+                            parseFloat(uniqueList[index].monthly_average_pdkss))
+                        color_block.style.backgroundColor = visualizeAwarenessByNumber(air_pollution_index)
+                        image_block.style.backgroundImage = `url(${showFaceByAwarenessNumber(air_pollution_index)})`
+                    }
+                    if(value == "monthly_average_pdkss") break
+
+                    select_ul.innerHTML += `<li>${word_to_translate}: ${air_pollution_index}</li>`
 
                 }
             })
@@ -258,3 +276,49 @@ function createLayer(data){
     });
 }
 
+// rusificate word
+function rusificate(word){
+    switch (word) {
+        case 'id': word = 'ID'; break;
+        case 'date': word = 'Дата'; break;
+        case 'station_name': word = 'Название станции'; break;
+        case 'global_id': word = 'Общее ID'; break;
+        case 'latitude': word = 'Широта'; break;
+        case 'Surveillance_zone_characteristics': word = 'Характеристика зоны наблюдения'; break;
+        case 'longitude': word = 'Долгота'; break;
+        case 'adm_area': word = 'Административная зона'; break;
+        case 'district': word = 'Район'; break;
+        case 'location': word = 'Местоположение'; break;
+        case 'parameter': word = 'Параметр'; break;
+        case 'monthly_average': word = 'Среднемесячная норма качества воздуха'; break;
+        case 'monthly_average_pdkss': word = ''; break;
+    }
+    return word
+}
+
+function visualizeAwarenessByNumber(value){
+    //value from 0 to 1
+    let hue=((1-value)*120).toString(10);
+    return ["hsl(",hue,",100%,50%)"].join("");
+}
+
+
+
+// display chosen image by value of awareness
+function showFaceByAwarenessNumber(num){
+
+    // paths of faces' images
+    const face_happy = "../../static/happy.png"
+    const face_normal = "../../static/normal.png"
+    const face_neutral = "../../static/neutral.png"
+    const face_bad = "../../static/bad.png"
+    const face_angry = "../../static/angry.png"
+    const face_demon = "../../static/demon.png"
+
+         if (num >= 0 && num <= 0.166) return face_happy
+    else if (num > 0.166 && num <= 0.332) return face_normal
+    else if (num > 0.322 && num <= 0.488) return face_neutral
+    else if (num > 0.488 && num <= 0.654) return face_bad
+    else if (num > 0.654 && num <= 0.82) return face_angry
+    else if (num > 0.82 && num <= 1) return face_demon
+}
