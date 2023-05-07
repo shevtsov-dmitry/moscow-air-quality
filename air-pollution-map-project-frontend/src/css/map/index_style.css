@@ -31,13 +31,15 @@
 }
 .authorization-icon:hover::before {
   font-family: Arial, serif;
-  content: "Admin Page";
+  content: "admin page";
   position: absolute;
   top: 100%;
   left: 0;
   background-color: #000;
   color: #fff;
   padding: 5px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .choose-date-icon-div {
@@ -61,6 +63,8 @@
   background-color: #000;
   color: #fff;
   padding: 5px;
+  border-radius: 5px;
+  text-align: center;
 }
 .choose-date-icon-div img {
   margin: 0;
