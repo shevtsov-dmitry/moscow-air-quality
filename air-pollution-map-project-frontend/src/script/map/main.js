@@ -32,6 +32,15 @@ const map = new Map({
     })
 });
 
+// select block DOM elements
+const select_container = document.querySelector(".select-container")
+const select_ul = document.querySelector(".select-ul")
+const select_close_sign = document.querySelector('.select-close-sign')
+
+select_close_sign.addEventListener('click',()=>{
+    select_container.style.display = 'none'
+    select_close_sign.style.display = 'none'
+})
 
 // *** fetch interactions ----------------------------------------------------------------
 // * check if there is any data in table
@@ -116,10 +125,6 @@ function main(dates){
         })
     }
 }
-// select block DOM elements
-const select_container = document.querySelector(".select-container")
-const select_ul = document.querySelector(".select-ul")
-
 //
 const urlData = "http://localhost:8080/getDataByDate"
 function retrieveDataByChosenDate(date_to_send){
@@ -165,6 +170,7 @@ function retrieveDataByChosenDate(date_to_send){
                 layers: select_vectors_list
             })
             select.on('select', () =>{
+                select_close_sign.style.display = 'block'
                 select_ul.innerHTML = ""
                 // ON CLICK FUNCTION
                 select_container.style.display = "block"
