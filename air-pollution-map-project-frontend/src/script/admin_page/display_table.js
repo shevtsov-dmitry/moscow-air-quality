@@ -232,7 +232,7 @@ let caution = document.querySelector('.caution')
 
                     // input form field cleanup
                     form_input.value = ""
-                    form_input.setAttribute("placeholder", "Введите ID")
+                    form_input.setAttribute("placeholder", "Данные найдены")
 
                     // set true value to break the first loop
                     isThereValue = true
@@ -242,8 +242,8 @@ let caution = document.querySelector('.caution')
                 iterator++
             }
 
-            // if didn't find anything
-            if (iterator == IDs.length) {
+            // if didn't find anything check if there is something in first cell
+            if (hot.getDataAtCell(iterator,0) === null) {
                 form_input.value = ""
                 form_input.setAttribute("placeholder", "Совпадений не найдено")
             }
