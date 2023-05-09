@@ -168,6 +168,8 @@ body {
   z-index: 1000;
   font-size: 1.5em;
   font-family: monospace;
+  transform: rotate(0deg);
+  transition: transform 0.25s ease-out;
 }
 .close-sign:hover {
   cursor: pointer;
@@ -200,4 +202,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}/*# sourceMappingURL=admin_page.css.map */
+}
+
+/*# sourceMappingURL=admin_page.css.map */
