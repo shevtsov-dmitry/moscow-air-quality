@@ -78,9 +78,9 @@ const loading_gif = document.querySelector('.loading-gif')
 // * show gif when upload file and hide the panel where user inputted value
 submit_btn.addEventListener('click', ()=>{
     loading_gif.style.display = 'initial'
-    setTimeout(()=>{
-        form_filled_with_variants.innerHTML = ''
-    },400)
+    // setTimeout(()=>{
+    //     form_filled_with_variants.innerHTML = ''
+    // },400)
 })
 
 // * close sign actions
@@ -101,4 +101,3 @@ close_sign.addEventListener('click',()=>{
 //         form_filled_with_variants.innerHTML = ""
 //     },500)
 // })
-

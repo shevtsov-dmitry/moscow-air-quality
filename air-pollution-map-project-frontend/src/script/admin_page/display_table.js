@@ -139,12 +139,14 @@ function clickButtonAction() {
         form.style.display = "none" // !X
     }
     else if (this === btn_ID) {
+        placeholder_hot_table.rootElement.style.display = 'initial'
         form.style.display = "none" // !X
         form.innerHTML = ""
         const btn = document.querySelector('.fn-btn')
         showById(hot, btn)
     }
     else if (this === btn_station_name) {
+        placeholder_hot_table.rootElement.style.display = 'initial'
         form.style.display = "initial" // !X
         let dataCol = showByStationName(hot)
         let children = form.children
@@ -156,6 +158,7 @@ function clickButtonAction() {
         }
     }
     else if (this === btn_parameter) {
+        placeholder_hot_table.rootElement.style.display = 'initial'
         form.style.display = "initial" // !X
         let dataCol = showByParameter(hot)
         let children = form.children
@@ -176,7 +179,7 @@ const parameter_col_name = 'parameter'
 // functions related to these column names to display all its content without duplicates
 // FIXME can't press show all table button next time because of destroy table
 function showAllTable() {
-    placeholder_hot_table.destroy()
+    placeholder_hot_table.rootElement.style.display = 'none'
     hot.rootElement.style.display = 'initial'
 }
 
@@ -337,4 +340,3 @@ window.addEventListener('scroll',()=>{
         show(close_sign)
     }
 })
-
