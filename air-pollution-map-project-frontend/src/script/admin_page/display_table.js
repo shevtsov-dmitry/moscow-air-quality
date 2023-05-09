@@ -177,7 +177,6 @@ const parameter_col_name = 'parameter'
 
 // ** ALL TABLE
 // functions related to these column names to display all its content without duplicates
-// FIXME can't press show all table button next time because of destroy table
 function showAllTable() {
     placeholder_hot_table.rootElement.style.display = 'none'
     hot.rootElement.style.display = 'initial'
@@ -202,7 +201,6 @@ function createNewTable(data){
 let caution = document.querySelector('.caution')
 
 // function will take a user's input and will compare it with available ones
-// FIXME button cannot be pressed again after if isNaN happens
  function showById(hot, btn) {
     btn.addEventListener('click', () => {
         let form_input = document.querySelector('.id-form-text-input')
