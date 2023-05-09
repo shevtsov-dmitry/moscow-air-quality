@@ -6,11 +6,12 @@ import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
 import {Select} from "ol/interaction";
+import {Fill, Stroke, Style} from "ol/style";
+import CircleStyle from "ol/style/Circle";
 
 
 
 // *** geo data display
-// olProj.useGeographic()
 useGeographic()
 
 const moscowLon = 37.6173,
@@ -31,6 +32,50 @@ const map = new Map({
         zoom: 10
     })
 });
+
+function createLayer(data){
+    const longitude = data.longitude
+    const latitude = data.latitude
+
+    return new HeatmapLayer({
+        source: new VectorSource({
+            features: [
+                new Feature(new Point(fromLonLat([longitude, latitude])))
+            ]
+        }),
+
+        blur: 30 - Math.floor(Math.random() * 10),
+        radius:  27 - Math.floor(Math.random() * 25),
+    // TODO HIDE CIRCLES WHEN ZOOM OUT AND PLACE ONLY ONE ON TOP OF THEM
+        // style: function(feature) {
+        //     const resolution = this.getMap().getView().getResolution();
+        //     const size = getSizeForResolution(resolution) + 27 - Math.floor(Math.random() * 25);
+        //     return new Style({
+        //         image: new CircleStyle({
+        //             radius: size,
+        //             fill: new Fill({
+        //                 color: 'rgba(255, 0, 0, 0.5)'
+        //             }),
+        //             stroke: new Stroke({
+        //                 color: 'red',
+        //                 width: 2
+        //             })
+        //         })
+        //     });
+        // }
+
+    });
+}
+
+function getSizeForResolution(resolution) {
+    // define a function that maps resolution to size
+    // for example, you can use a linear scale
+    const maxResolution = 5000; // adjust as needed
+    const minSize = 10; // adjust as needed
+    const maxSize = 100; // adjust as needed
+    const scale = (maxSize - minSize) / maxResolution;
+    return maxSize - resolution * scale;
+}
 
 // select block DOM elements
 const select_container = document.querySelector(".select-container")
@@ -259,22 +304,6 @@ function filterMonths(list, input){
     return [...new Set(dates)] // return the Set to delete all duplicates
 }
 
-function createLayer(data){
-    const longitude = data.longitude
-    const latitude = data.latitude
-
-    return new HeatmapLayer({
-        source: new VectorSource({
-            features: [
-                new Feature(new Point(fromLonLat([longitude, latitude])))
-            ]
-        }),
-
-        blur: 30 - Math.floor(Math.random() * 10),
-        radius:  27 - Math.floor(Math.random() * 25),
-        minResolution: 5
-    });
-}
 
 // rusificate word
 function rusificate(word){
