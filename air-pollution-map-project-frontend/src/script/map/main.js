@@ -247,7 +247,7 @@ function retrieveDataByChosenDate(date_to_send) {
             for (const obj of monthly_averages_by_all_stations) {
                 const newLayer = createLayer(obj)
                 const blur_size = 30 - Math.floor(Math.random() * 13)
-                const radius_size = 5 + obj.monthly_average * 35
+                const radius_size = 13 + obj.monthly_average * 25
                 newLayer.set('blur', blur_size)
                 newLayer.set('radius', radius_size)
                 map.addLayer(newLayer)
