@@ -1,7 +1,17 @@
 // * show buttons which will show table
 const show_selectors_button  = document.querySelector('.show-action-button')
+let count_times_clicked = 0 // needed to disable bug when on first click doesn't appear
 show_selectors_button.addEventListener('click', ()=> {
-    show(selectors)
+    count_times_clicked++;
+    if(count_times_clicked == 1){
+        hide(selectors)
+    }
+    if(selectors.style.display === 'none'){
+        show(selectors)
+    }
+    else{
+        hide(selectors)
+    }
     hide(id_form)
 })
 
