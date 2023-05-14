@@ -18,8 +18,9 @@ public class ResponseSelectMonthlyAverageAirPollution {
         this.jdbcTemplate = jdbcTemplate;
     }
     @GetMapping("/getMonthlyAverage")
-    public List<Map<String,Object>> getDataByDate(){
-        String SQLscript = "SELECT monthly_average,monthly_average_pdkss FROM " + Constants.CSV_TABLE_NAME;
+    public List<Map<String,Object>> getDataByDate(@RequestBody String date){
+        String SQLscript = "SELECT DISTINCT station_name, monthly_average, monthly_average_pdkss " +
+                "FROM " + Constants.CSV_TABLE_NAME +" where date = " + "'%s'".formatted(date);
         return jdbcTemplate.queryForList(SQLscript);
     }
 }
