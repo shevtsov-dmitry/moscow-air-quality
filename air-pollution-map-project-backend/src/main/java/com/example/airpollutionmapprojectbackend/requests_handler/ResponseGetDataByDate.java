@@ -15,7 +15,6 @@ import java.util.Map;
 @CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class ResponseGetDataByDate {
-    private static final Logger logger = LoggerFactory.getLogger(ResponseGetDataByDate.class);
     private final JdbcTemplate jdbcTemplate;
     @Autowired
     public ResponseGetDataByDate(JdbcTemplate jdbcTemplate) {
@@ -30,5 +29,4 @@ public class ResponseGetDataByDate {
         List<Map<String, Object>> rows = jdbcTemplate.queryForList(SQLscript);
         return rows;
     }
-
 }
