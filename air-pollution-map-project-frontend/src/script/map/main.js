@@ -9,7 +9,7 @@ import {Select} from "ol/interaction";
 import {Fill, Stroke, Style} from "ol/style";
 import CircleStyle from "ol/style/Circle";
 
-
+const serverURL = "http://localhost:8080"
 
 // *** geo data display
 useGeographic()
@@ -36,7 +36,6 @@ const map = new Map({
 function createLayer(data){
     const longitude = data.longitude
     const latitude = data.latitude
-
     return new HeatmapLayer({
         source: new VectorSource({
             features: [
@@ -44,29 +43,30 @@ function createLayer(data){
             ]
         }),
 
-        blur: 30 - Math.floor(Math.random() * 10),
-        radius:  27 - Math.floor(Math.random() * 25),
-    // TODO HIDE CIRCLES WHEN ZOOM OUT AND PLACE ONLY ONE ON TOP OF THEM
-        // style: function(feature) {
-        //     const resolution = this.getMap().getView().getResolution();
-        //     const size = getSizeForResolution(resolution) + 27 - Math.floor(Math.random() * 25);
-        //     return new Style({
-        //         image: new CircleStyle({
-        //             radius: size,
-        //             fill: new Fill({
-        //                 color: 'rgba(255, 0, 0, 0.5)'
-        //             }),
-        //             stroke: new Stroke({
-        //                 color: 'red',
-        //                 width: 2
-        //             })
-        //         })
-        //     });
-        // }
-
+        // blur: 30 - Math.floor(Math.random() * 10),
+        // radius:  27 - Math.floor(Math.random() * 25),
     });
 }
-
+function getMonthlyAverageData(){
+    return fetch(`${serverURL}/getMonthlyAverage`)
+}
+// TODO HIDE CIRCLES WHEN ZOOM OUT AND PLACE ONLY ONE ON TOP OF THEM
+// style: function(feature) {
+//     const resolution = this.getMap().getView().getResolution();
+//     const size = getSizeForResolution(resolution) + 27 - Math.floor(Math.random() * 25);
+//     return new Style({
+//         image: new CircleStyle({
+//             radius: size,
+//             fill: new Fill({
+//                 color: 'rgba(255, 0, 0, 0.5)'
+//             }),
+//             stroke: new Stroke({
+//                 color: 'red',
+//                 width: 2
+//             })
+//         })
+//     });
+// }
 function getSizeForResolution(resolution) {
     // define a function that maps resolution to size
     // for example, you can use a linear scale
@@ -202,17 +202,49 @@ function retrieveDataByChosenDate(date_to_send){
                     additionalLists.push(obj)
                 }
             }
-            console.log(uniqueList)
-            console.log(additionalLists)
+            // console.log(uniqueList)
+            // console.log(additionalLists)
+
+            // define monthly average value, which will adjust spread area of air pollution
+            // ! initialization of first value is needed to avoid division by 0
+            // when loop will count average_value
+            let monthly_averages_by_all_stations = []
+            let station_avoid_duplicates = [additionalLists[0].station_name]
+            let all_measures_by_one_station = []
+
+            for (const element of additionalLists) {
+                if(station_avoid_duplicates.includes(element.station_name)){
+                    all_measures_by_one_station.push(element.monthly_average)
+                    all_measures_by_one_station.push(element.monthly_average_pdkss)
+                }
+                else{
+                    let average_value = all_measures_by_one_station
+                        .reduce((acc, cur) => acc + cur, 0) / all_measures_by_one_station.length
+                    if(average_value > 1) average_value =0.34
+                    all_measures_by_one_station.length = 0 // clear array of gathered values
+                    // create new object from retrieved values for further processing
+                    monthly_averages_by_all_stations.push({
+                        station_name: element.station_name,
+                        monthly_average: average_value,
+                        longitude: element.longitude,
+                        latitude: element.latitude
+                    })
+                    station_avoid_duplicates.push(element.station_name)
+                }
+            }
+            // console.log(uniqueList)
+            console.log(monthly_averages_by_all_stations)
             // -----------------------
             let select_vectors_list = []
 
-            for (const obj of uniqueList) {
+            for (const obj of monthly_averages_by_all_stations) {
                 const newLayer = createLayer(obj)
-                // TODO need to add event listener on click to show station info
+                newLayer.set('blur', (30 - Math.floor(Math.random() * 13)))
+                newLayer.set('radius', 5 + obj.monthly_average * 35)
                 map.addLayer(newLayer)
                 select_vectors_list.push(newLayer)
             }
+
             let select = new Select({
                 layers: select_vectors_list
             })
@@ -233,6 +265,7 @@ function retrieveDataByChosenDate(date_to_send){
 
                     if(value == "monthly_average") {
                         element_value = (parseFloat(element_value) +
+                            // FIXME make mutual monthly average
                             parseFloat(uniqueList[index].monthly_average_pdkss))
                         color_block.style.backgroundColor = visualizeAwarenessByNumber(element_value)
                         image_block.style.backgroundImage = `url(${showFaceByAwarenessNumber(element_value)})`

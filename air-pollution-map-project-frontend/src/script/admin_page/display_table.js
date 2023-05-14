@@ -139,30 +139,39 @@ function clickButtonAction() {
         form.style.display = "none" // !X
     }
     else if (this === btn_ID) {
+        placeholder_hot_table.rootElement.style.display = 'initial'
         form.style.display = "none" // !X
         form.innerHTML = ""
         const btn = document.querySelector('.fn-btn')
         showById(hot, btn)
     }
     else if (this === btn_station_name) {
+        placeholder_hot_table.rootElement.style.display = 'initial'
         form.style.display = "initial" // !X
         let dataCol = showByStationName(hot)
         let children = form.children
         for(let child of children){
-            child.addEventListener('click',()=>{
+            child.addEventListener('click',async()=>{
                 let data = fillTableByChosenValue(child.innerHTML, dataCol)
-                createNewTable(data)
+                const newTable = createNewTable(data)
+                newTable.updateSettings({
+                    colHeaders: await getColHeaders()
+                })
             })
         }
     }
     else if (this === btn_parameter) {
+        placeholder_hot_table.rootElement.style.display = 'initial'
         form.style.display = "initial" // !X
         let dataCol = showByParameter(hot)
         let children = form.children
         for (const child of children) {
-            child.addEventListener('click', ()=> {
+            child.addEventListener('click', async ()=> {
                 let data = fillTableByChosenParameter(child.innerHTML, dataCol)
-                createNewTable(data)
+                const newTable = createNewTable(data)
+                newTable.updateSettings({
+                    colHeaders: await getColHeaders()
+                })
             })
         }
     }
@@ -174,9 +183,8 @@ const parameter_col_name = 'parameter'
 
 // ** ALL TABLE
 // functions related to these column names to display all its content without duplicates
-// FIXME can't press show all table button next time because of destroy table
 function showAllTable() {
-    placeholder_hot_table.destroy()
+    placeholder_hot_table.rootElement.style.display = 'none'
     hot.rootElement.style.display = 'initial'
 }
 
@@ -187,7 +195,7 @@ function createNewTable(data){
     hot.rootElement.style.display = 'none'
     new_table.innerHTML = ""
     // create new table
-    new Handsontable(new_table, {
+    return new Handsontable(new_table, {
         data: data,
         colHeaders: getColHeaders(),
         columns: getColumns(),
@@ -199,8 +207,7 @@ function createNewTable(data){
 let caution = document.querySelector('.caution')
 
 // function will take a user's input and will compare it with available ones
-// FIXME button cannot be pressed again after if isNaN happens
- function showById(hot, btn) {
+function showById(hot, btn) {
     btn.addEventListener('click', () => {
         let form_input = document.querySelector('.id-form-text-input')
         let value = form_input.value // !X
@@ -232,7 +239,7 @@ let caution = document.querySelector('.caution')
 
                     // input form field cleanup
                     form_input.value = ""
-                    form_input.setAttribute("placeholder", "Введите ID")
+                    form_input.setAttribute("placeholder", "Данные найдены")
 
                     // set true value to break the first loop
                     isThereValue = true
@@ -242,8 +249,8 @@ let caution = document.querySelector('.caution')
                 iterator++
             }
 
-            // if didn't find anything
-            if (iterator == IDs.length) {
+            // if didn't find anything check if there is something in first cell
+            if (hot.getDataAtCell(iterator,0) === null) {
                 form_input.value = ""
                 form_input.setAttribute("placeholder", "Совпадений не найдено")
             }
@@ -337,4 +344,3 @@ window.addEventListener('scroll',()=>{
         show(close_sign)
     }
 })
-

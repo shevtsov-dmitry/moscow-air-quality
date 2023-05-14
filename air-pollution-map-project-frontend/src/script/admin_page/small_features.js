@@ -1,7 +1,17 @@
 // * show buttons which will show table
 const show_selectors_button  = document.querySelector('.show-action-button')
+let count_times_clicked = 0 // needed to disable bug when on first click doesn't appear
 show_selectors_button.addEventListener('click', ()=> {
-    show(selectors)
+    count_times_clicked++;
+    if(count_times_clicked == 1){
+        hide(selectors)
+    }
+    if(selectors.style.display === 'none'){
+        show(selectors)
+    }
+    else{
+        hide(selectors)
+    }
     hide(id_form)
 })
 
@@ -78,9 +88,9 @@ const loading_gif = document.querySelector('.loading-gif')
 // * show gif when upload file and hide the panel where user inputted value
 submit_btn.addEventListener('click', ()=>{
     loading_gif.style.display = 'initial'
-    setTimeout(()=>{
-        form_filled_with_variants.innerHTML = ''
-    },400)
+    // setTimeout(()=>{
+    //     form_filled_with_variants.innerHTML = ''
+    // },400)
 })
 
 // * close sign actions
@@ -101,4 +111,3 @@ close_sign.addEventListener('click',()=>{
 //         form_filled_with_variants.innerHTML = ""
 //     },500)
 // })
-
