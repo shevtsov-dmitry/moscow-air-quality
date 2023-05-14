@@ -151,9 +151,12 @@ function clickButtonAction() {
         let dataCol = showByStationName(hot)
         let children = form.children
         for(let child of children){
-            child.addEventListener('click',()=>{
+            child.addEventListener('click',async()=>{
                 let data = fillTableByChosenValue(child.innerHTML, dataCol)
-                createNewTable(data)
+                const newTable = createNewTable(data)
+                newTable.updateSettings({
+                    colHeaders: await getColHeaders()
+                })
             })
         }
     }
@@ -163,9 +166,12 @@ function clickButtonAction() {
         let dataCol = showByParameter(hot)
         let children = form.children
         for (const child of children) {
-            child.addEventListener('click', ()=> {
+            child.addEventListener('click', async ()=> {
                 let data = fillTableByChosenParameter(child.innerHTML, dataCol)
-                createNewTable(data)
+                const newTable = createNewTable(data)
+                newTable.updateSettings({
+                    colHeaders: await getColHeaders()
+                })
             })
         }
     }
@@ -189,7 +195,7 @@ function createNewTable(data){
     hot.rootElement.style.display = 'none'
     new_table.innerHTML = ""
     // create new table
-    new Handsontable(new_table, {
+    return new Handsontable(new_table, {
         data: data,
         colHeaders: getColHeaders(),
         columns: getColumns(),
@@ -201,7 +207,7 @@ function createNewTable(data){
 let caution = document.querySelector('.caution')
 
 // function will take a user's input and will compare it with available ones
- function showById(hot, btn) {
+function showById(hot, btn) {
     btn.addEventListener('click', () => {
         let form_input = document.querySelector('.id-form-text-input')
         let value = form_input.value // !X
