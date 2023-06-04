@@ -15,7 +15,7 @@ const serverURL = "http://localhost:8080"
 useGeographic()
 
 const moscowLon = 37.6173,
-      moscowLat = 55.7558
+    moscowLat = 55.7558
 
 const raster = new TileLayer({
     source: new Stamen({
@@ -28,12 +28,12 @@ const map = new Map({
     target: 'map',
     layers: [raster],
     view: new View({
-        center: [moscowLon,moscowLat],
+        center: [moscowLon, moscowLat],
         zoom: 10
     })
 });
 
-function createLayer(data){
+function createLayer(data) {
     const longitude = data.longitude
     const latitude = data.latitude
     return new HeatmapLayer({
@@ -47,9 +47,11 @@ function createLayer(data){
         // radius:  27 - Math.floor(Math.random() * 25),
     });
 }
-function getMonthlyAverageData(){
+
+function getMonthlyAverageData() {
     return fetch(`${serverURL}/getMonthlyAverage`)
 }
+
 // TODO HIDE CIRCLES WHEN ZOOM OUT AND PLACE ONLY ONE ON TOP OF THEM
 // style: function(feature) {
 //     const resolution = this.getMap().getView().getResolution();
@@ -84,7 +86,7 @@ const select_close_sign = document.querySelector('.select-close-sign')
 const color_block = document.querySelector('.color-block')
 const image_block = document.querySelector('.image-block')
 
-select_close_sign.addEventListener('click',()=>{
+select_close_sign.addEventListener('click', () => {
     select_container.style.display = 'none'
     select_close_sign.style.display = 'none'
 })
@@ -96,11 +98,13 @@ const urlIsTableEmpty = "http://localhost:8080/isTableEmpty"
 fetch(urlIsTableEmpty)
     .then(response => response.json())
     .then(answer => {
-        if(answer === true){
+        if (answer === true) {
             text_not_uploaded.style.display = 'flex'
         }
     })
-    .catch(e => {console.log(e)})
+    .catch(e => {
+        console.log(e)
+    })
 // elements to show div of dates
 const btn_show_chooser_div = document.querySelector(".btn-img-to-show-date-choose")
 const list_of_dates = document.querySelector('.list-of-dates-div')
@@ -108,30 +112,32 @@ const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
 
 const urlDates = "http://localhost:8080/getDates"
+
 function retrieveDates(urlDates) {
-  fetch(urlDates)
-      .then(response => response.json())
-      .then(async (dates) => {
-          // show date chooser div on icon click
-          btn_show_chooser_div.addEventListener('click', ()=>{
-              list_of_dates.style.display = 'flex'
-          })
-          // addYears(dates)
-          // let year_input = await defineInput(year_chooser)
-          // console.log(await year_input)
-          // await addMonths(dates, year_input)
-          // let month_input = await defineInput(month_chooser)
-          // constructed_date = await constructDate(month_input, year_input)
-          main(dates)
-      })
-      .catch(error => {
-        console.log(`Something went wrong: ${error}`)
-      })
+    fetch(urlDates)
+        .then(response => response.json())
+        .then(async (dates) => {
+            // show date chooser div on icon click
+            btn_show_chooser_div.addEventListener('click', () => {
+                list_of_dates.style.display = 'flex'
+            })
+            // addYears(dates)
+            // let year_input = await defineInput(year_chooser)
+            // console.log(await year_input)
+            // await addMonths(dates, year_input)
+            // let month_input = await defineInput(month_chooser)
+            // constructed_date = await constructDate(month_input, year_input)
+            main(dates)
+        })
+        .catch(error => {
+            console.log(`Something went wrong: ${error}`)
+        })
 }
 
 let constructed_date = ""
+
 //xxxxxxxxxxxxx
-function main(dates){
+function main(dates) {
     let years = filterYears(dates)
     for (const year of years) {
         year_chooser.innerHTML += `<li>${year}</li>`
@@ -139,7 +145,7 @@ function main(dates){
     let year_chooser_children = year_chooser.children // choosing all years
     // for each year add event listener on click to display months
     for (const yearsChild of year_chooser_children) {
-        yearsChild.addEventListener('click', ()=>{
+        yearsChild.addEventListener('click', () => {
             // everytime click on year clear @param month_chooser to not stack values
             month_chooser.innerHTML = ""
             let year_input = yearsChild.innerHTML
@@ -153,7 +159,7 @@ function main(dates){
 
             let month_chooser_children = month_chooser.children
             for (const monthChooserChild of month_chooser_children) {
-                monthChooserChild.addEventListener("click", ()=>{
+                monthChooserChild.addEventListener("click", () => {
                     // hide dates on month choose
                     list_of_dates.style.display = 'none'
 
@@ -172,21 +178,23 @@ function main(dates){
         })
     }
 }
+
 //
 const urlData = "http://localhost:8080/getDataByDate"
-function retrieveDataByChosenDate(date_to_send){
+
+function retrieveDataByChosenDate(date_to_send) {
     fetch(urlData, {
-      method: 'POST',
-      headers:{
-          'Content-Type' : 'application/json'
-      },
-      body: JSON.stringify(date_to_send)
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(date_to_send)
     })
         .then(response => response.json())
-        .then( data => {
+        .then(data => {
             // -----------------------
 
-            map.getLayers().forEach( layer => {
+            map.getLayers().forEach(layer => {
                 map.removeLayer(layer);
             });
             map.addLayer(raster)
@@ -194,11 +202,10 @@ function retrieveDataByChosenDate(date_to_send){
             // ! sort data
             let uniqueList = []
             let additionalLists = []
-            for(let obj of data){
-                if(uniqueList.find(e => e.station_name == obj.station_name) == undefined){
+            for (let obj of data) {
+                if (uniqueList.find(e => e.station_name == obj.station_name) == undefined) {
                     uniqueList.push(obj)
-                }
-                else{
+                } else {
                     additionalLists.push(obj)
                 }
             }
@@ -213,14 +220,13 @@ function retrieveDataByChosenDate(date_to_send){
             let all_measures_by_one_station = []
 
             for (const element of additionalLists) {
-                if(station_avoid_duplicates.includes(element.station_name)){
+                if (station_avoid_duplicates.includes(element.station_name)) {
                     all_measures_by_one_station.push(element.monthly_average)
                     all_measures_by_one_station.push(element.monthly_average_pdkss)
-                }
-                else{
+                } else {
                     let average_value = all_measures_by_one_station
                         .reduce((acc, cur) => acc + cur, 0) / all_measures_by_one_station.length
-                    if(average_value > 1) average_value =0.34
+                    if (average_value > 1) average_value = 0.34
                     all_measures_by_one_station.length = 0 // clear array of gathered values
                     // create new object from retrieved values for further processing
                     monthly_averages_by_all_stations.push({
@@ -237,18 +243,36 @@ function retrieveDataByChosenDate(date_to_send){
             // -----------------------
             let select_vectors_list = []
 
+            // *** MULTIPLIERS ***
             for (const obj of monthly_averages_by_all_stations) {
                 const newLayer = createLayer(obj)
-                newLayer.set('blur', (30 - Math.floor(Math.random() * 13)))
-                newLayer.set('radius', 5 + obj.monthly_average * 35)
+                const blur_size = 30 - Math.floor(Math.random() * 13)
+                const radius_size = 13 + obj.monthly_average * 25
+                newLayer.set('blur', blur_size)
+                newLayer.set('radius', radius_size)
                 map.addLayer(newLayer)
                 select_vectors_list.push(newLayer)
+                map.getView().on('change:resolution', function() {
+                    const currentZoom = map.getView().getZoom(); // get the current zoom level
+                    if(currentZoom < 7){
+                        const final = 1.6
+                        const newBlur = Math.pow( final, currentZoom)
+                        const newRadius = Math.pow( final, currentZoom); // calculate the new radius value based on the current zoom level
+                        // set the new radius value on the HeatmapLayer
+                        newLayer.setRadius(newRadius);
+                        newLayer.setBlur(newBlur)
+                    }
+                    else {
+                        newLayer.set('blur', blur_size)
+                        newLayer.set('radius', radius_size)
+                    }
+                });
             }
 
             let select = new Select({
                 layers: select_vectors_list
             })
-            select.on('select', () =>{
+            select.on('select', () => {
                 // clear content
                 image_block.style.backgroundImage = "url()"
                 select_ul.innerHTML = ""
@@ -263,7 +287,7 @@ function retrieveDataByChosenDate(date_to_send){
                     // rusification of values from database
                     word_to_translate = rusificate(value)
 
-                    if(value == "monthly_average") {
+                    if (value == "monthly_average") {
                         element_value = (parseFloat(element_value) +
                             // FIXME make mutual monthly average
                             parseFloat(uniqueList[index].monthly_average_pdkss))
@@ -271,7 +295,7 @@ function retrieveDataByChosenDate(date_to_send){
                         image_block.style.backgroundImage = `url(${showFaceByAwarenessNumber(element_value)})`
                         element_value = element_value.toFixed(2)
                     }
-                    if(value == "monthly_average_pdkss") break
+                    if (value == "monthly_average_pdkss") break
 
                     select_ul.innerHTML += `<li>${word_to_translate}: ${element_value}</li>`
 
@@ -319,55 +343,80 @@ retrieveDates(urlDates)
 //     return `${month_input}.${year_input}`
 // }
 
-function filterYears(list){
-  return list.map(str => str.match(/\d+/g))
+function filterYears(list) {
+    return list.map(str => str.match(/\d+/g))
         .filter(Boolean)
         .flatMap(arr => arr.map(Number))
         .filter((value, index, self) => {
-          return self.indexOf(value) == index
+            return self.indexOf(value) == index
         })
 }
 
-function filterMonths(list, input){
+function filterMonths(list, input) {
     let dates = list.map(str => {
-    if(str.includes(input)){
-      return str.replace(input.toString(), '').replace('.','')
-    }
-  }).filter(str => str !== undefined)
+        if (str.includes(input)) {
+            return str.replace(input.toString(), '').replace('.', '')
+        }
+    }).filter(str => str !== undefined)
     return [...new Set(dates)] // return the Set to delete all duplicates
 }
 
 
 // rusificate word
-function rusificate(word){
+function rusificate(word) {
     switch (word) {
-        case 'id': word = 'ID'; break;
-        case 'date': word = 'Дата'; break;
-        case 'station_name': word = 'Название станции'; break;
-        case 'global_id': word = 'Общее ID'; break;
-        case 'latitude': word = 'Широта'; break;
-        case 'Surveillance_zone_characteristics': word = 'Характеристика зоны наблюдения'; break;
-        case 'longitude': word = 'Долгота'; break;
-        case 'adm_area': word = 'Административная зона'; break;
-        case 'district': word = 'Район'; break;
-        case 'location': word = 'Местоположение'; break;
-        case 'parameter': word = 'Параметр'; break;
-        case 'monthly_average': word = 'Среднемесячная норма качества воздуха'; break;
-        case 'monthly_average_pdkss': word = ''; break;
+        case 'id':
+            word = 'ID';
+            break;
+        case 'date':
+            word = 'Дата';
+            break;
+        case 'station_name':
+            word = 'Название станции';
+            break;
+        case 'global_id':
+            word = 'Общее ID';
+            break;
+        case 'latitude':
+            word = 'Широта';
+            break;
+        case 'Surveillance_zone_characteristics':
+            word = 'Характеристика зоны наблюдения';
+            break;
+        case 'longitude':
+            word = 'Долгота';
+            break;
+        case 'adm_area':
+            word = 'Административная зона';
+            break;
+        case 'district':
+            word = 'Район';
+            break;
+        case 'location':
+            word = 'Местоположение';
+            break;
+        case 'parameter':
+            word = 'Параметр';
+            break;
+        case 'monthly_average':
+            word = 'Среднемесячная норма качества воздуха';
+            break;
+        case 'monthly_average_pdkss':
+            word = '';
+            break;
     }
     return word
 }
 
-function visualizeAwarenessByNumber(value){
+function visualizeAwarenessByNumber(value) {
     //value from 0 to 1
-    let hue=((1-value)*120).toString(10);
-    return ["hsl(",hue,",100%,50%)"].join("");
+    let hue = ((1 - value) * 120).toString(10);
+    return ["hsl(", hue, ",100%,50%)"].join("");
 }
 
 
-
 // display chosen image by value of awareness
-function showFaceByAwarenessNumber(num){
+function showFaceByAwarenessNumber(num) {
 
     // paths of faces' images
     const face_happy = "../../static/happy.png"
@@ -377,7 +426,7 @@ function showFaceByAwarenessNumber(num){
     const face_angry = "../../static/angry.png"
     const face_demon = "../../static/demon.png"
 
-         if (num >= 0 && num <= 0.166) return face_happy
+    if (num >= 0 && num <= 0.166) return face_happy
     else if (num > 0.166 && num <= 0.332) return face_normal
     else if (num > 0.322 && num <= 0.488) return face_neutral
     else if (num > 0.488 && num <= 0.654) return face_bad
