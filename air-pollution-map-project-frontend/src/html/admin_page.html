@@ -4,53 +4,74 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-    <link rel="stylesheet" href="../css/admin_page.css">
-    <title>admin page</title>
+    <link rel="icon" type="image/x-icon" href="../static/tab_icon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" />
+    <link rel="stylesheet" href="../css/admin_page/admin_page.css">
+    <title>administration page</title>
 </head>
 <body>
-    <table>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-      <tr>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-        <td>...</td>
-      </tr>
-    </table>
-    <!-- upload CSV -->
-    <form method="POST" enctype="multipart/form-data" class="uploadCSV">
-      <input class ="CSVfile" type="file" name="file">
-      <input class ="submitUploadBtn" type="submit" value="Загрузить">
-    </form>
-    <p class="temptext">mytext</p>
+  <!-- upload CSV -->
+  <div class="buttons-panel">
+
+<!--upload file-->
+      <div class="file-upload-div">
+          <form method="POST" enctype="multipart/form-data" class="uploadCSV">
+              <input class ="CSVFile" type="file" name="file">
+              <input class ="submitUploadBtn" type="submit" value="Загрузить">
+          </form>
+          <img src="../static/loading.gif" alt="loading..." class="loading-gif">
+      </div>
+
+<!--select data by ...-->
+      <div class="buttons">
+          <div class="form-chose-what-to-select">
+<!--              start choosing option-->
+              <button class="show-action-button">Показать данные</button>
+<!--              choose option-->
+              <div class="selectors">
+                  <button class="btn_everything">Всё</button>
+                  <button class="btn_ID">По ID</button>
+                  <button class="btn_station_name">По названию станции</button>
+                  <button class="btn_parameter">По параметру</button>
+              </div>
+<!--               choose concrete case, also fill be filled automatically -->
+<!--               variants will be preloaded and hidden until user chose the option-->
+              <div class="choose-list-div">
+                <ul class="form-filled-with-variants"></ul>
+                  <p class="close-sign">X</p>
+              </div>
+
+          </div>
+      </div>
+
+<!--  clear table-->
+      <div class="wipe-table-div">
+          <form action="" method="POST">
+              <input class="wipe-data" type="submit" value="Удалить всю таблицу">
+          </form>
+      </div>
+
+<!--back to map div-->
+      <div class="map-text-div">
+          <a href="../index.html">
+              <button class="back-to-map">Вернуться к карте</button>
+          </a>
+      </div>
+  </div>
+
+  <!-- main table from query to server -->
+  <div class="tables">
+      <div class="csvdata"></div>
+      <!-- additional table for displaying data by selection with buttons -->
+      <div class="display_table"></div>
+  </div>
+  <p class="caution"></p>
+
     <!-- scripts -->
-    
-    <script src="../script/admin_page_script.js"></script>
+  <script type="module" src="../script/admin_page/upload_csv.js"></script>
+  <script type="module" src="../script/admin_page/display_table.js"></script>
+  <script type="text/javascript" src="../script/admin_page/small_features.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js"></script>
+  <script src="../script/admin_page/wipe-data.js"></script>
 </body>
 </html>
