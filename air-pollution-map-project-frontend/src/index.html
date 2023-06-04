@@ -2,16 +2,48 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="https://openlayers.org/favicon.ico" />
-    <link rel="stylesheet" href="css/index_style.css">
+    <link rel="stylesheet" href="css/map/index_style.css">
+    <link rel="icon" type="image/x-icon" href="static/tab_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Using OpenLayers with Vite</title>
+    <title>Air pollution</title>
   </head>
   <body>
+
+  <!--  caution if data is not uploaded-->
+  <div class="text-is-not-uploaded">
+      <h1>Данные не загружены</h1>
+  </div>
+
+<!--    authorization icon-->
     <div class="authorization-icon">
-      <a href="html/autorization.html"><img src="/public/static/admin_page.png" alt="log in"></a>
+      <a href="html/authorization.html"><img src="static/authorization_icon.png" alt="log in"></a>
     </div>
+
+<!--    choose date-->
+  <div class="choose-date-icon-div">
+    <img src="static/calendar.png" class="btn-img-to-show-date-choose" alt="" srcset="">
+  </div>
+  <div class="list-of-dates-div">
+      <ul class="choose-year">
+      </ul>
+      <ul class="choose-month">
+      </ul>
+    </div>
+
+<!--  block show info on select-->
+  <div class="select-container">
+    <h1 class="select-close-sign">X</h1>
+    <ul class="select-ul">
+    </ul>
+    <div class="emote-and-color-block">
+      <div class="color-block">
+        <div class="image-block"></div>
+      </div>
+    </div>
+  </div>
+<!--    map-->
     <div id="map"></div>
-    <script type="module" src="/script/main.js"></script>
+
+    <script type="module" src="script/map/main.js"></script>
   </body>
 </html>
