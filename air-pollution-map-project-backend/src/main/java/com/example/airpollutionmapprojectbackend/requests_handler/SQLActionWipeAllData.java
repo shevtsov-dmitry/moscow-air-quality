@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.xml.crypto.Data;
 
-@CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
+@CrossOrigin(origins = Constants.ORIGINS, methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class SQLActionWipeAllData {
     private final JdbcTemplate jdbcTemplate;

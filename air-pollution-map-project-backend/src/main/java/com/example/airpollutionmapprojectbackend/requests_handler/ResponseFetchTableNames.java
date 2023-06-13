@@ -1,6 +1,7 @@
 package com.example.airpollutionmapprojectbackend.requests_handler;
 
 import com.example.airpollutionmapprojectbackend.POST_CSV_Handler.Handler;
+import com.example.airpollutionmapprojectbackend.constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
+
+@CrossOrigin(origins = Constants.ORIGINS, methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class ResponseFetchTableNames {
     @GetMapping("/getColumnNames")

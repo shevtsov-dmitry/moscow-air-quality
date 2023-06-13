@@ -1,6 +1,7 @@
 package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
 
 import com.example.airpollutionmapprojectbackend.SQLScripts.SQLScriptImportCSVToTable;
+import com.example.airpollutionmapprojectbackend.constants.Constants;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:3000", methods = { RequestMethod.GET, RequestMethod.POST })
+@CrossOrigin(origins = Constants.ORIGINS, methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class HandlerController {
     // Добавил JDBC шаблон для возможности исполнения кода из класса HandlerService
