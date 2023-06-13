@@ -6,10 +6,11 @@ import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
 import {Select} from "ol/interaction";
+import {server_url} from "../Constants/CONSTANTS"
 import {Fill, Stroke, Style} from "ol/style";
 import CircleStyle from "ol/style/Circle";
 
-const serverURL = "http://localhost:8080"
+const serverURL = server_url
 
 // *** geo data display
 useGeographic()
@@ -94,7 +95,7 @@ select_close_sign.addEventListener('click', () => {
 // *** fetch interactions ----------------------------------------------------------------
 // * check if there is any data in table
 const text_not_uploaded = document.querySelector('.text-is-not-uploaded')
-const urlIsTableEmpty = "http://localhost:8080/isTableEmpty"
+const urlIsTableEmpty = `${server_url}/isTableEmpty`
 fetch(urlIsTableEmpty)
     .then(response => response.json())
     .then(answer => {
@@ -111,7 +112,7 @@ const list_of_dates = document.querySelector('.list-of-dates-div')
 const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
 
-const urlDates = "http://localhost:8080/getDates"
+const urlDates = `${server_url}/getDates`
 
 function retrieveDates(urlDates) {
     fetch(urlDates)
@@ -180,7 +181,7 @@ function main(dates) {
 }
 
 //
-const urlData = "http://localhost:8080/getDataByDate"
+const urlData = `${server_url}/getDataByDate`
 
 function retrieveDataByChosenDate(date_to_send) {
     fetch(urlData, {

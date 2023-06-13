@@ -1,3 +1,5 @@
+import {server_url} from "../Constants/CONSTANTS"
+
 const form = document.querySelector("#form-with-data");
 let loginHeader = document.querySelector(".login-header");
 let attemptsCounter = document.querySelector(".attempts-counter");
@@ -12,7 +14,7 @@ form.addEventListener("submit", (event)=>{
         login: login,
         password: password
     }
-    const url = "http://localhost:8080/admin";
+    const url = `${server_url}/admin`;
     // отправляю данные на сервер для проверки действительности
 
     fetch(url,{

@@ -1,3 +1,4 @@
+import {server_url} from "../Constants/CONSTANTS"
 // *** table initialization
 // * configuration optimized in async function - createTable()
 const csvDataDiv = document.querySelector('.csvdata')
@@ -8,7 +9,7 @@ let hot = new Handsontable(csvDataDiv, {
     licenseKey: 'non-commercial-and-evaluation'
 })
 
-const url = "http://localhost:8080/dataTableToWebsite"
+const url = `${server_url}/dataTableToWebsite`
 public_static_void_main_String_args(url)
 
 // ** Main function
@@ -41,7 +42,7 @@ async function getColHeaders() {
 
 async function getColumnNames() {
     try {
-        const url = "http://localhost:8080/getColumnNames";
+        const url = `${server_url}/getColumnNames`;
         const response = await fetch(url)
         return await response.json()
     }
