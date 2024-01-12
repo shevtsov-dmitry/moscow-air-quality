@@ -4,7 +4,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
-  server: { // Настройка IP
+  server: {
     port: 3000,
     host: 'localhost',
   },

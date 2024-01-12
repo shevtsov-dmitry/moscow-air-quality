@@ -1,4 +1,3 @@
-// * show buttons which will show table
 const show_selectors_button  = document.querySelector('.show-action-button')
 let count_times_clicked = 0 // needed to disable bug when on first click doesn't appear
 show_selectors_button.addEventListener('click', ()=> {
@@ -15,14 +14,12 @@ show_selectors_button.addEventListener('click', ()=> {
     hide(id_form)
 })
 
-// functions either hide or display DOM element
 function hide(value){
     value.style.display = "none"
 }
 function show(value){
     value.style.display = "flex"
 }
-// divs of form
 const selectors = document.querySelector('.selectors')
 const id_div = document.querySelector('.choose-list-div')
 const form_filled_with_variants = document.querySelector('.form-filled-with-variants')
@@ -42,13 +39,11 @@ function alignTableLeft(){
 fn_btn.addEventListener('click',()=>{
     hide(selectors)
 })
-// buttons
 const btn_everything = document.querySelector(".btn_everything")
 const btn_ID = document.querySelector(".btn_ID")
 const btn_station_name = document.querySelector(".btn_station_name")
 const btn_parameter = document.querySelector(".btn_parameter")
 
-// functions of buttons which manages show or hide each other on click
 btn_everything.addEventListener('click',()=>{
     hide(close_sign)
     hide(form_filled_with_variants)
@@ -85,15 +80,11 @@ btn_parameter.addEventListener('click', ()=>{
 const submit_btn = document.querySelector('.submitUploadBtn')
 const loading_gif = document.querySelector('.loading-gif')
 
-// * show gif when upload file and hide the panel where user inputted value
 submit_btn.addEventListener('click', ()=>{
     loading_gif.style.display = 'initial'
-    // setTimeout(()=>{
-    //     form_filled_with_variants.innerHTML = ''
-    // },400)
+
 })
 
-// * close sign actions
 const close_sign = document.querySelector('.close-sign')
 close_sign.addEventListener('click',()=>{
     setTimeout(()=>{
@@ -102,12 +93,3 @@ close_sign.addEventListener('click',()=>{
         form_filled_with_variants.innerHTML = ''
     },200)
 })
-
-// FIXME repair this form in the future ( also need to erase display changes related to this form from display_table )
-// form_filled_with_variants.addEventListener('click',()=>{
-//     setTimeout(()=>{
-//         hide(close_sign)
-//         hide(form_filled_with_variants)
-//         form_filled_with_variants.innerHTML = ""
-//     },500)
-// })

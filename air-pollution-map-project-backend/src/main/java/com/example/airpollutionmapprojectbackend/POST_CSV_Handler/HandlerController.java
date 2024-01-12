@@ -17,21 +17,17 @@ import java.util.*;
 @CrossOrigin(origins = Constants.ORIGINS, methods = { RequestMethod.GET, RequestMethod.POST })
 @RestController
 public class HandlerController {
-    // Добавил JDBC шаблон для возможности исполнения кода из класса HandlerService
     private final JdbcTemplate jdbcTemplate;
     @Autowired
     public HandlerController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    // Обработка входящего запроса
     public static String listString = new String("");
     @PostMapping("/uploadCSV")
     public void uploadCSV(@RequestBody byte[] bytes) throws IOException, CsvException {
-        // read csv file into list
         var inputStream = new ByteArrayInputStream(bytes);
         var csvReader = new CSVReader(new InputStreamReader(inputStream));
         List<String[]> list = csvReader.readAll();
-        // import csv to DB table
         SQLScriptImportCSVToTable.SQLCommandBuilder(list);
         HandlerService service = new HandlerService(jdbcTemplate);
         service.importCSV(list);

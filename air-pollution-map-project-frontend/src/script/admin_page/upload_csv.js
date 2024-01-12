@@ -3,8 +3,6 @@ import {server_url} from "../Constants/CONSTANTS"
 const CSVFile = document.querySelector('input[type="file"]');
 const submitUploadBtn = document.querySelector(".submitUploadBtn");
 
-// when the "Download" button is pressed make event
-// which will request data from server
 submitUploadBtn.addEventListener("click", () => {
     event.preventDefault();
     try{

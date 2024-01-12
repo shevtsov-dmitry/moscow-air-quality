@@ -4,9 +4,7 @@ const form = document.querySelector("#form-with-data");
 let loginHeader = document.querySelector(".login-header");
 let attemptsCounter = document.querySelector(".attempts-counter");
 let iterator = 0;
-// Функция: отправить форму на обработку на сервер
 form.addEventListener("submit", (event)=>{
-    // блокирую стандартное выполнение формы
     event.preventDefault();
     const login = form.querySelector("#username").value;
     const password = form.querySelector("#password").value;
@@ -15,7 +13,6 @@ form.addEventListener("submit", (event)=>{
         password: password
     }
     const url = `${server_url}/admin`;
-    // отправляю данные на сервер для проверки действительности
 
     fetch(url,{
         method:"POST",
@@ -41,7 +38,6 @@ form.addEventListener("submit", (event)=>{
             )
         }
         else{
-            // attempts ++
             attemptsCounter.style.display = "block";
             iterator++;
             attemptsCounter.textContent = `attempts: ${iterator}`;
@@ -49,7 +45,7 @@ form.addEventListener("submit", (event)=>{
             loginHeader.style.color = "red";
             loginHeader.textContent =  "Login ❌";
         }
-    }) // xxxxxxxxxxxxxxx  
+    })
     .catch(error =>{
         console.log("Error sending your request" +"\n" + error);
         attemptsCounter.style.display = "block";
@@ -57,7 +53,6 @@ form.addEventListener("submit", (event)=>{
         attemptsCounter.style.color = "#9D0000";
     });
 
-    console.log(formData) // xxxxxxxxxxxxxxx 
+    console.log(formData)
     console.log(form.lastChild);
 })
-// console.log(loginHeader)
