@@ -1,7 +1,7 @@
-package com.example.airpollutionmapprojectbackend.SQLScripts;
+package ru.airpollution_map_project_backend.SQLScripts;
 
-import com.example.airpollutionmapprojectbackend.POST_CSV_Handler.Handler;
-import com.example.airpollutionmapprojectbackend.constants.Constants;
+import ru.airpollution_map_project_backend.POST_CSV_Handler.Handler;
+import ru.airpollution_map_project_backend.constants.Constants;
 
 import java.lang.reflect.Field;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.airpollutionmapprojectbackend;
+package ru.airpollution_map_project_backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

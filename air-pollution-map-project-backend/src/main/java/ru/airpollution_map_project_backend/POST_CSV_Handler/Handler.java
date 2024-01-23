@@ -1,6 +1,6 @@
-package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
+package ru.airpollution_map_project_backend.POST_CSV_Handler;
 
-import com.example.airpollutionmapprojectbackend.constants.Constants;
+import ru.airpollution_map_project_backend.constants.Constants;
 import jakarta.persistence.*;
 
 

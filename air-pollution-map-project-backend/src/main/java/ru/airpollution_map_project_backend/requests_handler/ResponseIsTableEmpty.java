@@ -1,6 +1,6 @@
-package com.example.airpollutionmapprojectbackend.requests_handler;
+package ru.airpollution_map_project_backend.requests_handler;
 
-import com.example.airpollutionmapprojectbackend.constants.Constants;
+import ru.airpollution_map_project_backend.constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;

@@ -1,14 +1,7 @@
-package com.example.airpollutionmapprojectbackend.requests_handler;
+package ru.airpollution_map_project_backend.requests_handler;
 
-import com.example.airpollutionmapprojectbackend.POST_CSV_Handler.Handler;
-import com.example.airpollutionmapprojectbackend.constants.Constants;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
+import ru.airpollution_map_project_backend.POST_CSV_Handler.Handler;
+import ru.airpollution_map_project_backend.constants.Constants;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Field;

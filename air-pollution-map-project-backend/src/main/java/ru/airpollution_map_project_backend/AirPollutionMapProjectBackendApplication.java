@@ -1,4 +1,4 @@
-package com.example.airpollutionmapprojectbackend;
+package ru.airpollution_map_project_backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

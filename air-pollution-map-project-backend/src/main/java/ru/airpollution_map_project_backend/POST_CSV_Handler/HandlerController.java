@@ -1,10 +1,8 @@
-package com.example.airpollutionmapprojectbackend.POST_CSV_Handler;
+package ru.airpollution_map_project_backend.POST_CSV_Handler;
 
-import com.example.airpollutionmapprojectbackend.SQLScripts.SQLScriptImportCSVToTable;
-import com.example.airpollutionmapprojectbackend.constants.Constants;
+import ru.airpollution_map_project_backend.SQLScripts.SQLScriptImportCSVToTable;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;

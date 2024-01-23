@@ -1,4 +1,4 @@
-package com.example.airpollutionmapprojectbackend.admin;
+package ru.airpollution_map_project_backend.admin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
