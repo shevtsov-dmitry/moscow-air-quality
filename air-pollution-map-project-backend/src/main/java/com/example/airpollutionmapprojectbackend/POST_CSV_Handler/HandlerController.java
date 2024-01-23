@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-@CrossOrigin(origins = Constants.ORIGINS, methods = { RequestMethod.GET, RequestMethod.POST })
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class HandlerController {
     private final JdbcTemplate jdbcTemplate;
