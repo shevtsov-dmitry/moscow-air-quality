@@ -2,5 +2,8 @@ package ru.moscowairpollution.dataset;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DatasetRepo extends JpaRepository<Dataset,Long> {
+import java.util.List;
+
+public interface DatasetRepo extends JpaRepository<Dataset, Long> {
+    List<Dataset> findDatasetsByDate(String date);
 }

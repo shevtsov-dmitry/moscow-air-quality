@@ -1,6 +1,7 @@
-.idea
-web/src/node_modules
 *.iml
-.vscode
-.settings
-.project
+
+.idea/
+.vscode/
+.settings/
+.project/
+node_modules/

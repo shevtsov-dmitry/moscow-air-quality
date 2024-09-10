@@ -44,7 +44,7 @@ function createLayer(data) {
 }
 
 function getMonthlyAverageData() {
-    return fetch(`${serverURL}/getMonthlyAverage`)
+    return fetch(`${serverURL}/get/monthly-average`)
 }
 
 
@@ -68,7 +68,7 @@ select_close_sign.addEventListener('click', () => {
 })
 
 const text_not_uploaded = document.querySelector('.text-is-not-uploaded')
-const urlIsTableEmpty = `${server_url}/isTableEmpty`
+const urlIsTableEmpty = `${server_url}/is-data-absent`
 fetch(urlIsTableEmpty)
     .then(response => response.json())
     .then(answer => {
@@ -137,7 +137,7 @@ function main(dates) {
     }
 }
 
-const urlData = `${server_url}/getDataByDate`
+const urlData = `${server_url}/get/by/date`
 
 function retrieveDataByChosenDate(date_to_send) {
     fetch(urlData, {

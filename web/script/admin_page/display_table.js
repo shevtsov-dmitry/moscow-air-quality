@@ -34,7 +34,7 @@ async function getColHeaders() {
 
 async function getColumnNames() {
     try {
-        const url = `${server_url}/getColumnNames`;
+        const url = `${server_url}/get/column-names`;
         const response = await fetch(url)
         return await response.json()
     } catch (error) {

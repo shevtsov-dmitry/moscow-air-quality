@@ -1,11 +1,9 @@
 package ru.moscowairpollution.admin;
 
-import ru.moscowairpollution.constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = Constants.ORIGINS, methods = { RequestMethod.GET, RequestMethod.POST })
 public class AuthorizationController{
     // Создал экзесмляр класса AdminService для реализации функций VerifyAdmin и JPA
     private final AdminService adminService;
