@@ -12,15 +12,18 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@RequestMapping("/datasets")
 public class DatasetController {
     private final JdbcTemplate jdbcTemplate;
+
     @Autowired
     public DatasetController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
+
     public static String listString = new String("");
+
     @PostMapping("/uploadCSV")
     public void uploadCSV(@RequestBody byte[] bytes) throws IOException, CsvException {
         var inputStream = new ByteArrayInputStream(bytes);
@@ -33,7 +36,7 @@ public class DatasetController {
     }
 
     @GetMapping("/uploadCSV")
-    public String showOutput(){
+    public String showOutput() {
         return listString;
     }
 }
