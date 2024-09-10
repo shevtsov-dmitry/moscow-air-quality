@@ -1,5 +1,5 @@
 {
-  "name": "air-pollution-map-project",
+  "name": "moscow-air-pollution",
   "version": "1.0.0",
   "scripts": {
     "start": "vite",
