@@ -6,8 +6,14 @@ import com.opencsv.exceptions.CsvException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import ru.moscowairpollution.constants.Constants;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -67,6 +73,10 @@ public class DatasetService {
                 .parallelStream()
                 .map(map -> map.get("date").toString())
                 .toList();
+    }
+
+    public List<Dataset> getEverything() {
+        return repo.findAll();
     }
 
     enum DatasetIndexProxy {

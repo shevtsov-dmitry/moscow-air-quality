@@ -8,7 +8,7 @@ let hot = new Handsontable(csvDataDiv, {
     licenseKey: 'non-commercial-and-evaluation'
 })
 
-const url = `${server_url}/dataTableToWebsite`
+const url = `${server_url}/all`
 public_static_void_main_String_args(url)
 
 

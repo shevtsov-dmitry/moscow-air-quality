@@ -4,8 +4,11 @@ import com.opencsv.exceptions.CsvException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.web.bind.annotation.*;
 import ru.moscowairpollution.constants.Constants;
 
@@ -39,5 +42,9 @@ public class DatasetController {
         return ResponseEntity.ok(service.getDates());
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<Dataset>> getEverything() {
+        return ResponseEntity.ok(service.getEverything());
+    }
 
 }
