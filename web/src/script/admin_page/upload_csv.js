@@ -10,10 +10,10 @@ submitUploadBtn.addEventListener("click", () => {
         const url = `${server_url}/uploadCSV`;
         fetch(url, {
             method: 'POST',
-            body: file,
             headers: {
                 'Content-Type': 'text/csv; charset=utf-8'
-              },
+            },
+            body: file,
         })
         .then(()=>{
             setTimeout(()=>{

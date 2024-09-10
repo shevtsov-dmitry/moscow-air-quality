@@ -1,42 +1,41 @@
 package ru.moscowairpollution.dataset;
 
-import ru.moscowairpollution.SQLScripts.SQLScriptImportCSVToTable;
-import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.*;
 
 @RestController
 @RequestMapping("/datasets")
 public class DatasetController {
-    private final JdbcTemplate jdbcTemplate;
+
+    private static final Logger log = LoggerFactory.getLogger(DatasetController.class);
 
     @Autowired
-    public DatasetController(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public DatasetService service;
+
+    @PostMapping(value = "/uploadCSV")
+    public ResponseEntity<Object> uploadCsv(@RequestBody String csvFile) {
+        try {
+            service.uploadCsv(csvFile);
+        } catch (IOException | CsvException e) {
+            String errMes = "Error reading CSV file: " + e.getMessage();
+            log.error(errMes);
+            return new ResponseEntity<>(errMes, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return ResponseEntity.ok("");
     }
 
-    public static String listString = new String("");
-
-    @PostMapping("/uploadCSV")
-    public void uploadCSV(@RequestBody byte[] bytes) throws IOException, CsvException {
-        var inputStream = new ByteArrayInputStream(bytes);
-        var csvReader = new CSVReader(new InputStreamReader(inputStream));
-        List<String[]> list = csvReader.readAll();
-        SQLScriptImportCSVToTable.SQLCommandBuilder(list);
-        DatasetService service = new DatasetService(jdbcTemplate);
-        service.importCSV(list);
-        listString = list.toString();
-    }
-
-    @GetMapping("/uploadCSV")
-    public String showOutput() {
-        return listString;
-    }
+//    @GetMapping("/uploadCSV")
+//    public String showOutput() {
+//        return listString;
+//    }
 }
