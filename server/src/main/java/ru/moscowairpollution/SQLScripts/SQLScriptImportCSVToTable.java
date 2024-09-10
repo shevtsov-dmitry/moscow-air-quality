@@ -1,6 +1,6 @@
 package ru.moscowairpollution.SQLScripts;
 
-import ru.moscowairpollution.POST_CSV_Handler.Handler;
+import ru.moscowairpollution.dataset.Dataset;
 import ru.moscowairpollution.constants.Constants;
 
 import java.lang.reflect.Field;
@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class SQLScriptImportCSVToTable {
-    public static String SQLCommandBuilder(List<String[]> list){
+    public static String SQLCommandBuilder(List<String[]> list) {
         var SQLScript = new StringBuilder();
-        var handler = new Handler();
+        var handler = new Dataset();
         Field[] fields = handler.getClass().getDeclaredFields();
         SQLScript.append("INSERT INTO " + Constants.CSV_TABLE_NAME + "(");
-        for (Field f: fields) {
+        for (Field f : fields) {
             SQLScript.append(f.getName().toLowerCase() + ",");
         }
-        SQLScript.deleteCharAt(SQLScript.length()-1);
+        SQLScript.deleteCharAt(SQLScript.length() - 1);
         SQLScript.append(") values");
         for (int j = 1; j < list.size(); j++) {
             String[] strings = list.get(j);
@@ -35,29 +35,24 @@ public class SQLScriptImportCSVToTable {
                             SQLScript.append(tempString).append(',');
                             rememberCount = i;
                             fieldsCounter++;
-                        }
-
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             var patternDate = Pattern.compile("\\d\\.\\d{2}\\.\\d{4}");
                             var matcherDate = patternDate.matcher(tempString);
                             var patternDouble = Pattern.compile("[-+]?[0-9]*\\.?[0-9]+");
                             var matcherDouble = patternDouble.matcher(tempString);
 
-                            if (matcherDate.matches()){
+                            if (matcherDate.matches()) {
                                 SQLScript.append("'" + tempString + "'").append(',');
                                 rememberCount = i;
                                 fieldsCounter++;
-                            }
-                            else if (fieldsCounter == fields.length - 1) {
+                            } else if (fieldsCounter == fields.length - 1) {
                                 SQLScript.append(tempString).append(line.charAt(line.length() - 1)).append(',');
                                 rememberCount = i;
-                            }
-                            else if(matcherDouble.matches()){
+                            } else if (matcherDouble.matches()) {
                                 SQLScript.append(tempString).append(',');
                                 rememberCount = i;
                                 fieldsCounter++;
-                            }
-                            else {
+                            } else {
                                 SQLScript.append("'" + tempString + "'").append(',');
                                 rememberCount = i;
                                 fieldsCounter++;

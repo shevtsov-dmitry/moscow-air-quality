@@ -1,6 +1,6 @@
 package ru.moscowairpollution.requests_handler;
 
-import ru.moscowairpollution.POST_CSV_Handler.Handler;
+import ru.moscowairpollution.dataset.Dataset;
 import ru.moscowairpollution.constants.Constants;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +16,7 @@ public class ResponseFetchTableNames {
     @GetMapping("/getColumnNames")
     @ResponseBody
     public List<String> getData() {
-        var handler = new Handler();
+        var handler = new Dataset();
         Field[] fields = handler.getClass().getDeclaredFields();
         return Arrays.stream(fields).map(Field::getName).collect(Collectors.toList());
     }

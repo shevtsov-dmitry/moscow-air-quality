@@ -12,7 +12,7 @@
     <artifactId>moscow-air-pollution</artifactId>
     <version>1.0</version>
     <name>moscow-air-pollution</name>
-    <description>Demo project for Spring Boot</description>
+    <description>The air pollution visualization project, based on moscow open air pollution dataset.</description>
     <url/>
     <licenses>
         <license/>
@@ -57,6 +57,11 @@
             <groupId>com.opencsv</groupId>
             <artifactId>opencsv</artifactId>
             <version>5.9</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
 
     </dependencies>

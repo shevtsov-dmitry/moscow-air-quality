@@ -1,4 +1,4 @@
-package ru.moscowairpollution.POST_CSV_Handler;
+package ru.moscowairpollution.dataset;
 
 import ru.moscowairpollution.SQLScripts.SQLScriptImportCSVToTable;
 import com.opencsv.CSVReader;
@@ -14,10 +14,10 @@ import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-public class HandlerController {
+public class DatasetController {
     private final JdbcTemplate jdbcTemplate;
     @Autowired
-    public HandlerController(JdbcTemplate jdbcTemplate) {
+    public DatasetController(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
     public static String listString = new String("");
@@ -27,7 +27,7 @@ public class HandlerController {
         var csvReader = new CSVReader(new InputStreamReader(inputStream));
         List<String[]> list = csvReader.readAll();
         SQLScriptImportCSVToTable.SQLCommandBuilder(list);
-        HandlerService service = new HandlerService(jdbcTemplate);
+        DatasetService service = new DatasetService(jdbcTemplate);
         service.importCSV(list);
         listString = list.toString();
     }

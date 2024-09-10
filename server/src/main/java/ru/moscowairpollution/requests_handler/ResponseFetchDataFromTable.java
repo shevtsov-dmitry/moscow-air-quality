@@ -1,6 +1,6 @@
 package ru.moscowairpollution.requests_handler;
 
-import ru.moscowairpollution.POST_CSV_Handler.Handler;
+import ru.moscowairpollution.dataset.Dataset;
 import ru.moscowairpollution.constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,9 +22,9 @@ public class ResponseFetchDataFromTable {
     }
     @GetMapping("/dataTableToWebsite")
     @ResponseBody
-    public ResponseEntity<List<Handler>> getData() {
+    public ResponseEntity<List<Dataset>> getData() {
         String sql = "SELECT * FROM " + Constants.CSV_TABLE_NAME;
-        List<Handler> handlers = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Handler.class));
+        List<Dataset> handlers = jdbcTemplate.query(sql,new BeanPropertyRowMapper<>(Dataset.class));
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new ResponseEntity<>(handlers, headers, HttpStatus.OK);
