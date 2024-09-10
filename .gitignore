@@ -1,5 +1,5 @@
 .idea
-air-pollution-map-project-frontend/src/node_modules
+web/src/node_modules
 *.iml
 .vscode
 .settings
