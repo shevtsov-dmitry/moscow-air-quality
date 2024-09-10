@@ -84,10 +84,9 @@ const list_of_dates = document.querySelector('.list-of-dates-div')
 const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
 
-const urlDates = `${server_url}/getDates`
 
-function retrieveDates(urlDates) {
-    fetch(urlDates)
+function retrieveDates() {
+    fetch(`${server_url}/get/dates`)
         .then(response => response.json())
         .then(async (dates) => {
             // show date chooser div on icon click
@@ -100,6 +99,8 @@ function retrieveDates(urlDates) {
             console.log(`Something went wrong: ${error}`)
         })
 }
+
+retrieveDates()
 
 let constructed_date = ""
 
@@ -197,17 +198,16 @@ function retrieveDataByChosenDate(date_to_send) {
                 newLayer.set('radius', radius_size)
                 map.addLayer(newLayer)
                 select_vectors_list.push(newLayer)
-                map.getView().on('change:resolution', function() {
+                map.getView().on('change:resolution', function () {
                     const currentZoom = map.getView().getZoom();
-                    if(currentZoom < 7){
+                    if (currentZoom < 7) {
                         const final = 1.6
-                        const newBlur = Math.pow( final, currentZoom)
-                        const newRadius = Math.pow( final, currentZoom);
+                        const newBlur = Math.pow(final, currentZoom)
+                        const newRadius = Math.pow(final, currentZoom);
                         // set the new radius value on the HeatmapLayer
                         newLayer.setRadius(newRadius);
                         newLayer.setBlur(newBlur)
-                    }
-                    else {
+                    } else {
                         newLayer.set('blur', blur_size)
                         newLayer.set('radius', radius_size)
                     }
@@ -255,7 +255,6 @@ function retrieveDataByChosenDate(date_to_send) {
         })
 }
 
-retrieveDates(urlDates)
 
 function filterYears(list) {
     return list.map(str => str.match(/\d+/g))

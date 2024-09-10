@@ -6,11 +6,13 @@ import com.opencsv.exceptions.CsvException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -19,6 +21,10 @@ public class DatasetService {
 
     @Autowired
     private DatasetRepo repo;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
 
     private static final Logger log = LoggerFactory.getLogger(DatasetService.class);
 
@@ -56,6 +62,12 @@ public class DatasetService {
         });
     }
 
+    public List<String> getDates() {
+        return jdbcTemplate.queryForList("SELECT date FROM dataset")
+                .parallelStream()
+                .map(map -> map.get("date").toString())
+                .toList();
+    }
 
     enum DatasetIndexProxy {
         ID, PERIOD, GLOBAL_ID, STATION_NAME, LATITUDE, LONGITUDE, SURVEILLANCE_ZONE_CHARACTERISTICS, ADM_AREA, DISTRICT, LOCATION, PARAMETER, MONTHLY_AVERAGE, MONTHLY_AVERAGE_PD_KS;
