@@ -1,4 +1,4 @@
-package ru.airpollution_map_project_backend.admin;
+package ru.moscowairpollution.admin;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

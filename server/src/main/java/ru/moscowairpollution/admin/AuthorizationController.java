@@ -1,6 +1,6 @@
-package ru.airpollution_map_project_backend.admin;
+package ru.moscowairpollution.admin;
 
-import ru.airpollution_map_project_backend.constants.Constants;
+import ru.moscowairpollution.constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package ru.airpollution_map_project_backend.POST_CSV_Handler;
+package ru.moscowairpollution.POST_CSV_Handler;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,7 +1,7 @@
-package ru.airpollution_map_project_backend.requests_handler;
+package ru.moscowairpollution.requests_handler;
 
-import ru.airpollution_map_project_backend.POST_CSV_Handler.Handler;
-import ru.airpollution_map_project_backend.constants.Constants;
+import ru.moscowairpollution.POST_CSV_Handler.Handler;
+import ru.moscowairpollution.constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

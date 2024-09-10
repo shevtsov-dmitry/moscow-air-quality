@@ -1,4 +1,4 @@
-package ru.airpollution_map_project_backend;
+package ru.moscowairpollution;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

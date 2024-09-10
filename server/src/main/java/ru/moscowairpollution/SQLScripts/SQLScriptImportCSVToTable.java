@@ -1,7 +1,7 @@
-package ru.airpollution_map_project_backend.SQLScripts;
+package ru.moscowairpollution.SQLScripts;
 
-import ru.airpollution_map_project_backend.POST_CSV_Handler.Handler;
-import ru.airpollution_map_project_backend.constants.Constants;
+import ru.moscowairpollution.POST_CSV_Handler.Handler;
+import ru.moscowairpollution.constants.Constants;
 
 import java.lang.reflect.Field;
 import java.util.List;

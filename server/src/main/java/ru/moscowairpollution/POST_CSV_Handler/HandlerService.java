@@ -1,6 +1,6 @@
-package ru.airpollution_map_project_backend.POST_CSV_Handler;
+package ru.moscowairpollution.POST_CSV_Handler;
 
-import ru.airpollution_map_project_backend.SQLScripts.SQLScriptImportCSVToTable;
+import ru.moscowairpollution.SQLScripts.SQLScriptImportCSVToTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,6 @@
-package ru.airpollution_map_project_backend.POST_CSV_Handler;
+package ru.moscowairpollution.POST_CSV_Handler;
 
-import ru.airpollution_map_project_backend.constants.Constants;
+import ru.moscowairpollution.constants.Constants;
 import jakarta.persistence.*;
 
 
