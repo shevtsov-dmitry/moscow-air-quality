@@ -1,18 +1,16 @@
 import {server_url} from "../Constants/CONSTANTS"
 
-const wipe_data_btn = document.querySelector(".wipe-data")
-const error_on_wipe = document.querySelector('.cation-on-failed-wipe')
+const wipeDataBtn = document.querySelector(".wipe-data")
+const errorOnWipe = document.querySelector('#caution-on-failed-wipe')
 
-wipe_data_btn.addEventListener('click', () => {
-    try {
-        event.preventDefault()
-        const url = `${server_url}/wipe-all-data`
-        fetch(url, {
-            method: 'DELETE',
-        }).then(() => {
-            location.reload()
-        })
-    } catch (error) {
-        error_on_wipe.innerHTML = error
+wipeDataBtn.addEventListener('click', async () => {
+    const url = `${server_url}/wipe-all-data`
+    const res = await fetch(url, {
+        method: 'DELETE',
+    })
+    if (res.status === 200) {
+        location.reload()
+    } else {
+        errorOnWipe.textContent = "Не удалось очистить сохранённый датасет в базе данных. Статус ошибки: " + res.status
     }
 })

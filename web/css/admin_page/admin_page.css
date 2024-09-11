@@ -9,7 +9,7 @@ body {
   align-items: center;
 }
 
-.CSVFile {
+.csv-file {
   margin: 25px 0px 0px 0px;
 }
 
@@ -55,7 +55,7 @@ body {
   color: white;
 }
 
-.CSVFile {
+.csv-file {
   background-color: floralwhite !important;
   box-shadow: none !important;
 }
