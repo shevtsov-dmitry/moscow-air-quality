@@ -6,6 +6,7 @@ import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
 import {Select} from "ol/interaction";
+import {OSM} from "ol/source";
 import {server_url} from "../Constants/CONSTANTS"
 
 const serverURL = server_url
@@ -16,9 +17,10 @@ const moscowLon = 37.6173,
     moscowLat = 55.7558
 
 const raster = new TileLayer({
-    source: new Stamen({
-        layer: 'toner',
-    }),
+    // source: new Stamen({
+    //     layer: 'toner',
+    // }),
+    source: new OSM()
 });
 
 const map = new Map({
@@ -79,6 +81,7 @@ fetch(urlIsTableEmpty)
     .catch(e => {
         console.log(e)
     })
+
 const btn_show_chooser_div = document.querySelector(".btn-img-to-show-date-choose")
 const list_of_dates = document.querySelector('.list-of-dates-div')
 const year_chooser = document.querySelector(".choose-year")

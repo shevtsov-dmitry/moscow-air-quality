@@ -1,11 +1,12 @@
 import {server_url} from "../Constants/CONSTANTS"
 
 const form = document.querySelector("#form-with-data");
-let loginHeader = document.querySelector(".login-header");
-let attemptsCounter = document.querySelector(".attempts-counter");
+const loginHeader = document.querySelector(".login-header");
+const attemptsCounter = document.querySelector(".attempts-counter");
+
 let iterator = 0;
 form.addEventListener("submit", (event)=>{
-    event.preventDefault();
+    event.preventDefault(); // prevent default form submission behavior
     const login = form.querySelector("#username").value;
     const password = form.querySelector("#password").value;
     const formData = {
