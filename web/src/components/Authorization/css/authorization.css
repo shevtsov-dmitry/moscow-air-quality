@@ -6,7 +6,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: sans-serif;
 }
 
 .login-form {
@@ -39,8 +39,8 @@ label {
   font-size: 20px;
 }
 
-input[type=text],
-input[type=password] {
+input[type="text"],
+input[type="password"] {
   width: 90%;
   padding: 10px;
   margin-bottom: 20px;
@@ -81,4 +81,4 @@ button:hover {
 }
 .attempts-block .attempts-counter {
   display: none;
-}/*# sourceMappingURL=authorization.css.map */
+} /*# sourceMappingURL=authorization.css.map */
