@@ -1,4 +1,4 @@
-import {server_url} from "../Constants/CONSTANTS"
+import { server_url } from "../Constants/CONSTANTS"
 
 const csvDataDiv = document.querySelector('.csvdata')
 let hot = new Handsontable(csvDataDiv, {
@@ -8,7 +8,7 @@ let hot = new Handsontable(csvDataDiv, {
     licenseKey: 'non-commercial-and-evaluation'
 })
 
-const url = `${server_url}/all`
+const url = `${server_url}/datasets/all`
 public_static_void_main_String_args(url)
 
 
@@ -34,7 +34,7 @@ async function getColHeaders() {
 
 async function getColumnNames() {
     try {
-        const url = `${server_url}/get/column-names`;
+        const url = `${server_url}/datasets/get/column-names`;
         const response = await fetch(url)
         return await response.json()
     } catch (error) {
@@ -45,7 +45,7 @@ async function getColumnNames() {
 async function getColumns() {
     let arr = await getColHeaders();
     return arr.map(element => {
-        return {data: element.toLowerCase()} // lowercase is essential!
+        return { data: element.toLowerCase() } // lowercase is essential!
     })
 }
 

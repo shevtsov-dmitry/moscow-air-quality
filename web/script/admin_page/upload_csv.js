@@ -1,13 +1,13 @@
-import {server_url} from "../Constants/CONSTANTS"
+import { server_url }/datasets from "../Constants / CONSTANTS"
 
 const CSVFile = document.querySelector('input[type="file"]');
 const submitUploadBtn = document.querySelector(".submitUploadBtn");
 
 submitUploadBtn.addEventListener("click", () => {
     event.preventDefault();
-    try{
+    try {
         const file = CSVFile.files[0]; // actual file user has chosen to upload
-        const url = `${server_url}/uploadCSV`;
+        const url = `${server_url}/datasets/uploadCSV`;
         fetch(url, {
             method: 'POST',
             headers: {
@@ -15,11 +15,11 @@ submitUploadBtn.addEventListener("click", () => {
             },
             body: file,
         })
-        .then(()=>{
-            setTimeout(()=>{
-                location.reload()
-            },1000)
-        })
+            .then(() => {
+                setTimeout(() => {
+                    location.reload()
+                }, 1000)
+            })
     }
-    catch(error){console.log("Произошла ошибка: " + error)};
+    catch (error) { console.log("Произошла ошибка: " + error) };
 })

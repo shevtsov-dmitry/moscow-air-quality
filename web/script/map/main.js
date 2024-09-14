@@ -1,13 +1,13 @@
 import '../../css/map/style.css';
-import {Feature, Map, View} from 'ol';
-import {fromLonLat, useGeographic} from "ol/proj";
-import {Point} from "ol/geom";
-import {Heatmap as HeatmapLayer, Tile as TileLayer} from 'ol/layer.js';
+import { Feature, Map, View } from 'ol';
+import { fromLonLat, useGeographic } from "ol/proj";
+import { Point } from "ol/geom";
+import { Heatmap as HeatmapLayer, Tile as TileLayer } from 'ol/layer.js';
 import Stamen from 'ol/source/Stamen.js';
 import VectorSource from 'ol/source/Vector.js';
-import {Select} from "ol/interaction";
-import {OSM} from "ol/source";
-import {server_url} from "../Constants/CONSTANTS"
+import { Select } from "ol/interaction";
+import { OSM } from "ol/source";
+import { server_url } from "../Constants/CONSTANTS"
 
 const serverURL = server_url
 
@@ -70,7 +70,7 @@ select_close_sign.addEventListener('click', () => {
 })
 
 const text_not_uploaded = document.querySelector('.text-is-not-uploaded')
-const urlIsTableEmpty = `${server_url}/is-data-absent`
+const urlIsTableEmpty = `${server_url}/datasets/is-data-absent`
 fetch(urlIsTableEmpty)
     .then(response => response.json())
     .then(answer => {
@@ -87,9 +87,8 @@ const list_of_dates = document.querySelector('.list-of-dates-div')
 const year_chooser = document.querySelector(".choose-year")
 const month_chooser = document.querySelector('.choose-month')
 
-
 function retrieveDates() {
-    fetch(`${server_url}/get/dates`)
+    fetch(`${server_url}/datasets/get/dates`)
         .then(response => response.json())
         .then(async (dates) => {
             // show date chooser div on icon click
@@ -140,7 +139,7 @@ function main(dates) {
     }
 }
 
-const urlData = `${server_url}/get/by/date`
+const urlData = `${server_url}/datasets/get/by/date`
 
 function retrieveDataByChosenDate(date_to_send) {
     fetch(urlData, {
@@ -201,7 +200,7 @@ function retrieveDataByChosenDate(date_to_send) {
                 newLayer.set('radius', radius_size)
                 map.addLayer(newLayer)
                 select_vectors_list.push(newLayer)
-                map.getView().on('change:resolution', function () {
+                map.getView().on('change:resolution', function() {
                     const currentZoom = map.getView().getZoom();
                     if (currentZoom < 7) {
                         const final = 1.6
