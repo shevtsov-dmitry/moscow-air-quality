@@ -1,6 +1,13 @@
-export default function App() {
-    return (
-        <div className='bg-red-700 text-white font-bold font-serif italic size-20'>Title</div>
-    )
-}
+import Map from "./components/Map/Map";
+import Authorization from "./components/Authorization/Authorization";
+import DatasetManagmentPanel from "./components/DatasetManagmentPanel/DatasetManagmentPanel";
 
+export default function App() {
+  // <Map />
+  // <DatasetManagmentPanel />
+  return (
+    <div>
+      <Authorization />
+    </div>
+  );
+}
