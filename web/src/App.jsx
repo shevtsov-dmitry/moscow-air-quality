@@ -3,11 +3,11 @@ import Authorization from "./components/Authorization/Authorization";
 import DatasetManagmentPanel from "./components/DatasetManagmentPanel/DatasetManagmentPanel";
 
 export default function App() {
-  // <Map />
-  // <DatasetManagmentPanel />
-  return (
-    <div>
-      <Authorization />
-    </div>
-  );
+    // <Map />
+    // <DatasetManagmentPanel />
+    return (
+        <div>
+            <Authorization />
+        </div>
+    );
 }
