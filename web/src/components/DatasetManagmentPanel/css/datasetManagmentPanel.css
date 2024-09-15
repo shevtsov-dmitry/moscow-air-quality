@@ -88,14 +88,6 @@ body {
   color: white;
 }
 
-.btn_everything {
-  border-radius: 10px 10px 0px 0px !important;
-}
-
-.btn_parameter {
-  border-radius: 0px 0px 10px 10px !important;
-}
-
 .loading-gif {
   display: none;
 }
@@ -204,4 +196,4 @@ body {
   align-items: center;
 }
 
-/*# sourceMappingURL=admin_page.css.map */
+/*# sourceMappingURL=datasetManagmentPanel.css.map */
