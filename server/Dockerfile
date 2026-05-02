@@ -1,11 +1,14 @@
-FROM eclipse-temurin:21-jdk
+FROM ghcr.io/graalvm/jdk:21 AS build
+
+RUN microdnf install -y \
+    maven \
+    gcc \
+    glibc-devel \
+    zlib-devel \
+    tar \
+    gzip
 
 WORKDIR /app
-
 COPY . .
 
-RUN ./mvnw clean package -DskipTests
-
-EXPOSE 8080
-
-CMD ["java", "-jar", "target/*.jar"]
+RUN ./mvnw -Pnative native:compile -DskipTests

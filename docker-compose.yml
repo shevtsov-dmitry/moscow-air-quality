@@ -10,6 +10,8 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./data/database:/docker-entrypoint-initdb.d
