@@ -1,4 +1,4 @@
-package ru.moscowairpollution.config;
+package app.shd.moscow_air_quality.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

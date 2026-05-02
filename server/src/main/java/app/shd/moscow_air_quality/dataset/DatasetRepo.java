@@ -1,4 +1,4 @@
-package ru.moscowairpollution.dataset;
+package app.shd.moscow_air_quality.dataset;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

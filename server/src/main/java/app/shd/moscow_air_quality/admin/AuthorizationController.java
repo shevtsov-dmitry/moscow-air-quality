@@ -1,4 +1,4 @@
-package ru.moscowairpollution.admin;
+package app.shd.moscow_air_quality.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

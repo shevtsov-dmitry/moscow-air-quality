@@ -1,4 +1,4 @@
-package ru.moscowairpollution.dataset;
+package app.shd.moscow_air_quality.dataset;
 
 import com.opencsv.exceptions.CsvException;
 import org.slf4j.Logger;

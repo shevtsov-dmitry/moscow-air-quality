@@ -1,4 +1,4 @@
-package ru.moscowairpollution.dataset;
+package app.shd.moscow_air_quality.dataset;
 
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReaderBuilder;
@@ -36,7 +36,8 @@ public class DatasetService {
         }
 
         enum DatasetIndexProxy {
-            ID, PERIOD, GLOBAL_ID, STATION_NAME, LATITUDE, LONGITUDE, SURVEILLANCE_ZONE_CHARACTERISTICS, ADM_AREA, DISTRICT, LOCATION, PARAMETER, MONTHLY_AVERAGE, MONTHLY_AVERAGE_PD_KS;
+            ID, PERIOD, GLOBAL_ID, STATION_NAME, LATITUDE, LONGITUDE, SURVEILLANCE_ZONE_CHARACTERISTICS, ADM_AREA,
+            DISTRICT, LOCATION, PARAMETER, MONTHLY_AVERAGE, MONTHLY_AVERAGE_PD_KS;
         }
 
         csvLines.parallelStream().skip(1).forEach(csvLineStringArray -> {
@@ -79,7 +80,6 @@ public class DatasetService {
     public List<Dataset> getByDate(String date) {
         return repo.findDatasetsByDate(date);
     }
-
 
     public Boolean isDataAbsent() {
         return jdbcTemplate.queryForRowSet("SELECT * FROM dataset LIMIT 1").first();

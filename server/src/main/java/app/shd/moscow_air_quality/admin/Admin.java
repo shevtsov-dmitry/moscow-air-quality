@@ -1,4 +1,4 @@
-package ru.moscowairpollution.admin;
+package app.shd.moscow_air_quality.admin;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,5 +17,10 @@ public class Admin {
     private long id;
     private String login;
     private String password;
+
+    public Admin(String login, String password) {
+        this.login = login;
+        this.password = password;
+    }
 
 }
