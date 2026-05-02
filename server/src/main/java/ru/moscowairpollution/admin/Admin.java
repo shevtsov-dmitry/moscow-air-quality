@@ -5,12 +5,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="admins")
+@Table(name = "admins")
 public class Admin {
     @Id
     private long id;
     private String login;
-    private String password; // in the future will try to use char[] instead of String
+    private String password;
+
     public Admin() {
     }
 

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Dataset {
     @Id
     private long id;
-    private String date; // TODO parse to Date type
+    private String date;
     private long globalId;
     private String stationName;
     private double latitude;

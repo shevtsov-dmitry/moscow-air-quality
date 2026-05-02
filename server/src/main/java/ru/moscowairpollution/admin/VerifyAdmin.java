@@ -12,16 +12,16 @@ public class VerifyAdmin {
         this.adminService = adminService;
     }
 
-    // Метод сравнивает полученный объект из запроса со всеми администраторами, зарегистрированными в базе данных
     // TODO make jwt auth in admin send data
     public boolean verifyAuthorization(Admin adminFromRequest) {
         long i = 1;
         while (adminService.getAdminById(i) != null) {
             Admin adminFromDB = adminService.getAdminById(i);
             if (adminFromRequest.getLogin().equals(adminFromDB.getLogin())
-                    && adminFromRequest.getPassword().equals(adminFromDB.getPassword())) return true;
+                    && adminFromRequest.getPassword().equals(adminFromDB.getPassword()))
+                return true;
             i++;
         }
         return false;
     }
-}   
+}
